@@ -1,0 +1,21 @@
+QAntenna 0.2:
+
+* Improved GUI with menu and log text
+* Added the render to file/clipboard functionality
+* Capacity to open several antennas at the same time
+* Set the initial frequency in the antennas as the NEC file describes it.
+* Now changing the frequency and simulating actually simulates the new
+  frequency :-)
+* A temporary file is created per antenna (we were creating one per program
+  instance)
+* Added camera "exploration mode", improved "orbital mode". The user can "run"
+  while pressing shift.
+* Added translations in many languages (see AUTHORS for more details)
+* Deleted the linear/logarithmic scale option, as the later one was wrong and
+  unnecessary.
+* Changed the step of the sphere's radius size slider.
+* Changed the visualization of antennas from OpenGL's display lists to
+  vertex/colors/normals arrays.
+
+QAntenna 0.1:
+* Original release

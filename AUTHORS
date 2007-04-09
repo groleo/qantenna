@@ -1,0 +1,23 @@
+Authors:
+* Gustavo González gonzalgus en/at gmail.com
+* Pablo Odorico pablo.odorico en/at gmail.com
+* Lisandro Damián Nicanor Pérez Meyer perezmeyer en/at gmail.com
+* Joop Stakenborg: correct installation of translation files in unix systems
+* Michael Barjenbruch: INSTALL file, patches for Windows packages
+
+Translations:
+* Danish: Peter Isaksen
+* Dutch: Joop Stakenborg
+* English: QAntenna team and contributors
+* Español: Lisandro D. N. Pérez Meyer
+* Français: Louis Belmont
+* German: Michael Barjenbruch
+* Polish: Marcin Gucia
+* Russian:  Marina Goritskaia
+
+NEC examples:
+yagi8sq_ch1 : 2004 (c) Marc UME (marc.ume en/at digitalgraphics.be),
+modified by Lisandro D. N. Pérez Meyer
+
+Rest of the examples: taken from Debian's antennavis package.
+See examples/LICENSE-NEC.FILES for more information

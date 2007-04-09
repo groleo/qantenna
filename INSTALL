@@ -1,0 +1,65 @@
+This file tries to explain how to set up QAntenna in 3 (or 4) steps.
+
+
+1) Requirements
+---------------
+You have to install the Qt(*, the GL(** and the GLUT(** development files.
+You can easily do this by entering the following command:
+
+	apt-get install libqt4-dev	(debian based systems)
+
+or
+
+	yum install qt4-devel		(fedora based systems)
+
+(*  http://www.trolltech.com/
+(** http://www.opengl.com/
+
+For running QAntenna, you will need nec2++, available at
+
+http://www.physics.otago.ac.nz/research/electronics/nec/index.html
+
+QAntenna and nec2++ are available as Debian packages qantenna and necpp.
+
+
+2) Compiling
+------------
+Now you should be ready to compile QAntenna. Enter the source directory and run
+the following command to generate a Makefile:
+
+	qmake-qt4 qantenna.pro
+
+By default qantenna is installed under /usr/local. If you want to specify
+another directory for example /opt you can do that by entering:
+
+	qmake-qt4 PREFIX=/opt qantenna.pro
+
+Now the Makefile should created and you should be able to compile QAntenna by
+the following command:
+
+	make
+
+
+3) Installation
+---------------
+Now you should be able to install QAntenna with the following command:
+
+	make install
+
+Please remember that you have to be superuser to do that (at least if you have
+not specified a PREFIX where the current user has writepermission).
+Finally we should be able to run QAntenna. You can test it by entering the
+following command:
+
+	/usr/local/bin/qantenna
+
+If you have choosen a PREFIX replace /usr/local with it.
+
+4) Troubleshooting
+------------------
+If you can't get QAntenna working also you tried out everything you could think
+about, feel free to contact the QAntenna mailinglist:
+
+	qantenna-devel@lists.sourceforge.net
+
+For further information have a look at the README file.

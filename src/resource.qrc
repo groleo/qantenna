@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>img/splash.png</file>
+    </qresource>
+    <qresource prefix="/icons" >
+        <file>img/close.png</file>
+        <file>img/eraser.png</file>
+        <file>img/exec.png</file>
+        <file>img/exit.png</file>
+        <file>img/eye.png</file>
+        <file>img/filesave.png</file>
+        <file>img/icon.png</file>
+        <file>img/open.png</file>
+        <file>img/qt.png</file>
+        <file>img/sbug.png</file>
+        <file>img/sclose.png</file>
+        <file>img/sexec.png</file>
+        <file>img/sopen.png</file>
+        <file>img/spattern.png</file>
+    </qresource>
+</RCC>

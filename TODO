@@ -1,0 +1,13 @@
+* At the loading of an antenna, the UI should check for it's simulation
+frequency
+* We should check if a RP card is present in the NEC file, otherwise, we should
+add it in order to hace radiation patterns. We may have to do the same for other cards
+* Implement the scales in OGL (a way to show the magnitudes of the radiation
+patterns, I (Lisandro) have some ideas of how to do them, but I didn't have
+time to ellaborate them).
+* Change the color of the antennas
+* Do the UI widgets necessary to set the simulation parameters and the
+associated code
+* have a touchstone file export for the impedance so users can use it
+e.g. in qucs to create the matching and feeding network (Thanks Stefan)
+

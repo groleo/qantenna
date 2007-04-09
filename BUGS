@@ -1,0 +1,3 @@
+* There's a problem with OpenGL's display lists, and sometimes they get
+overwritten. This is noted by the disappearence of the grid, or the replacement
+of it with an antenna. It does not happens anymore with radiation patterns.
