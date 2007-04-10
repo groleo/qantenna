@@ -57,7 +57,8 @@ SOURCES += camera.cpp \
            antennadelegate.cpp \
 
 RESOURCES = resource.qrc
-TARGET = ../bin/qantenna
+TARGET = qantenna
+DESTDIR = ../bin/
 CONFIG += opengl thread release warn_on
 
 unix{
@@ -91,6 +92,7 @@ unix{
 }
 
 win32 {
+	INCLUDEPATH = .
     RC_FILE = ../distrib/win32/icon.rc
 }
 
