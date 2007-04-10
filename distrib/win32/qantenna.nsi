@@ -1,10 +1,10 @@
 ; General stuff
 ; -------------
 
-!define VERSION "0.1"
+!define VERSION "svn-snapshot"
 
 Name "QAntenna"
-OutFile "qantenna-${VERSION}.exe"
+OutFile "..\..\bin\qantenna-${VERSION}.exe"
 
 InstallDir $PROGRAMFILES\QAntenna
 
@@ -20,7 +20,7 @@ var MUI_TEMP
 ; -----
 
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "..\COPYING"
+!insertmacro MUI_PAGE_LICENSE "..\..\COPYING"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_STARTMENU Application $STARTMENU_FOLDER
@@ -47,67 +47,79 @@ LangString DESC_SecExample	${LANG_ENGLISH} "Some example NEC files that could be
 
 Section "-QAntenna" SecQAntenna
 	SetOutPath $INSTDIR
-	File "..\src\bin\qantenna.exe"
-	File "mingwm10.dll"
-	WriteUninstaller "$INSTDIR\Uninstall.exe"
+
+	File "..\..\bin\qantenna.exe"
+
+	WriteUninstaller "$INSTDIR\uninstall.exe"
 
 	!insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 		CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
 		CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\QAntenna.lnk" "$INSTDIR\qantenna.exe"
-		CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
+		WriteINIStr "$SMPROGRAMS\$STARTMENU_FOLDER\QAntenna Website.url" "InternetShortcut" "URL" "http://qantenna.sourceforge.net/"
+		CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall.lnk" "$INSTDIR\uninstall.exe"
 	!insertmacro MUI_STARTMENU_WRITE_END
+	
+	WriteRegExpandStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "UninstallString" '"$INSTDIR\uninstall.exe"'
+	WriteRegExpandStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "InstallLocation" "$INSTDIR"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "DisplayName" "QAntenna"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "DisplayIcon" "$INSTDIR\qantenna.exe,0"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "DisplayVersion" "${VERSION}"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "URLInfoAbout" "http://qantenna.sourceforge.net/"
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "NoModify" "1"
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna" "NoRepair" "1"
 
 SectionEnd 
 
 Section "NEC2++" SecNEC
 	SetOutPath $INSTDIR
-	FILE "nec2++.exe"
+	FILE "..\..\bin\nec2++.exe"
 SectionEnd
 
 Section "Localization" SecLocal
 	SetOutPath $INSTDIR
-	FILE "..\qt\ts\qantenna_da.qm"
-	FILE "..\qt\ts\qantenna_de.qm"
-	FILE "..\qt\ts\qantenna_es.qm"
-	FILE "..\qt\ts\qantenna_fr.qm"
-	FILE "..\qt\ts\qantenna_it.qm"
-	FILE "..\qt\ts\qantenna_nl.qm"
-	FILE "..\qt\ts\qantenna_pl.qm"
-	FILE "..\qt\ts\qantenna_ru.qm"
-	FILE "..\qt\ts\qantenna_sv.qm"
+	FILE "..\..\qt\ts\qantenna_da.qm"
+	FILE "..\..\qt\ts\qantenna_de.qm"
+	FILE "..\..\qt\ts\qantenna_es.qm"
+	FILE "..\..\qt\ts\qantenna_fr.qm"
+	FILE "..\..\qt\ts\qantenna_it.qm"
+	FILE "..\..\qt\ts\qantenna_nl.qm"
+	FILE "..\..\qt\ts\qantenna_pl.qm"
+	FILE "..\..\qt\ts\qantenna_ru.qm"
+	FILE "..\..\qt\ts\qantenna_sv.qm"
 SectionEnd
 
 Section "Examples" SecExample
 	SetOutPath "$INSTDIR\examples"
-	FILE "..\examples\19el_432_tonna.nec"
-	FILE "..\examples\adrian.nec"
-	FILE "..\examples\ant.nec"
-	FILE "..\examples\centfeed.nec"
-	FILE "..\examples\EX1.nec"
-	FILE "..\examples\EX2.nec"
-	FILE "..\examples\EX3.nec"
-	FILE "..\examples\EX4.nec"
-	FILE "..\examples\EX5.nec"
-	FILE "..\examples\EX6.nec"
-	FILE "..\examples\EX7.nec"
-	FILE "..\examples\quad17m-1.nec"
-	FILE "..\examples\spaceship.nec"
-	FILE "..\examples\tri_7.nec"
-	FILE "..\examples\yagi8sq_ch1.nec"
-	FILE "..\examples\yagi.nec"
-	FILE "..\examples\yg2_5el_50.nec"
-	FILE "..\examples\yg_4el_20.nec"
-	FILE "..\examples\yg_6el.nec"
-	FILE "..\examples\yg_16el_220.nec"
-	FILE "..\examples\LICENSE-NEC.FILES"
+	FILE "..\..\examples\19el_432_tonna.nec"
+	FILE "..\..\examples\adrian.nec"
+	FILE "..\..\examples\ant.nec"
+	FILE "..\..\examples\centfeed.nec"
+	FILE "..\..\examples\EX1.nec"
+	FILE "..\..\examples\EX2.nec"
+	FILE "..\..\examples\EX3.nec"
+	FILE "..\..\examples\EX4.nec"
+	FILE "..\..\examples\EX5.nec"
+	FILE "..\..\examples\EX6.nec"
+	FILE "..\..\examples\EX7.nec"
+	FILE "..\..\examples\quad17m-1.nec"
+	FILE "..\..\examples\spaceship.nec"
+	FILE "..\..\examples\tri_7.nec"
+	FILE "..\..\examples\yagi8sq_ch1.nec"
+	FILE "..\..\examples\yagi.nec"
+	FILE "..\..\examples\yg2_5el_50.nec"
+	FILE "..\..\examples\yg_4el_20.nec"
+	FILE "..\..\examples\yg_6el.nec"
+	FILE "..\..\examples\yg_16el_220.nec"
+	FILE "..\..\examples\LICENSE-NEC.FILES"
 SectionEnd
 
 ; Uninstaller
 ; -----------
 
 Section "Uninstall"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\QAntenna"
+
 	Delete "$INSTDIR\qantenna.exe"
-	Delete "$INSTDIR\mingwm10.dll"
 
 	Delete "$INSTDIR\nec2++.exe"
 	
@@ -151,6 +163,7 @@ Section "Uninstall"
   	!insertmacro MUI_STARTMENU_GETFOLDER Application $MUI_TEMP
     
   	Delete "$SMPROGRAMS\$MUI_TEMP\QAntenna.lnk"
+	Delete "$SMPROGRAMS\$MUI_TEMP\QAntenna Website.url"
 	Delete "$SMPROGRAMS\$MUI_TEMP\Uninstall.lnk"
 	RMDir "$SMPROGRAMS\$MUI_TEMP"
 SectionEnd
