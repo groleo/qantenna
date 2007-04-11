@@ -235,6 +235,8 @@ void NECContainer::loadFile()
 {
 	// The path to the temporary directory
 	QString thePath = QDir::tempPath();
+	/** FIXME Delete it after testing it */
+	qDebug() << thePath;
 
 	if(radiationPatternCalculated)
 	{
