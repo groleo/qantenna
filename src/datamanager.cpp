@@ -100,6 +100,8 @@ void DataManager::calculateRadiationPattern()
 
 QString DataManager::cleanPathName(QString path)
 {
+	// We clean the path
+	path = QDir::cleanPath(path);
 	return path.split("/").last();
 }
 

@@ -951,8 +951,14 @@ void NECInput::Transformate(QVector<double> & end)
 void NECInput::createNECInputFile()
 {
 	QString thePath = QDir::tempPath();
-	// Add an extra separator in case the above funtion does not returns it
+	/*
+		We clean the path, given us a path without a final separator, no matter
+		which OS we are running (some OSs give it and some doesn't)
+	*/
+	thePath = QDir::cleanPath(thePath);
+	// We append a final separator
 	thePath.append("/");
+
 	thePath.append("input" + creationTime + ".necin");
 	QFile theFile(thePath);
 
