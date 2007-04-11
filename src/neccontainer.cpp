@@ -66,6 +66,8 @@ NECContainer::~NECContainer()
 
 	// And finally we must remove all the temporary files
 	QString thePath = QDir::tempPath();
+	// Add an extra separator in case the above funtion does not returns it
+	thePath.append("/");
 
 	QFile file(thePath + "input" + creationTime +".necin");
 	if(file.exists())
@@ -235,8 +237,8 @@ void NECContainer::loadFile()
 {
 	// The path to the temporary directory
 	QString thePath = QDir::tempPath();
-	/** FIXME Delete it after testing it */
-	qDebug() << thePath;
+	// Add an extra separator in case the above funtion does not returns it
+	thePath.append("/");
 
 	if(radiationPatternCalculated)
 	{
