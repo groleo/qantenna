@@ -1,10 +1,10 @@
 Summary: Qt based program for viewing antennas as decribed by NEC files.
 Name: qantenna
-Version: 0.2
-Release: 1
+Version: 0.2.0
+Release: 1.fc6
 License: GPL
 Group: Applications/Engineering
-Source: http://puzzle.dl.sourceforge.net/sourceforge/qantenna/qantenna-0.2.tar.gz
+Source: http://puzzle.dl.sourceforge.net/sourceforge/qantenna/qantenna-0.2.0.tar.gz
 BuildRoot: /var/tmp/%{name}-buildroot
 
 %description
