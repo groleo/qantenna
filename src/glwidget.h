@@ -23,9 +23,12 @@
 #ifndef GLWIDGET_H
 #define GLWIDGET_H
 
-#include <QtOpenGL/QGLWidget>
-#include "datamanager.h"
+#include "gl.h"
 #include "camera.h"
+#include "datamanager.h"
+
+#include <QtOpenGL/QGLWidget>
+
 /**
 	This class inherits from QGLWidget, and it is used to diaplay the OGL view
 	in the program. It also takes cares of some events, wich it then passes to

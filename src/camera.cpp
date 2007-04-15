@@ -19,9 +19,7 @@
  ***************************************************************************/
 
 #include <iostream>
-#include <math.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <cmath>
 
 #include "camera.h"
 #include "gl.h"
@@ -91,7 +89,7 @@ void Camera::move(GLfloat angle)
 {
 	// angle is used to move the camera sideways (A and S keys)
 	// without affecting where it's looking at
-	bool impy= fmod(angle, 180)==0;
+	bool impy= fmodf(angle, 180)==0;
 
 	float dx= SIN(zRot-angle) * ((impy)?COS(xRot):1);
 	float dz= SIN(xRot) * COS(angle);
@@ -211,15 +209,15 @@ void Camera::setPos(GLfloat x, GLfloat y, GLfloat z)
 
 void Camera::setXRot(GLfloat xAng)
 {
-	xRot= fmod(limit(xAng,-90.0,90.0), 360.0);
+	xRot= fmodf(limit(xAng,-90.0,90.0), 360.0);
 }
 void Camera::setYRot(GLfloat yAng)
 {
-	yRot= fmod(yAng, 360.0);
+	yRot= fmodf(yAng, 360.0);
 }
 void Camera::setZRot(GLfloat zAng)
 {
-	zRot= fmod(zAng, 360.0);
+	zRot= fmodf(zAng, 360.0);
 }
 void Camera::setRot(GLfloat newXRot, GLfloat newYRot, GLfloat newZRot)
 {
@@ -264,7 +262,7 @@ void Camera::setAlphaOrbit(GLfloat alpha)
 
 void Camera::setBetaOrbit(GLfloat beta)
 {
-	betaOrbit= fmod(beta, 360.0);
+	betaOrbit= fmodf(beta, 360.0);
 }
 
 void Camera::setRhoOrbit(GLfloat rho)

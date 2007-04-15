@@ -1,12 +1,17 @@
 #include "gl.h"
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 #include <QDebug>
 #include <QString>
 
-void GL::vertex(const GLfloat &x, const GLfloat &y, const GLfloat &z, const GLfloat &w)
+void GL::vertex(const GLfloat &x, const GLfloat &y, const GLfloat &z)
 {
-	glVertex4f(x, z, -y, w);
+	glVertex3f(x, z, -y);
+}
+
+void GL::vertex(const Vec3 &vec)
+{
+	glVertex3f(vec.x, vec.z, -vec.y);
 }
 
 void GL::translate(const GLfloat &x, const GLfloat &y, const GLfloat &z)
@@ -29,6 +34,11 @@ void GL::scale(const GLfloat &x, const GLfloat &y, const GLfloat &z)
 void GL::color(const GLfloat &r, const GLfloat &g, const GLfloat &b, const GLfloat &a)
 {
 	glColor4f(r, g, b, a);
+}
+
+void GL::color(const Vec3 &vec, const GLfloat &a)
+{
+	glColor4f(vec.x, vec.y, vec.z, a);
 }
 
 GLenum GL::checkError(const QString &file, const int &line)

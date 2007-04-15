@@ -19,11 +19,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include "gl.h"
 #include "neccontainer.h"
 #include "glwidget.h"
 #include "necinputparser.h"
 #include "datamanager.h" // uses static cleanPathName
 #include "loadthread.h"
+
 #include <QDir>
 
 NECContainer::NECContainer(QString theFilename, GLWidget * gl,

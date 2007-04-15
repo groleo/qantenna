@@ -24,6 +24,7 @@
 
 #include "datamanager.h"
 #include "ui_mainwindowqantenna.h"
+
 #include <QMainWindow>
 
 // Forward declarations of classes, it makes the compiling much faster

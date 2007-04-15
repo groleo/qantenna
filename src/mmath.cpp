@@ -91,7 +91,7 @@ Vec3 quadNormal(const Vec3 &v1, const Vec3 &v2, const Vec3 &v3, const Vec3 &v4)
 }
 
 
-Vec3 getCartesian(const float &phi, const float &theta, const float &rho)
+Vec3 getCartesian(const float &rho, const float &phi, const float &theta)
 {
 	return Vec3(
 		rho * SIN(phi) * COS(theta),
@@ -110,6 +110,13 @@ Vec3 cross(const Vec3 &v1, const Vec3 &v2)
 	return Vec3(v1.y * v2.z - v1.z * v2.y,
 				v1.z * v2.x - v1.x * v2.z,
                 v1.x * v2.y - v1.y * v2.x);
+}
+
+Vec3 mix(const Vec3 &v1, const Vec3 &v2, const float &porc)
+{
+	// Similar to GLSL vector mix
+	float porc1= 1-porc;
+	return v1*porc1 + v2*porc;
 }
 
 }

@@ -33,14 +33,15 @@
 	This note applies also to the NECContainer class
 */
 
-#include <QtOpenGL/QtOpenGL>
-#include <QDir>
-#include <QTime>
+#include "gl.h"
 #include "datamanager.h"
 #include "neccontainer.h"
 #include "glwidget.h"
 #include "loadthread.h"
-#include "gl.h"
+
+#include <QtOpenGL/QtOpenGL>
+#include <QDir>
+#include <QTime>
 
 
 DataManager::DataManager(GLWidget * gl, QObject * parent) : QObject(parent)

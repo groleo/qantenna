@@ -3,7 +3,7 @@
 # Subdirectorio relativo al directorio principal del proyecto: ./src
 # El destino es una aplicaci??n: ../bin/qantenna
 
-QANTENNA_VERSION = 0.2
+QANTENNA_VERSION = trunk
 DEFINES += QANTENNA_VERSION=\\\"$${QANTENNA_VERSION}\\\"
 
 UI_DIR = ui
@@ -20,7 +20,8 @@ TRANSLATIONS += ../qt/ts/qantenna_da.ts \
                 ../qt/ts/qantenna_ru.ts \
                 ../qt/ts/qantenna_sv.ts
 
-HEADERS += camera.h \
+HEADERS += gl.h \
+           camera.h \
            datamanager.h \
            glwidget.h \
            line.h \
@@ -35,10 +36,12 @@ HEADERS += camera.h \
            primitive.h \
            radiationpattern.h \
            loadthread.h \
-           gl.h \
-           antennadelegate.h
+           antennadelegate.h \
+           mmath.h \
+           vec3.h \
 
-SOURCES += camera.cpp \
+SOURCES += gl.cpp \
+           camera.cpp \
            datamanager.cpp \
            glwidget.cpp \
            line.cpp \
@@ -53,13 +56,14 @@ SOURCES += camera.cpp \
            patch.cpp \
            radiationpattern.cpp \
            loadthread.cpp \
-           gl.cpp \
            antennadelegate.cpp \
+           mmath.cpp \
+           vec3.cpp \
 
 RESOURCES = resource.qrc
 TARGET = qantenna
 DESTDIR = ../bin/
-CONFIG += opengl thread release warn_on
+CONFIG += opengl thread debug warn_on
 
 unix{
     # Prefix: base instalation directory
@@ -98,9 +102,14 @@ win32 {
 
 TEMPLATE = app
 QT += opengl
+LIBS += -lGLEW
+
+# Sub-directories
 UI_DIR = ../qt/uic
 MOC_DIR = ../qt/moc
 OBJECTS_DIR = ../qt/obj
 RCC_DIR = ../qt/res
+
+# Cards lib
 LIBS += ../qt/lib/libQAntennaCards.a
 TARGETDEPS += ../qt/lib/libQAntennaCards.a

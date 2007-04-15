@@ -22,12 +22,13 @@
 #ifndef NECCONTAINER_H
 #define NECCONTAINER_H
 
+#include "gl.h"
 #include "necinput.h"
 #include "necoutput.h"
 #include "necoutputparser.h"
+
 #include <QObject>
 #include <QProcess>
-#include <QtOpenGL/QtOpenGL>
 
 /**
 	This class takes cares of the NEC input and the NEC output.

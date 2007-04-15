@@ -21,7 +21,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <GL/gl.h>
+#include "gl.h"
 #include <QMatrix>
 
 /**

@@ -21,9 +21,10 @@
 #ifndef GL_H
 #define GL_H
 
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glew.h>
 #include <QString>
+
+#include "vec3.h"
 
 #ifndef CHECK_GL_ERROR
 	#define CHECK_GL_ERROR() GL::checkError(__FILE__, __LINE__)
@@ -32,11 +33,16 @@
 class GL
 {
 public:
-	static void vertex(const GLfloat &x, const GLfloat &y, const GLfloat &z, const GLfloat &w=1);
+	static void vertex(const GLfloat &x, const GLfloat &y, const GLfloat &z);
+	static void vertex(const Vec3 &vec);
+
 	static void translate(const GLfloat &x, const GLfloat &y, const GLfloat &z);
 	static void rotate(const GLfloat &x, const GLfloat &y, const GLfloat &z);
 	static void scale(const GLfloat &x, const GLfloat &y, const GLfloat &z);
+
 	static void color(const GLfloat &r, const GLfloat &g, const GLfloat &b, const GLfloat &a=1);
+	static void color(const Vec3 &vec, const GLfloat &a=1);
+
 	static GLenum checkError(const QString &file, const int &line);
 };
 

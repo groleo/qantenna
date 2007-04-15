@@ -20,12 +20,14 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include <QtGui>
-#include <QtOpenGL/QtOpenGL>
-#include <math.h>
+#include "gl.h"
 #include "glwidget.h"
 #include "camera.h"
-#include "gl.h"
+#include "mmath.h"
+
+#include <QtGui>
+#include <QtOpenGL/QtOpenGL>
+#include <cmath>
 
 GLWidget::GLWidget(QWidget * parent)
 	: QGLWidget(parent)
@@ -90,13 +92,10 @@ void GLWidget::initializeGL()
 
 void GLWidget::paintGL()
 {
-	/*
-		Seteamos el color para limpiar.
-		Sería interesante de que el color de limpieza (y por ende, el
-		fondo) se pudiera elegir desde un menú. Razón: a veces se ve
-		mejor con un fondo blanco que con un fondo negro.
-		Si esta línea se comenta, el valor por defecto es negro.
-	*/
+/*
+	static QTime time0= QTime::currentTime();
+	static GLint frames= 0;
+*/
 	glClearColor(135.0/255, 135.0/255, 135.0/255, 1);
 
 	// Clean
@@ -111,19 +110,6 @@ void GLWidget::paintGL()
 	// position
 	camera.applyPos();
 
-
-	/* Spheric coords transformation test
-	#define M_PI_180	0.017453292
-	#define COS(a)		cos((a)*M_PI_180)
-	#define SIN(a)		sin((a)*M_PI_180)
-	glBegin(GL_POINTS);
-	glColor3f(0,.8,0);
-	for(int b=0; b<180; b+=3)
-		for(int a=0; a<360; a+=3)
-			GL::vertex(3 * SIN(a) * COS(b),	-3 * SIN(a) * SIN(b), 3 * COS(a));
-	glEnd();*/
-
-
 	glTranslated(0, 0, 0);
 
 	// We tell the Datamanager that it must render
@@ -131,6 +117,18 @@ void GLWidget::paintGL()
 
 	glPopMatrix();
 	swapBuffers();
+
+/*
+	// FPS calc
+	frames++;
+	QTime time= QTime::currentTime();
+	float dif= time0.msecsTo(time);
+	if(dif >= 2000) {
+		qDebug() << frames/(dif/1000.0) << "fps.";
+		time0= time;
+		frames= 0;
+	}
+*/
 }
 
 void GLWidget::resizeGL(int width, int height)
@@ -219,7 +217,8 @@ void GLWidget::sceneTimerEvent()
 	if(moveCount) movedWhileGrabbed= true;
 
 	// Only updateGL when needed
-	update();
+	//update();
+	paintGL();
 }
 
 void GLWidget::keyPressEvent(QKeyEvent *event)

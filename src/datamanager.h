@@ -22,10 +22,13 @@
 #ifndef DATAMANAGER_H
 #define DATAMANAGER_H
 
+#include "gl.h"
 #include "neccontainer.h"
+
 #include <QObject>
 #include <QProcess>
 #include <QtOpenGL/QtOpenGL>
+
 
 class GLWidget;
 

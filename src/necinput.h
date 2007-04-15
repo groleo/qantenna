@@ -22,12 +22,15 @@
 #ifndef NECINPUT_H
 #define NECINPUT_H
 
-#include <QtOpenGL/QGLWidget>
-#include <QList>
+#include "gl.h"
 #include "primitive.h"
 #include "line.h"
 #include "patch.h"
 #include "cards/genericcard.h"
+
+#include <QtOpenGL/QGLWidget>
+#include <QList>
+
 /**
 	This class is very important because performs the NEC input file process that
 	is saved in elementList. First ProcessData function transform information

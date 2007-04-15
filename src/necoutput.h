@@ -21,9 +21,11 @@
 #ifndef NECOUTPUT_H
 #define NECOUTPUT_H
 
+#include "gl.h"
 #include <QList>
-#include <QtOpenGL/QtOpenGL>
 #include "radiationpattern.h"
+
+#include <QtOpenGL/QGLWidget>
 
 class GLWidget;
 

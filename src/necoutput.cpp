@@ -17,14 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+
+#include "gl.h"
 #include "necoutput.h"
 #include "glwidget.h"
-#include <QtOpenGL/QtOpenGL>
+
 #include <QList>
-#include <math.h>
+#include <cmath>
+#include <QtOpenGL/QGLWidget>
 #include <float.h>
 
-#define PI 3.141592654
 // Slices and stacks of the spheres
 #define SLICES 5
 #define STACKS 5
@@ -33,20 +35,20 @@
 	We should transform the position data to rectangular coordinates,
 	so we will perform:
 
-	\f$ x_R = 10^((TotalGain-maxPowerGain)/10)*sin(phi*PI/180)*cos(theta*PI/180)\f$ \n
-	\f$ y_R = 10^((TotalGain-maxPowerGain)/10)*sin(phi*PI/180)*sin(theta*PI/180)\f$ \n
-	\f$ z_R = 10^((TotalGain-maxPowerGain)/10)*cos(theta*PI/180)\f$
+	\f$ x_R = 10^((TotalGain-maxPowerGain)/10)*sin(phi*M_PI/180)*cos(theta*M_PI/180)\f$ \n
+	\f$ y_R = 10^((TotalGain-maxPowerGain)/10)*sin(phi*M_PI/180)*sin(theta*M_PI/180)\f$ \n
+	\f$ z_R = 10^((TotalGain-maxPowerGain)/10)*cos(theta*M_PI/180)\f$
 
 	Taking into account that OpenGL takes the axis in a different way:
 
-	\f$ X_OGL=10^((TotalGain-maxPowerGain)/10)*cos(phi*PI/180)*sin(theta*PI/180)\f$
-	\f$ Y_OGL=10^((TotalGain-maxPowerGain)/10)*cos(theta*PI/180)\f$
-	\f$ Z_OGL=(-1)*10^((TotalGain-maxPowerGain)/10)*sin(phi*PI/180)*sin(theta*PI/180)\f$
+	\f$ X_OGL=10^((TotalGain-maxPowerGain)/10)*cos(phi*M_PI/180)*sin(theta*M_PI/180)\f$
+	\f$ Y_OGL=10^((TotalGain-maxPowerGain)/10)*cos(theta*M_PI/180)\f$
+	\f$ Z_OGL=(-1)*10^((TotalGain-maxPowerGain)/10)*sin(phi*M_PI/180)*sin(theta*M_PI/180)\f$
 
 	\f$ Total_Gain/maxPowerGain \f$ is done in order to normalize the radiation to the
 	maximum gain. Note that they are in dB, and we need them in the linear way.
 	Angles are given in decimal degrees, and we need them in radians, so we
-	multiplicate by PI and divide by 180.
+	multiplicate by M_PI and divide by 180.
  */
 
 NECOutput::NECOutput(GLWidget * gl, QWidget * parent) : QObject(parent)
@@ -165,7 +167,7 @@ void NECOutput::Render()
 		{
 			// We specify the corrects arrays
 			glVertexPointer(3,GL_DOUBLE,0,surfaceVertexArray.data());
-			glColorPointer(4,GL_DOUBLE,0,surfaceColorArray.data());
+			glColorPointer(4,GL_DOUBLE, 0,surfaceColorArray.data());
 			glNormalPointer(GL_DOUBLE,0,surfaceNormalArray.data());
 			// We draw the arrays
 			glDrawArrays(GL_TRIANGLES,0,surfaceVertexArray.size()/3);
@@ -320,11 +322,11 @@ void NECOutput::CalculateXYZ(const int i, double & x, double & y,
 
 	if(dBMinimum < gaindB )
 	{
-		x = R*cos(radiationPatternList.at(i)->GetPhiAngle()*PI/180.0)*
-		    sin(radiationPatternList.at(i)->GetThetaAngle()*PI/180.0);
-		z = -1.0*R*sin(radiationPatternList.at(i)->GetPhiAngle()*PI/180.0)*
-		    sin(radiationPatternList.at(i)->GetThetaAngle()*PI/180.0);
-		y = R*cos(radiationPatternList.at(i)->GetThetaAngle()*PI/180.0);
+		x = R*cos(radiationPatternList.at(i)->GetPhiAngle()*M_PI/180.0)*
+		    sin(radiationPatternList.at(i)->GetThetaAngle()*M_PI/180.0);
+		z = -1.0*R*sin(radiationPatternList.at(i)->GetPhiAngle()*M_PI/180.0)*
+		    sin(radiationPatternList.at(i)->GetThetaAngle()*M_PI/180.0);
+		y = R*cos(radiationPatternList.at(i)->GetThetaAngle()*M_PI/180.0);
 	}
 	// We don't have dBMinimum < gaindB
 	else

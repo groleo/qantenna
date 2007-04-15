@@ -20,7 +20,6 @@
 #ifndef NECINPUTPARSER_H
 #define NECINPUTPARSER_H
 
-#include <QtOpenGL/QGLWidget>
 #include <QString>
 #include <QList>
 #include "necinput.h"

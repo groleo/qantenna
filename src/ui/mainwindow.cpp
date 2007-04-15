@@ -20,13 +20,15 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include <QtGui>
-#include <QtOpenGL/QtOpenGL>
-#include <QProcess>
+#include "gl.h"
 #include "glwidget.h"
 #include "mainwindow.h"
 #include "antennadelegate.h"
 #include "ui/about.h"
+
+#include <QtGui>
+#include <QtOpenGL/QtOpenGL>
+#include <QProcess>
 
 // Just for Camera::limit
 #include "camera.h"
