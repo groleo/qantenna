@@ -71,8 +71,14 @@ public:
 	/// Approx. size in bytes
 	int size();
 
+	/// setUp generates the buffers and copy the data to them, then it clears the local
+	/// arrays
 	void setUp();
+
+	/// Delete de buffers, also called from ~VBO
 	void end();
+
+	/// Draws the VBO, using indexArray if indexed==true
 	void draw();
 
 	/// Returns indexed
