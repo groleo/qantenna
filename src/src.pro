@@ -39,6 +39,7 @@ HEADERS += gl.h \
            antennadelegate.h \
            mmath.h \
            vec3.h \
+           vbo.h \
 
 SOURCES += gl.cpp \
            camera.cpp \
@@ -59,6 +60,7 @@ SOURCES += gl.cpp \
            antennadelegate.cpp \
            mmath.cpp \
            vec3.cpp \
+           vbo.cpp \
 
 RESOURCES = resource.qrc
 TARGET = qantenna

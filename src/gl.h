@@ -30,21 +30,21 @@
 	#define CHECK_GL_ERROR() GL::checkError(__FILE__, __LINE__)
 #endif
 
-class GL
-{
-public:
-	static void vertex(const GLfloat &x, const GLfloat &y, const GLfloat &z);
-	static void vertex(const Vec3 &vec);
+namespace GL {
 
-	static void translate(const GLfloat &x, const GLfloat &y, const GLfloat &z);
-	static void rotate(const GLfloat &x, const GLfloat &y, const GLfloat &z);
-	static void scale(const GLfloat &x, const GLfloat &y, const GLfloat &z);
+	void vertex(const GLfloat &x, const GLfloat &y, const GLfloat &z);
+	void vertex(const Vec3 &vec);
 
-	static void color(const GLfloat &r, const GLfloat &g, const GLfloat &b, const GLfloat &a=1);
-	static void color(const Vec3 &vec, const GLfloat &a=1);
+	void translate(const GLfloat &x, const GLfloat &y, const GLfloat &z);
+	void rotate(const GLfloat &x, const GLfloat &y, const GLfloat &z);
+	void scale(const GLfloat &x, const GLfloat &y, const GLfloat &z);
 
-	static GLenum checkError(const QString &file, const int &line);
+	void color(const GLfloat &r, const GLfloat &g, const GLfloat &b, const GLfloat &a=1);
+	void color(const Vec3 &vec, const GLfloat &a=1);
+
+	GLenum checkError(const QString &file, const int &line);
+
+	void useVBO(bool enable);
 };
 
 #endif
-

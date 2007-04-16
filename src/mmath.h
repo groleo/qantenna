@@ -8,8 +8,6 @@
 class Vec3;
 
 namespace Math {
-
-
 	float rad2deg(const float &angle);
 	float deg2rad(const float &angle);
 	float pow2(const float &val);

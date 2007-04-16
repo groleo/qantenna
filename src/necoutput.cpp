@@ -170,7 +170,7 @@ void NECOutput::Render()
 			glColorPointer(4,GL_DOUBLE, 0,surfaceColorArray.data());
 			glNormalPointer(GL_DOUBLE,0,surfaceNormalArray.data());
 			// We draw the arrays
-			glDrawArrays(GL_TRIANGLES,0,surfaceVertexArray.size()/3);
+			glDrawArrays(GL_TRIANGLES,0, surfaceVertexArray.size()/3);
 		}
 		if(spheresEnabled)
 		{
