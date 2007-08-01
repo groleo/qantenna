@@ -728,16 +728,6 @@ void NECInput::ProcessData()
 				groundPlane = true;
 			gecard = 0;
 		}
-// 		else if (element->GetField()=="EX")
-// 		{ // It's a particular case of SP with ns=1 (rectangular shape)
-// 			if(element->GetParameter( 0)==0 or element->GetParameter( 0)==5)
-// 			{
-// 				if(element->GetParameter( 1)!=0)
-// 					radiatingElement = (int)element->GetParameter( 1);
-// 				else
-// 					radiatingElement = (int)element->GetParameter( 2);
-// 			}
-// 		}
 	}
 	ProcessPrimitive();
 }
