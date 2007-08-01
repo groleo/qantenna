@@ -36,7 +36,7 @@ NECInput::NECInput(QString theFileName, QString theCreationTime,
 
 	maxModule = -1.0;
 
-	groundPlane=false;
+	groundPlane = false;
 	radius = 2;
 
 	foundFRCard = false;
@@ -471,7 +471,6 @@ void NECInput::ProcessSPCard(int index)
 					newPatch->SetEnd3(sccard->getXCoordinateCorner3(),
 					                  sccard->getYCoordinateCorner3(),
 					                  sccard->getZCoordinateCorner3());
-					/// FIXME ask Gustavo about this (I think I made a mistake while rewritting)!!!
 					newPatch->SetEnd4(spcard->getXCoordinateCorner1() +
 					                  sccard->getXCoordinateCorner3() -
 					                  spcard->getXCoordinateCorner2(),
@@ -481,9 +480,6 @@ void NECInput::ProcessSPCard(int index)
 					                  spcard->getZCoordinateCorner1() +
 					                  sccard->getZCoordinateCorner3() -
 					                  spcard->getZCoordinateCorner2());
-/*					newPatch->SetEnd4(thisElem->GetParameter(2)+nextElem->GetParameter(2)-thisElem->GetParameter(5),
-														 thisElem->GetParameter(3)+nextElem->GetParameter(3)-thisElem->GetParameter(6),
-														 thisElem->GetParameter(4)+nextElem->GetParameter(4)-thisElem->GetParameter(7));*/
 					CompareModule(newPatch->CalculateMaxModule());
 					primitiveList.append(newPatch);
 				}
@@ -570,6 +566,9 @@ void NECInput::ProcessData()
 	GWCard * gwcard = 0;
 	GACard * gacard = 0;
 	FRCard * frcard = 0;
+	SPCard * spcard = 0;
+	SMCard * smcard = 0;
+	GECard * gecard = 0;
 
 	QVector<double> end1;
 	// We create three values
@@ -699,20 +698,36 @@ void NECInput::ProcessData()
 				frcard = 0;
 			}
 		}
-/// FIXME We will have to re write this... Ask Gustavo if in doubt...
-// 		else if (card->getCardType() == "SM")
-// 		{
-// 			// It's a particular case of SP with ns=1 (rectangular shape)
-// 			element->SetField("SP");
-// 			element->SetParameter(1, 1);
-// 			element->SetParameter(0, 0);
-// 			ProcessSPCard(i);
-// 		}
-// 		else if (element->GetField()=="GE")
-// 		{ // It's a particular case of SP with ns=1 (rectangular shape)
-// 			if(element->GetParameter( 0)!=0)
-// 				groundPlane=true;
-// 		}
+		else if (card->getCardType() == "SM")
+		{
+			// It's a particular case of SP with ns=1 (rectangular shape)
+			smcard = (SMCard*)cardsList.takeAt(i);
+			spcard = new SPCard(1,smcard->getXCoordinateCorner1(),
+			                    smcard->getYCoordinateCorner1(),
+			                    smcard->getZCoordinateCorner1(),
+			                    smcard->getXCoordinateCorner2(),
+			                    smcard->getYCoordinateCorner2(),
+			                    smcard->getZCoordinateCorner2());
+			// We replace the SM card with the SP card
+			cardsList.replace(i,(GenericCard*)spcard);
+			// We finally delete the SM card
+			delete smcard;
+			smcard = 0;
+			// And we process the new SP card
+			ProcessSPCard(i);
+		}
+		else if (card->getCardType() == "GE")
+		{
+			/*
+				It's a particular case of SP with ns=1 (rectangular shape).
+				As it may define the presence of the ground plane, it suffices to
+				set it on if necessary.
+			*/
+			gecard = (GECard*)cardsList.at(i);
+			if(gecard->getGeometryGroundPlane() != 0)
+				groundPlane = true;
+			gecard = 0;
+		}
 // 		else if (element->GetField()=="EX")
 // 		{ // It's a particular case of SP with ns=1 (rectangular shape)
 // 			if(element->GetParameter( 0)==0 or element->GetParameter( 0)==5)
@@ -915,6 +930,7 @@ void NECInput::CreateOpenGLList()
 			}
 		}
 	}
+	///FIXME We are not getting ground planes :-/
 	if(groundPlane)
 	{
 		quad = gluNewQuadric();
