@@ -73,11 +73,6 @@ unix{
         PREFIX = /usr/local
     }
     
-    DEB_BUILD = $$system(echo \$DEB_BUILD_OPTIONS)
-    contains(DEB_BUILD, nostrip) {
-        QMAKE_STRIP=:
-    }
-    
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
     INSTALLS = target
