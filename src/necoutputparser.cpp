@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Lisandro Damián Nicanor Pérez Meyer - perezmeyer en/at gmail.com      *
+ *   Lisandro Damiï¿½n Nicanor Pï¿½rez Meyer - perezmeyer en/at gmail.com      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -56,9 +56,6 @@ int cleanRadiationPatternLine(QString line, QStringList & data)
 			return 2;
 		else
 		{
-/*			QMessageBox::information(NULL,
-			                         QWidget::tr("QAntenna - Parser de archivos NEC de salida"),
-			                         QWidget::tr("Tengo un sense que no es LINEAR ni RIGHT ni LEFT"));*/
 			qDebug("NEC output parser - I have a sense that is neither LINEAR nor RIGHT nor LEFT\n");
 			return -1;
 		}
@@ -74,10 +71,6 @@ int cleanRadiationPatternLine(QString line, QStringList & data)
 	}
 	else
 	{
-/*		QMessageBox::information(NULL,
-		             QWidget::tr("QAntenna - Parser de archivos NEC de salida"),
-		             QWidget::tr("No me coincide la cantidad de datos con DATALIST_NUMBER<br>\
-		             ó no se realizó el cálculo de todo el patrón"));*/
 		qDebug("NEC output parser - The number of data and DATALIST_NUMBER doesn't match or there's another problem");
 		qDebug() << "The line is " << line;
 		qDebug() << "The data is " << data;
@@ -95,19 +88,13 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
 	if ( !theFile.exists() )
 	{
 		//The file does not exists
-// 		QMessageBox::information(NULL,
-// 			QWidget::tr("QAntenna - Parser de archivos NEC de salida"),
-// 			QWidget::tr("El archivo \"")+theFileName+QWidget::tr("\" no existe"));
 		qDebug("NEC output parser - The file does not exist\n");
 		return 1;
 	}
-	//The file exists, but ¿can we read it?
+	//The file exists, but ï¿½can we read it?
 	if (!theFile.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
 		//We can not read the file
-/*		QMessageBox::information(NULL,
-			QWidget::tr("QAntenna - Parser de archivos NEC de salida"),
-			QWidget::tr("No puedo leer el archivo"));*/
 		qDebug("NEC output parser - I can not read the file\n");
 		return 1;
 	}
@@ -120,12 +107,9 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
 	QString elDato;
 	int sense = 0;
 
-	//We opened the file, but ¿is it empty?
+	//We opened the file, but ï¿½is it empty?
 	if(text.atEnd())
 	{
-/*		QMessageBox::information(NULL,
-			QWidget::tr("QAntenna - Parser de archivos NEC de salida"),
-			QWidget::tr("El archivo está vacío"));*/
 		qDebug("The file is empty\n");
 		return 1;
 	}
