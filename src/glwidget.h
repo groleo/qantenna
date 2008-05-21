@@ -27,7 +27,7 @@
 #include "camera.h"
 #include "datamanager.h"
 
-#include <QtOpenGL/QGLWidget>
+#include <QGLWidget>
 
 /**
 	This class inherits from QGLWidget, and it is used to diaplay the OGL view

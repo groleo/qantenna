@@ -26,7 +26,7 @@
 #include "mmath.h"
 
 #include <QtGui>
-#include <QtOpenGL/QtOpenGL>
+#include <QtOpenGL>
 #include <cmath>
 
 GLWidget::GLWidget(QWidget * parent)

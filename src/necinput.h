@@ -28,7 +28,7 @@
 #include "patch.h"
 #include "cards/genericcard.h"
 
-#include <QtOpenGL/QGLWidget>
+#include <QGLWidget>
 #include <QList>
 
 /**

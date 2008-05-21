@@ -24,7 +24,7 @@
 
 #include <QList>
 #include <cmath>
-#include <QtOpenGL/QGLWidget>
+#include <QGLWidget>
 #include <float.h>
 
 // Slices and stacks of the spheres

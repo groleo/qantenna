@@ -39,7 +39,7 @@
 #include "glwidget.h"
 #include "loadthread.h"
 
-#include <QtOpenGL/QtOpenGL>
+#include <QtOpenGL>
 #include <QDir>
 #include <QTime>
 

@@ -27,8 +27,7 @@
 
 #include <QObject>
 #include <QProcess>
-#include <QtOpenGL/QtOpenGL>
-
+#include <QtOpenGL>
 
 class GLWidget;
 

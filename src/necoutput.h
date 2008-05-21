@@ -25,7 +25,7 @@
 #include <QList>
 #include "radiationpattern.h"
 
-#include <QtOpenGL/QGLWidget>
+#include <QGLWidget>
 
 class GLWidget;
 
