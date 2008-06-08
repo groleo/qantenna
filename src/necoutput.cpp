@@ -156,7 +156,7 @@ void NECOutput::Render()
 			// We draw the arrays
 			if(surfaceEnabled)
 				glDrawArrays(GL_TRIANGLE_STRIP,0, surfaceVertexArray.size()/3);
-			else
+			if(meshEnabled)
 				glDrawArrays(GL_LINE_STRIP,0, surfaceVertexArray.size()/3);
 		}
 		if(spheresEnabled)
