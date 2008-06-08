@@ -39,7 +39,9 @@ HEADERS += gl.h \
            antennadelegate.h \
            mmath.h \
            vec3.h \
-
+ \
+ point4f.h \
+ vertexmatrix.h
 SOURCES += gl.cpp \
            camera.cpp \
            datamanager.cpp \
@@ -59,13 +61,15 @@ SOURCES += gl.cpp \
            antennadelegate.cpp \
            mmath.cpp \
            vec3.cpp \
-
+ \
+ point4f.cpp \
+ vertexmatrix.cpp
 RESOURCES = resource.qrc
 TARGET = qantenna
 DESTDIR = ../bin/
 CONFIG += opengl thread warn_on
 
-unix{
+unix {
     CONFIG += debug
     # Prefix: base instalation directory
     isEmpty( PREFIX ){
@@ -73,8 +77,8 @@ unix{
     }
 
     DEB_BUILD = $$system(echo \$DEB_BUILD_OPTIONS)
-    contains(DEB_BUILD, nostrip) {
-        QMAKE_STRIP=:
+    contains(DEB_BUILD, nostrip){
+        QMAKE_STRIP =:
     }
 
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"

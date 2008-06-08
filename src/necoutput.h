@@ -17,15 +17,14 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
 #ifndef NECOUTPUT_H
 #define NECOUTPUT_H
 
 #include "gl.h"
+#include <QGLWidget>
 #include <QList>
 #include "radiationpattern.h"
-
-#include <QGLWidget>
+#include "vertexmatrix.h"
 
 class GLWidget;
 
@@ -104,6 +103,9 @@ private:
 	/// The inside triangles calcs
 	void calculateInsideTriangles();
 
+	/// Creates a matrix with the values of the vertex
+	void createMatrix();
+
 	/// List of radiation data obtained from parsing NEC's output
 	QList<RadiationPattern*> radiationPatternList;
 
@@ -153,20 +155,8 @@ private:
 	/// Alpha of the colors
 	double alpha;
 
-	/*
-		We must sort the parts of the radiation patterns that are of
-		our interest. This is why we have the two following lists.
-	*/
-	/**
-		phiStartList will contain the values of the starting positions of a new group of
-		radiation patterns with the same phi angle.
-	*/
-	QList<int> phiStartList;
-	/// phiValues will contain the differents values of phi.
-	QList<double> phiValues;
-
-	/// Did we completed the above lists?
-	bool listCompleted;
+	/// A matrix of vertices
+	VertexMatrix * vertexMatrix;
 
 	/// Size of the surfaces
 	double ro;

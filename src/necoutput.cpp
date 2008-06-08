@@ -69,7 +69,6 @@ NECOutput::NECOutput(GLWidget * gl, QWidget * parent) : QObject(parent)
 	meshEnabled = false;
 	insideTrianglesEnabled = false;
 
-	listCompleted = false;
 	ro = 1.0;
 
 	deltaX = 0.0;
@@ -89,6 +88,9 @@ NECOutput::~NECOutput()
 		temp = radiationPatternList.takeFirst();
 		delete temp;
 	}
+
+	// Delete the vertex matrix
+	delete vertexMatrix;
 }
 
 void NECOutput::SetRadiationPattern(RadiationPattern * newRadiationPattern)
@@ -105,27 +107,13 @@ void NECOutput::setColorScheme(int theColorScheme)
 
 void NECOutput::ProcessData()
 {
+	createMatrix();
+
 	glWidget->makeCurrent();
-	if(!listCompleted)
-	{
-		// We inicialize the quadric
-		quad = gluNewQuadric();
-		gluQuadricNormals(quad, GLU_SMOOTH);
 
-		// We create lists to make easier the plottings
-		// The first phi position would always be zero
-		phiStartList.append(0);
-		// And also with the first value
-		phiValues.append(0.0);
+	quad = gluNewQuadric();
+	gluQuadricNormals(quad, GLU_SMOOTH);
 
-		for(int i=0; i<radiationPatternList.size(); i++)
-			if(radiationPatternList.at(i)->GetPhiAngle()>phiValues.last())
-			{
-				phiStartList.append(i);
-				phiValues.append(radiationPatternList.at(i)->GetPhiAngle());
-			}
-		listCompleted = true;
-	}
 	// We clean all the arrays
 	surfaceVertexArray.clear();
 	surfaceColorArray.clear();
@@ -154,7 +142,7 @@ void NECOutput::Render()
 	// We enable the arrays
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_NORMAL_ARRAY);
+// 	glEnableClientState(GL_NORMAL_ARRAY);
 
 	// We would render if there is data available
 	if(surfaceVertexArray.size() > 1)
@@ -168,9 +156,9 @@ void NECOutput::Render()
 			// We specify the corrects arrays
 			glVertexPointer(3,GL_DOUBLE,0,surfaceVertexArray.data());
 			glColorPointer(4,GL_DOUBLE, 0,surfaceColorArray.data());
-			glNormalPointer(GL_DOUBLE,0,surfaceNormalArray.data());
+// 			glNormalPointer(GL_DOUBLE,0,surfaceNormalArray.data());
 			// We draw the arrays
-			glDrawArrays(GL_TRIANGLES,0, surfaceVertexArray.size()/3);
+			glDrawArrays(GL_TRIANGLE_STRIP,0, surfaceVertexArray.size()/3);
 		}
 		if(spheresEnabled)
 		{
@@ -197,14 +185,14 @@ void NECOutput::Render()
 		{
 			glVertexPointer(3,GL_DOUBLE,0,meshVertexArray.data());
 			glColorPointer(4,GL_DOUBLE,0,meshColorArray.data());
-			glNormalPointer(GL_DOUBLE,0,meshNormalArray.data());
+// 			glNormalPointer(GL_DOUBLE,0,meshNormalArray.data());
 			glDrawArrays(GL_LINE_STRIP,0,meshVertexArray.size()/3);
 		}
 		if(insideTrianglesEnabled)
 		{
 			glVertexPointer(3,GL_DOUBLE,0,insideTrianglesVertexArray.data());
 			glColorPointer(4,GL_DOUBLE,0,insideTrianglesColorArray.data());
-			glNormalPointer(GL_DOUBLE,0,insideTrianglesNormalArray.data());
+// 			glNormalPointer(GL_DOUBLE,0,insideTrianglesNormalArray.data());
 			glDrawArrays(GL_TRIANGLE_STRIP,0,insideTrianglesVertexArray.size()/3);
 		}
 		glPopMatrix();
@@ -341,272 +329,200 @@ void NECOutput::CalculateXYZ(const int i, double & x, double & y,
 
 void NECOutput::calculateSurface()
 {
-	double x = 0.0;
-	double y = 0.0;
-	double z = 0.0;
-	double x1 = 0.0;
-	double y1 = 0.0;
-	double z1 = 0.0;
-	double x2 = 0.0;
-	double y2 = 0.0;
-	double z2 = 0.0;
-	double normalX = 0.0;
-	double normalY = 0.0;
-	double normalZ = 0.0;
-	double R0 = 0.0;
-	double R1 = 0.0;
-	double R2 = 0.0;
-	double red = 0.0;
-	double green = 0.0;
-	double blue = 0.0;
+	/*
+	We will read the matrix in rows, creating the necessary arrays.
+	*/
 
+	double red(0.0), green(0.0), blue(0.0);
+	int position = 0;
 
-	for(int i=0; i<phiStartList.size()-1; i++)
-		for(int j=0; j<(phiStartList.at(2)-phiStartList.at(1)-1); j++)
+	for(int row=0; row < vertexMatrix->getRows() - 1; row++)
+	{
+		for(int column=0; column < vertexMatrix->getColumns() - 1; column++)
 		{
-			// First triangle
-			CalculateXYZ(j+phiStartList.at(i),x,y,z,R0);
-			CalculateXYZ(j+phiStartList.at(i+1),x2,y2,z2,R1);
-			CalculateXYZ(j+1+phiStartList.at(i),x1,y1,z1,R2);
+			surfaceVertexArray.append(vertexMatrix->getValue(row, column).x());
+			surfaceVertexArray.append(vertexMatrix->getValue(row, column).y());
+			surfaceVertexArray.append(vertexMatrix->getValue(row, column).z());
 
-			// Vertex
-			surfaceVertexArray.append(x);
-			surfaceVertexArray.append(y);
-			surfaceVertexArray.append(z);
-			surfaceVertexArray.append(x2);
-			surfaceVertexArray.append(y2);
-			surfaceVertexArray.append(z2);
-			surfaceVertexArray.append(x1);
-			surfaceVertexArray.append(y1);
-			surfaceVertexArray.append(z1);
-
-			// Colors
-			calculateColors(j+phiStartList.at(i),R0,red,green,blue);
+			position = row * vertexMatrix->getColumns() + column;
+			calculateColors(position, vertexMatrix->getValue(row, column).w(),
+			                red, green, blue);
 			surfaceColorArray.append(red);
 			surfaceColorArray.append(green);
 			surfaceColorArray.append(blue);
 			surfaceColorArray.append(alpha);
 
-			calculateColors(j+phiStartList.at(i+1),R1,red,green,blue);
+			surfaceVertexArray.append(vertexMatrix->getValue(row + 1, column).x());
+			surfaceVertexArray.append(vertexMatrix->getValue(row + 1, column).y());
+			surfaceVertexArray.append(vertexMatrix->getValue(row + 1, column).z());
+
+			position = (row + 1) * vertexMatrix->getColumns() + column;
+			calculateColors(position, vertexMatrix->getValue(row + 1, column).w(),
+			                red, green, blue);
 			surfaceColorArray.append(red);
 			surfaceColorArray.append(green);
 			surfaceColorArray.append(blue);
 			surfaceColorArray.append(alpha);
-
-			calculateColors(j+1+phiStartList.at(i),R2,red,green,blue);
-			surfaceColorArray.append(red);
-			surfaceColorArray.append(green);
-			surfaceColorArray.append(blue);
-			surfaceColorArray.append(alpha);
-
-
-			// Normals
-			calculateTriangleNormal(x,y,z,x1,y1,z1,x2,y2,z2,normalX,normalY,normalZ);
-			if( j > (phiStartList.at(2)-phiStartList.at(1)-1)/2)
-			{
-				normalX *= -1.0;
-				normalY *= -1.0;
-				normalZ *= -1.0;
-			}
-			surfaceNormalArray.append(normalX);
-			surfaceNormalArray.append(normalY);
-			surfaceNormalArray.append(normalZ);
-			surfaceNormalArray.append(normalX);
-			surfaceNormalArray.append(normalY);
-			surfaceNormalArray.append(normalZ);
-			surfaceNormalArray.append(normalX);
-			surfaceNormalArray.append(normalY);
-			surfaceNormalArray.append(normalZ);
-
-			// Second triangle
-			CalculateXYZ(j+phiStartList.at(i+1),x,y,z,R0);
-			CalculateXYZ(j+1+phiStartList.at(i),x2,y2,z2,R1);
-			CalculateXYZ(j+1+phiStartList.at(i+1),x1,y1,z1,R2);
-
-			// Vertex
-			surfaceVertexArray.append(x);
-			surfaceVertexArray.append(y);
-			surfaceVertexArray.append(z);
-			surfaceVertexArray.append(x1);
-			surfaceVertexArray.append(y1);
-			surfaceVertexArray.append(z1);
-			surfaceVertexArray.append(x2);
-			surfaceVertexArray.append(y2);
-			surfaceVertexArray.append(z2);
-
-			// Colors
-			calculateColors(j+phiStartList.at(i+1),R0,red,green,blue);
-			surfaceColorArray.append(red);
-			surfaceColorArray.append(green);
-			surfaceColorArray.append(blue);
-			surfaceColorArray.append(alpha);
-
-			calculateColors(j+1+phiStartList.at(i),R1,red,green,blue);
-			surfaceColorArray.append(red);
-			surfaceColorArray.append(green);
-			surfaceColorArray.append(blue);
-			surfaceColorArray.append(alpha);
-
-			calculateColors(j+1+phiStartList.at(i+1),R2,red,green,blue);
-			surfaceColorArray.append(red);
-			surfaceColorArray.append(green);
-			surfaceColorArray.append(blue);
-			surfaceColorArray.append(alpha);
-
-			// Normals
-			calculateTriangleNormal(x,y,z,x1,y1,z1,x2,y2,z2,normalX,normalY,normalZ);
-			if( j < (phiStartList.at(2)-phiStartList.at(1)-1)/2)
-			{
-				normalX *= -1.0;
-				normalY *= -1.0;
-				normalZ *= -1.0;
-			}
-			surfaceNormalArray.append(normalX);
-			surfaceNormalArray.append(normalY);
-			surfaceNormalArray.append(normalZ);
-			surfaceNormalArray.append(normalX);
-			surfaceNormalArray.append(normalY);
-			surfaceNormalArray.append(normalZ);
-			surfaceNormalArray.append(normalX);
-			surfaceNormalArray.append(normalY);
-			surfaceNormalArray.append(normalZ);
 		}
+	}
 }
 
 void NECOutput::calculateMesh()
 {
-	double x = 0;
-	double y = 0;
-	double z = 0;
-	double R = 0;
-	double red = 0;
-	double green = 0;
-	double blue = 0;
+	/*
+	We will read the matrix in rows, creating the necessary arrays.
+	*/
 
-	for(int i=0; i<phiStartList.size()-1; i++)
+	double red(0.0), green(0.0), blue(0.0);
+	int position = 0;
+
+	for(int row=0; row < vertexMatrix->getRows() - 1; row++)
 	{
-		for(int j=0; j<(phiStartList.at(2)-phiStartList.at(1)); j++)
+		for(int column=0; column < vertexMatrix->getColumns() - 1; column++)
 		{
-			// Vertex
-			CalculateXYZ(j+phiStartList.at(i),x,y,z,R);
-			meshVertexArray.append(x);
-			meshVertexArray.append(y);
-			meshVertexArray.append(z);
+			meshVertexArray.append(vertexMatrix->getValue(row, column).x());
+			meshVertexArray.append(vertexMatrix->getValue(row, column).y());
+			meshVertexArray.append(vertexMatrix->getValue(row, column).z());
 
-			// Colours
-			calculateColors(j+phiStartList.at(i),R,red,green,blue);
+			position = row * vertexMatrix->getColumns() + column;
+			calculateColors(position, vertexMatrix->getValue(row, column).w(),
+			                red, green, blue);
 			meshColorArray.append(red);
 			meshColorArray.append(green);
 			meshColorArray.append(blue);
 			meshColorArray.append(alpha);
 
-			// Normals does not need normalizing, they are already normalized
-			meshNormalArray.append(x);
-			meshNormalArray.append(y);
-			meshNormalArray.append(z);
+			meshVertexArray.append(vertexMatrix->getValue(row + 1, column).x());
+			meshVertexArray.append(vertexMatrix->getValue(row + 1, column).y());
+			meshVertexArray.append(vertexMatrix->getValue(row + 1, column).z());
 
-			// Vertex
-			CalculateXYZ(j+phiStartList.at(i+1),x,y,z,R);
-			meshVertexArray.append(x);
-			meshVertexArray.append(y);
-			meshVertexArray.append(z);
-
-			// Colours
-			calculateColors(j+phiStartList.at(i+1),R,red,green,blue);
+			position = (row + 1) * vertexMatrix->getColumns() + column;
+			calculateColors(position, vertexMatrix->getValue(row + 1, column).w(),
+			                red, green, blue);
 			meshColorArray.append(red);
 			meshColorArray.append(green);
 			meshColorArray.append(blue);
 			meshColorArray.append(alpha);
-
-			// Normals does not need normalizing, they are already normalized
-			meshNormalArray.append(x);
-			meshNormalArray.append(y);
-			meshNormalArray.append(z);
 		}
 	}
 }
 
 void NECOutput::calculateInsideTriangles()
 {
-	double x = 0;
-	double y = 0;
-	double z = 0;
-	double R = 0;
-	double red = 0;
-	double green = 0;
-	double blue = 0;
+	int position = 0;
+	double red(0.0), green(0.0), blue(0.0);
 
-	for(int i=0; i<phiStartList.size()-1; i++)
-		for(int j=0; j<(phiStartList.at(2)-phiStartList.at(1)); j++)
-		{
-			CalculateXYZ(j+phiStartList.at(i),x,y,z,R);
-			calculateColors(j+phiStartList.at(i),R,red,green,blue);
-
-			// Vertex
-			insideTrianglesVertexArray.append(x);
-			insideTrianglesVertexArray.append(y);
-			insideTrianglesVertexArray.append(z);
-			insideTrianglesVertexArray.append(0.0);
-			insideTrianglesVertexArray.append(0.0);
-			insideTrianglesVertexArray.append(0.0);
-
-			// Colours
-			insideTrianglesColorArray.append(red);
-			insideTrianglesColorArray.append(green);
-			insideTrianglesColorArray.append(blue);
-			insideTrianglesColorArray.append(alpha);
-			insideTrianglesColorArray.append(red);
-			insideTrianglesColorArray.append(green);
-			insideTrianglesColorArray.append(blue);
-			insideTrianglesColorArray.append(alpha);
-
-			/// FIXME calculate the normals accordingly
-			insideTrianglesNormalArray.append(1.0);
-			insideTrianglesNormalArray.append(0.0);
-			insideTrianglesNormalArray.append(0.0);
-			insideTrianglesNormalArray.append(1.0);
-			insideTrianglesNormalArray.append(0.0);
-			insideTrianglesNormalArray.append(0.0);
-		}
-	/*
-		The other way. We check that there has been values added to the list,
-		or we will have a segfault. Note that at least one value is incorpored
-		in ProcessData(), so we must check if there at least are more than one.
-	*/
-	if(phiStartList.size() > 1)
+	for(int row=0; row < vertexMatrix->getRows(); row++)
 	{
-		for(int j=0; j<(phiStartList.at(2)-phiStartList.at(1)); j++)
-			for(int i=0; i<phiStartList.size(); i++)
-			{
-				CalculateXYZ(j+phiStartList.at(i),x,y,z,R);
-				calculateColors(j+phiStartList.at(i),R,red,green,blue);
+		for(int column=0; column < vertexMatrix->getColumns(); column++)
+		{
+			insideTrianglesVertexArray.append(vertexMatrix->getValue(row, column).x());
+			insideTrianglesVertexArray.append(vertexMatrix->getValue(row, column).y());
+			insideTrianglesVertexArray.append(vertexMatrix->getValue(row, column).z());
 
-				// Vertex
-				insideTrianglesVertexArray.append(x);
-				insideTrianglesVertexArray.append(y);
-				insideTrianglesVertexArray.append(z);
-				insideTrianglesVertexArray.append(0.0);
-				insideTrianglesVertexArray.append(0.0);
-				insideTrianglesVertexArray.append(0.0);
+			position = row * vertexMatrix->getColumns() + column;
+			calculateColors(position, vertexMatrix->getValue(row, column).w(),
+			                red, green, blue);
+			insideTrianglesColorArray.append(red);
+			insideTrianglesColorArray.append(green);
+			insideTrianglesColorArray.append(blue);
+			insideTrianglesColorArray.append(alpha);
 
-				// Colours
-				insideTrianglesColorArray.append(red);
-				insideTrianglesColorArray.append(green);
-				insideTrianglesColorArray.append(blue);
-				insideTrianglesColorArray.append(alpha);
-				insideTrianglesColorArray.append(red);
-				insideTrianglesColorArray.append(green);
-				insideTrianglesColorArray.append(blue);
-				insideTrianglesColorArray.append(alpha);
+			insideTrianglesVertexArray.append(0.0);
+			insideTrianglesVertexArray.append(0.0);
+			insideTrianglesVertexArray.append(0.0);
 
-				/// FIXME calculate the normals accordingly
-				insideTrianglesNormalArray.append(1.0);
-				insideTrianglesNormalArray.append(0.0);
-				insideTrianglesNormalArray.append(0.0);
-				insideTrianglesNormalArray.append(1.0);
-				insideTrianglesNormalArray.append(0.0);
-				insideTrianglesNormalArray.append(0.0);
-			}
+			// We don't need to recalculate the color
+			insideTrianglesColorArray.append(red);
+			insideTrianglesColorArray.append(green);
+			insideTrianglesColorArray.append(blue);
+			insideTrianglesColorArray.append(alpha);
+		}
+	}
+
+	// Now we repeat the process but reversing the order (reading per column)
+	for(int column=0; column < vertexMatrix->getColumns(); column++)
+	{
+		for(int row=0; row < vertexMatrix->getRows(); row++)
+		{
+			insideTrianglesVertexArray.append(vertexMatrix->getValue(row, column).x());
+			insideTrianglesVertexArray.append(vertexMatrix->getValue(row, column).y());
+			insideTrianglesVertexArray.append(vertexMatrix->getValue(row, column).z());
+
+			position = row * vertexMatrix->getColumns() + column;
+			calculateColors(position, vertexMatrix->getValue(row, column).w(),
+			                red, green, blue);
+			insideTrianglesColorArray.append(red);
+			insideTrianglesColorArray.append(green);
+			insideTrianglesColorArray.append(blue);
+			insideTrianglesColorArray.append(alpha);
+
+			insideTrianglesVertexArray.append(0.0);
+			insideTrianglesVertexArray.append(0.0);
+			insideTrianglesVertexArray.append(0.0);
+
+			// We don't need to recalculate the color
+			insideTrianglesColorArray.append(red);
+			insideTrianglesColorArray.append(green);
+			insideTrianglesColorArray.append(blue);
+			insideTrianglesColorArray.append(alpha);
+		}
+	}
+
+}
+
+void NECOutput::createMatrix()
+{
+	/*
+	We have an array of vertices, and we want to create a matrix in which:
+		* The rows are a set of vertices with the same phi angle value
+		* The columns are a set of vertices with the same theta angle
+
+	The first problem comes in that we do not know how many columns nor rows we
+	need, so we first have to search the radiationPatternList for gathering this
+	information (in this way, we can lately change the resolution of the surfaces
+	without having to touch this structures).
+
+	We know that both phi and theta start with a value of 0.0. We also know that
+	the programs outputs all the set of theta values with a fixed phi, and then
+	changes phi. So we must count how many phi and theta different values we
+	have.
+	*/
+
+	// Columns hold the different sets of theta values
+	int numberOfColumns = 0;
+	// Rows hold the different sets of phi values
+	int numberOfRows = 0;
+
+	bool ready = false;
+
+	while(!ready)
+	{
+		numberOfColumns++;
+		if(radiationPatternList.at(numberOfColumns)->GetPhiAngle() != 0.0)
+			ready = true;
+	}
+
+	numberOfRows = radiationPatternList.size() / numberOfColumns;
+
+	// We know know the sizes, so we create the matrix
+	vertexMatrix = new VertexMatrix(numberOfRows, numberOfColumns);
+
+	/*
+	Now we have to populate the matrix. We want the matrix to have the values in
+	rectangular coordinates, so we must convert them.
+
+	We will put R in the w coordinate.
+	*/
+	double x(0.0), y(0.0), z(0.0), R(0.0);
+
+	for(int row=0; row < numberOfRows; row++)
+	{
+		for(int column=0; column < numberOfColumns; column++)
+		{
+			CalculateXYZ(row * numberOfColumns + column, x, y, z, R);
+			vertexMatrix->setValue(row, column, Point4F(x, y, z, R));
+		}
 	}
 }
 
@@ -615,7 +531,6 @@ void NECOutput::calculateTriangleNormal(double x1, double y1, double z1,
                                         double x3, double y3, double z3,
                                         double & x, double & y, double & z)
 {
-	glWidget->makeCurrent();
 	x = (y2-y1)*(z3-z1)-(z2-z1)*(y3-y1);
 	y = (z2-z1)*(x3-x1)-(x2-x1)*(z3-z1);
 	z = (x2-x1)*(y3-y1)-(y2-y1)*(x3-x1);

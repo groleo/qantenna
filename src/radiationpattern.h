@@ -50,28 +50,35 @@ public:
 	double GetEPhiPhase() const;
 
 protected:
-	/* Angles */
+	/// Theta angle
 	double thetaAngle;
+	/// Phi angle
 	double phiAngle;
 	/* Power gains. We will use convert them from dB to absolute units */
+	/// Vertical power gain
 	double verticalGain;
+	/// Horizontal power gain
 	double horizontalGain;
+	/// Total gain
 	double totalGain;
-	/* Polarization */
+	/// Axial polarization
 	double axialPolarization;
+	/// Tilt degrees polarization
 	double tiltDegreesPolarization;
 	/**
-		Sense possible values:
-		0: linear
-		1: right
-		2: left
+		Polarization sense possible values: \n
+		0: linear \n
+		1: right \n
+		2: left \n
 	*/
 	int polarizationSense;
-	/* Electric field - Theta */
+	/// Electric field - Theta magnitude
 	double eThetaMagnitude;
+	/// Electric field - Theta phase
 	double eThetaPhase;
-	/* Electric field - Phi */
+	/// Electric field - Phi magnitude
 	double ePhiMagnitude;
+	/// Electric field - Phi phase
 	double ePhiPhase;
 };
 
