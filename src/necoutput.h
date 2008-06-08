@@ -98,8 +98,6 @@ private:
 
 	/// The surface calcs
 	void calculateSurface();
-	/// The mesh calcs
-	void calculateMesh();
 	/// The inside triangles calcs
 	void calculateInsideTriangles();
 
@@ -129,22 +127,16 @@ private:
 
 	/// The surface vertex array
 	QVector<double> surfaceVertexArray;
-	/// The mesh vertex array
-	QVector<double> meshVertexArray;
 	/// The inside triangles vertex array
 	QVector<double> insideTrianglesVertexArray;
 
 	/// The surface color array
 	QVector<double> surfaceColorArray;
-	/// The mesh color array
-	QVector<double> meshColorArray;
 	/// The inside triangles color array
 	QVector<double> insideTrianglesColorArray;
 
 	/// The surface normal array
 	QVector<double> surfaceNormalArray;
-	/// The mesh normal array
-	QVector<double> meshNormalArray;
 	/// The inside triangles normal array
 	QVector<double> insideTrianglesNormalArray;
 
@@ -180,5 +172,6 @@ private:
 	int colorScheme;
 
 };
+
 #endif //NECOUTPUT_H
 

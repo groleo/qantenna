@@ -2,6 +2,9 @@ QAntenna 0.2.1:
 * Added some more cards.
 * Fixed a path problem on creating nec files.
 * Fixed some includes for Qt 4.3 (OpenGL related)
+* Now the surfaces are smooth
+* Reduced memory usage due tothe use of the same structure of the surface of
+  the radiation patterns with the mesh.
 
 
 QAntenna 0.2:

@@ -118,16 +118,12 @@ void NECOutput::ProcessData()
 	surfaceVertexArray.clear();
 	surfaceColorArray.clear();
 	surfaceNormalArray.clear();
-	meshVertexArray.clear();
-	meshColorArray.clear();
-	meshNormalArray.clear();
 	insideTrianglesVertexArray.clear();
 	insideTrianglesColorArray.clear();
 	insideTrianglesNormalArray.clear();
 
 	// And we calculate the patterns
 	calculateSurface();
-	calculateMesh();
 	calculateInsideTriangles();
 }
 
@@ -151,14 +147,17 @@ void NECOutput::Render()
 		glPushMatrix();
 		glTranslated(deltaX,deltaY,deltaZ);
 		glScaled(ro,ro,ro);
-		if(surfaceEnabled)
+		if(surfaceEnabled || meshEnabled)
 		{
 			// We specify the corrects arrays
 			glVertexPointer(3,GL_DOUBLE,0,surfaceVertexArray.data());
 			glColorPointer(4,GL_DOUBLE, 0,surfaceColorArray.data());
 // 			glNormalPointer(GL_DOUBLE,0,surfaceNormalArray.data());
 			// We draw the arrays
-			glDrawArrays(GL_TRIANGLE_STRIP,0, surfaceVertexArray.size()/3);
+			if(surfaceEnabled)
+				glDrawArrays(GL_TRIANGLE_STRIP,0, surfaceVertexArray.size()/3);
+			else
+				glDrawArrays(GL_LINE_STRIP,0, surfaceVertexArray.size()/3);
 		}
 		if(spheresEnabled)
 		{
@@ -180,13 +179,6 @@ void NECOutput::Render()
 				gluSphere(quad,radius,SLICES,STACKS);
 				glTranslated(-x,-y,-z);
 			}
-		}
-		if(meshEnabled)
-		{
-			glVertexPointer(3,GL_DOUBLE,0,meshVertexArray.data());
-			glColorPointer(4,GL_DOUBLE,0,meshColorArray.data());
-// 			glNormalPointer(GL_DOUBLE,0,meshNormalArray.data());
-			glDrawArrays(GL_LINE_STRIP,0,meshVertexArray.size()/3);
 		}
 		if(insideTrianglesEnabled)
 		{
@@ -363,46 +355,6 @@ void NECOutput::calculateSurface()
 			surfaceColorArray.append(green);
 			surfaceColorArray.append(blue);
 			surfaceColorArray.append(alpha);
-		}
-	}
-}
-
-void NECOutput::calculateMesh()
-{
-	/*
-	We will read the matrix in rows, creating the necessary arrays.
-	*/
-
-	double red(0.0), green(0.0), blue(0.0);
-	int position = 0;
-
-	for(int row=0; row < vertexMatrix->getRows() - 1; row++)
-	{
-		for(int column=0; column < vertexMatrix->getColumns() - 1; column++)
-		{
-			meshVertexArray.append(vertexMatrix->getValue(row, column).x());
-			meshVertexArray.append(vertexMatrix->getValue(row, column).y());
-			meshVertexArray.append(vertexMatrix->getValue(row, column).z());
-
-			position = row * vertexMatrix->getColumns() + column;
-			calculateColors(position, vertexMatrix->getValue(row, column).w(),
-			                red, green, blue);
-			meshColorArray.append(red);
-			meshColorArray.append(green);
-			meshColorArray.append(blue);
-			meshColorArray.append(alpha);
-
-			meshVertexArray.append(vertexMatrix->getValue(row + 1, column).x());
-			meshVertexArray.append(vertexMatrix->getValue(row + 1, column).y());
-			meshVertexArray.append(vertexMatrix->getValue(row + 1, column).z());
-
-			position = (row + 1) * vertexMatrix->getColumns() + column;
-			calculateColors(position, vertexMatrix->getValue(row + 1, column).w(),
-			                red, green, blue);
-			meshColorArray.append(red);
-			meshColorArray.append(green);
-			meshColorArray.append(blue);
-			meshColorArray.append(alpha);
 		}
 	}
 }
