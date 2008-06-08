@@ -63,19 +63,20 @@ SOURCES += gl.cpp \
 RESOURCES = resource.qrc
 TARGET = qantenna
 DESTDIR = ../bin/
-CONFIG += opengl thread debug warn_on
+CONFIG += opengl thread warn_on
 
 unix{
+    CONFIG += debug
     # Prefix: base instalation directory
     isEmpty( PREFIX ){
         PREFIX = /usr/local
     }
-    
+
     DEB_BUILD = $$system(echo \$DEB_BUILD_OPTIONS)
     contains(DEB_BUILD, nostrip) {
         QMAKE_STRIP=:
     }
-    
+
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
     INSTALLS = target
@@ -102,6 +103,7 @@ unix{
 }
 
 win32 {
+    CONFIG += release
     INCLUDEPATH = .
     RC_FILE = ../distrib/win32/icon.rc
 }

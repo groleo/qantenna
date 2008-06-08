@@ -12,7 +12,7 @@
     <ignoreparts/>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description></description>
+    <description/>
     <versioncontrol>kdevsubversion</versioncontrol>
     <projectname>qantenna</projectname>
     <defaultencoding>iso 8859-1</defaultencoding>
@@ -73,12 +73,12 @@
   </kdevdoctreeview>
   <kdevdebugger>
     <general>
-      <dbgshell></dbgshell>
+      <dbgshell/>
       <programargs/>
-      <gdbpath></gdbpath>
-      <configGdbScript></configGdbScript>
-      <runShellScript></runShellScript>
-      <runGdbScript></runGdbScript>
+      <gdbpath/>
+      <configGdbScript/>
+      <runShellScript/>
+      <runGdbScript/>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>false</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
@@ -92,20 +92,20 @@
   </kdevdebugger>
   <kdevtrollproject>
     <run>
-      <mainprogram></mainprogram>
-      <programargs></programargs>
+      <mainprogram/>
+      <programargs/>
       <directoryradio>executable</directoryradio>
       <customdirectory>/</customdirectory>
       <terminal>false</terminal>
       <autocompile>true</autocompile>
       <envvars/>
-      <globaldebugarguments></globaldebugarguments>
+      <globaldebugarguments/>
       <globalcwd>.</globalcwd>
       <useglobalprogram>false</useglobalprogram>
       <autoinstall>true</autoinstall>
       <autokdesu>false</autokdesu>
       <runarguments>
-        <qantenna></qantenna>
+        <qantenna/>
         <cards/>
       </runarguments>
       <cwd>
@@ -113,7 +113,7 @@
         <cards>/mnt/damian/programacion/qantenna</cards>
       </cwd>
       <debugarguments>
-        <qantenna></qantenna>
+        <qantenna/>
         <cards/>
       </debugarguments>
     </run>
@@ -125,7 +125,7 @@
       <runmultiplejobs>false</runmultiplejobs>
       <numberofjobs>1</numberofjobs>
       <dontact>false</dontact>
-      <makebin></makebin>
+      <makebin/>
       <prio>0</prio>
       <envvars/>
     </make>
@@ -217,7 +217,7 @@
     <creategettersetter>
       <prefixGet>get</prefixGet>
       <prefixSet>set</prefixSet>
-      <prefixVariable></prefixVariable>
+      <prefixVariable/>
       <parameterName>theValue</parameterName>
       <inlineGet>true</inlineGet>
       <inlineSet>true</inlineSet>
