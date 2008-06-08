@@ -1,3 +1,9 @@
+QAntenna 0.2.1:
+* Added some more cards.
+* Fixed a path problem on creating nec files.
+* Fixed some includes for Qt 4.3 (OpenGL related)
+
+
 QAntenna 0.2:
 
 * Improved GUI with menu and log text

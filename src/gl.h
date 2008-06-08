@@ -21,7 +21,8 @@
 #ifndef GL_H
 #define GL_H
 
-#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <QString>
 
 #include "vec3.h"

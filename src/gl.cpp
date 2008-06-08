@@ -1,6 +1,7 @@
 #include "gl.h"
 
-#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <QDebug>
 #include <QString>
 
