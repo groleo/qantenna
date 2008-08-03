@@ -30,6 +30,7 @@
 #include <QtOpenGL>
 
 class GLWidget;
+class QDir;
 
 /**
 	This class takes cares of all the data in the program.
@@ -132,6 +133,13 @@ private slots:
 private:
 	/// A list of NECInputs (antennas)
 	QList<NECContainer*> necContainerList;
+
+	/// File open dialog directory
+	/**
+	By default it will open in ".", but then we will save the last directory
+	the user used.
+	*/
+	QDir currentDirectory;
 
 	/// Opens and adds file fileName to necContainerList
 	void openNECFile(QString fileName);

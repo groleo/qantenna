@@ -52,6 +52,9 @@ DataManager::DataManager(GLWidget * gl, QObject * parent) : QObject(parent)
 	// calcAtOpen must start in sync with fileListCalculate (checkbox)
 	calcAtOpen= true;
 
+	// Current directory startup.
+	currentDirectory = QDir::homePath();
+
 	// Should start in sync with the GUI
 	dBMinumum= -25;
 	radius= 50;
@@ -269,11 +272,14 @@ void DataManager::openDialog()
 
 	filterList << tr("NEC files (*.nec)") << tr("All files (*.*)");
 	dialog.setFilters(filterList);
-	dialog.setDirectory(".");
+	dialog.setDirectory(currentDirectory);
 	// More than one file can be selected
 	dialog.setFileMode(QFileDialog::ExistingFiles);
 
 	if(!dialog.exec()) return;
+
+	// Keep the last directory
+	currentDirectory = dialog.directory();
 
 	fileNames = dialog.selectedFiles();
 
