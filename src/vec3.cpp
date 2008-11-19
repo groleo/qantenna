@@ -19,8 +19,9 @@
  ***************************************************************************/
 
 #include "vec3.h"
+#include <cstdio>
 
-// Constructores
+// Constructors
 Vec3::Vec3(void) {
 	set(0, 0, 0);
 }

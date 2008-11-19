@@ -22,7 +22,6 @@
 #define VEC3_H
 
 #include <iostream>
-#include <cstdio>
 #include <math.h>
 #include <QVector>
 
