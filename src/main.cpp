@@ -39,10 +39,8 @@ int main(int argc, char *argv[])
 	//We get the system's locale
 	QString locale = QLocale::system().name();
 
-	// And we truncate it to just the language
-	locale.truncate(2);
-
-	qtTranslator.load("qt_" + locale, "/usr/share/qt4/translations");
+	qtTranslator.load("qt_" + locale, "/usr/share/qt4/translations",
+	                  QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 	app.installTranslator(&qtTranslator);
 
 	// Translations for QAntenna
