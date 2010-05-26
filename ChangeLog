@@ -2,6 +2,7 @@ QAntenna 0.2.2:
 * The Open File Dialog now starts in the user's home directory, and remembers
 the last path used.
 * Changed a printf to QDebug in src/vec3.cpp. Solves Debian bug #504883. 
+* Convert the source code to UTF-8.
 
 QAntenna 0.2.1:
 * Added some more cards.
