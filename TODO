@@ -4,6 +4,4 @@ time to ellaborate them).
 * Change the color of the antennas
 * have a touchstone file export for the impedance so users can use it
 e.g. in qucs to create the matching and feeding network (Thanks Stefan)
-* Make the open dialog open directly were the examples are or have a shortcut
-to them, always taking into account the path for each platform.
 

@@ -69,6 +69,9 @@ TARGET = qantenna
 DESTDIR = ../bin/
 CONFIG += opengl thread warn_on
 
+# Default defines values
+EXAMPLES_PATH = ""
+
 unix {
     CONFIG += debug
     # Prefix: base instalation directory
@@ -101,7 +104,8 @@ unix {
     INSTALLS += translations
 
     # Examples
-    examples.path = $${PREFIX}/share/doc/qantenna/examples
+    EXAMPLES_PATH = $${PREFIX}/share/doc/qantenna/examples
+    examples.path = $${EXAMPLES_PATH}
     examples.files = ../examples/*
     INSTALLS += examples
 }
@@ -111,6 +115,9 @@ win32 {
     INCLUDEPATH = .
     RC_FILE = ../distrib/win32/icon.rc
 }
+
+# Set the values of the defines
+DEFINES += EXAMPLES_PATH=\\\"$${EXAMPLES_PATH}\\\"
 
 TEMPLATE = app
 QT += opengl

@@ -3,6 +3,8 @@ QAntenna 0.2.2:
 the last path used.
 * Changed a printf to QDebug in src/vec3.cpp. Solves Debian bug #504883. 
 * Convert the source code to UTF-8.
+* The open dialog now has a side bar URL to easily access the examples.
+
 
 QAntenna 0.2.1:
 * Added some more cards.

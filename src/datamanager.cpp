@@ -272,15 +272,23 @@ void DataManager::openDialog()
   QList<QUrl> sideBarUrls;
   QFileDialog dialog;
 
+  // Just show the files we understand.
   filterList << tr("NEC files (*.nec)") << tr("All files (*.*)");
   dialog.setFilters(filterList);
   dialog.setDirectory(currentDirectory);
   // More than one file can be selected
   dialog.setFileMode(QFileDialog::ExistingFiles);
 
+  // Give an URL to the examples
   sideBarUrls << QUrl::fromLocalFile(QString(EXAMPLES_PATH));
   qDebug() << sideBarUrls;
   dialog.setSidebarUrls(sideBarUrls);
+
+  /*
+    Seems that KDE's native dialog doesn't supports the side bar URL.
+    Use Qt's one.
+   */
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
 
   if(!dialog.exec()) return;
 
