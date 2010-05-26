@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="es">
+<!DOCTYPE TS>
+<TS version="2.0" language="es">
 <context>
     <name>AboutWindow</name>
     <message>
@@ -17,7 +18,7 @@
         <source>A&amp;uthors</source>
         <translation>A&amp;utores</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../../src/ui/about.ui" line="157"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -112,37 +113,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DataManager</name>
     <message>
-        <location filename="../../src/datamanager.cpp" line="242"/>
+        <location filename="../../src/datamanager.cpp" line="248"/>
         <source>Closing</source>
         <translation>Cerrando</translation>
     </message>
     <message>
-        <location filename="../../src/datamanager.cpp" line="267"/>
+        <location filename="../../src/datamanager.cpp" line="273"/>
         <source>NEC files (*.nec)</source>
         <translation>Archivos NEC (*.nec)</translation>
     </message>
     <message>
-        <location filename="../../src/datamanager.cpp" line="267"/>
+        <location filename="../../src/datamanager.cpp" line="273"/>
         <source>All files (*.*)</source>
         <translation>Todos los archivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../../src/datamanager.cpp" line="283"/>
+        <location filename="../../src/datamanager.cpp" line="292"/>
         <source>The file &quot;</source>
         <translation>El archivo &quot;</translation>
     </message>
     <message>
-        <location filename="../../src/datamanager.cpp" line="283"/>
+        <location filename="../../src/datamanager.cpp" line="292"/>
         <source>&quot; is already open.</source>
         <translation>&quot; ya se encuentra abierto.</translation>
     </message>
     <message>
-        <location filename="../../src/datamanager.cpp" line="304"/>
+        <location filename="../../src/datamanager.cpp" line="313"/>
         <source>Opening</source>
         <translation>Abriendo</translation>
     </message>
     <message>
-        <location filename="../../src/datamanager.cpp" line="82"/>
+        <location filename="../../src/datamanager.cpp" line="86"/>
         <source>Calculating</source>
         <translation>Calculando</translation>
     </message>
@@ -150,22 +151,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>GLWidget</name>
     <message>
-        <location filename="../../src/glwidget.cpp" line="295"/>
+        <location filename="../../src/glwidget.cpp" line="294"/>
         <source>Exploration mode: Use W, S, A and D keys to go forward, backward or move sideways</source>
         <translation>Modo exploración. Utilice las teclas W, S, A y D para ir hacia adelante, atrás o hacia los costados</translation>
     </message>
     <message>
-        <location filename="../../src/glwidget.cpp" line="335"/>
+        <location filename="../../src/glwidget.cpp" line="334"/>
         <source>Orbital mode: Move around the antenna by dragging it</source>
         <translation>Modo orbital: muévase alrededor de la antena arrastrándola</translation>
     </message>
     <message>
-        <location filename="../../src/glwidget.cpp" line="396"/>
+        <location filename="../../src/glwidget.cpp" line="395"/>
         <source>QAntenna - DataManager</source>
         <translation>QAntenna - DataManager</translation>
     </message>
     <message>
-        <location filename="../../src/glwidget.cpp" line="397"/>
+        <location filename="../../src/glwidget.cpp" line="396"/>
         <source>I can not create the OpenGL list for the grid</source>
         <translation>No puedo crear la lista de OpenGL para la grilla</translation>
     </message>
@@ -173,87 +174,88 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="159"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="161"/>
         <source>Welcome to</source>
         <translation>Bienvenido a</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="444"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="325"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="446"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="323"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="325"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="496"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="498"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="498"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="500"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="542"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="544"/>
         <source>([0-9]+) *x *([0-9]+)</source>
         <translation>([0-9]+) *x *([0-9]+)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="546"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="548"/>
         <source>Render into file</source>
         <translation>Renderizar a un archivo</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="547"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="549"/>
         <source>Enter the desired resolution:</source>
         <translation>Ingrese la resolución deseada:</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="548"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="550"/>
         <source>%1 x %2</source>
         <translation>%1 x %2</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="586"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="588"/>
         <source>%1 file (*.%2);;</source>
         <translation>%1 file (*.%2);;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="594"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="596"/>
         <source>Save Image As</source>
         <translation>Guardar imagen como</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="612"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="613"/>
         <source>Rendering to &quot;&lt;font color=&quot;#000066&quot;&gt;</source>
         <translation>Renderizando a &quot;&lt;font color=&quot;#000066&quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="616"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="618"/>
         <source>Unable to save %1.</source>
         <translation>Imposible de guardar %1.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="627"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="629"/>
         <source>Rendering to clipboard... </source>
         <translation>Renderizando al portapapeles... </translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="255"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="257"/>
         <source>Calculating...</source>
         <translation>Calculando...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="277"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="279"/>
         <source>Done</source>
         <translation>Hecho</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainwindow.cpp" line="284"/>
+        <location filename="../../src/ui/mainwindow.cpp" line="286"/>
         <source>Some antennas need to be calculated</source>
         <translation>Algunas antenas necesitan ser calculadas</translation>
     </message>
@@ -426,6 +428,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+A</translation>
     </message>
     <message>
+        <location filename="../../src/ui/mainwindowqantenna.ui" line="998"/>
         <location filename="../../src/ui/mainwindowqantenna.ui" line="1001"/>
         <source>Render to file</source>
         <translation>Renderizar a un archivo</translation>
@@ -520,7 +523,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>NECContainer</name>
     <message>
-        <location filename="../../src/neccontainer.cpp" line="217"/>
+        <location filename="../../src/neccontainer.cpp" line="225"/>
         <source>Rendering &quot;&lt;font color=&quot;#000066&quot;&gt;</source>
         <translation>Renderizando &quot;&lt;font color=&quot;#000066&quot;&gt;</translation>
     </message>
@@ -528,12 +531,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/main.cpp" line="73"/>
+        <location filename="../../src/main.cpp" line="77"/>
         <source>Loading QAntenna</source>
         <translation>Cargando QAntenna</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="62"/>
+        <location filename="../../src/main.cpp" line="66"/>
         <source>Checking if there is OpenGL support in this machine</source>
         <translation>Chequeando si existe soporte OpenGL en ésta máquina</translation>
     </message>
@@ -541,26 +544,30 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QWidget</name>
     <message>
-        <location filename="../../src/necinput.cpp" line="139"/>
+        <location filename="../../src/necinput.cpp" line="137"/>
         <source>While trying to insert a FR card, I could not find a GE card in order to put the first card in a right place</source>
         <translation>No pude encontrar una tarjeta GE para poner la tarjeta FR en su lugar correcto</translation>
     </message>
     <message>
-        <location filename="../../src/necinput.cpp" line="968"/>
+        <location filename="../../src/necinput.cpp" line="982"/>
         <source>I could not create/open input.necin</source>
         <translation>No pude crear/abrir input.necin</translation>
     </message>
     <message>
+        <location filename="../../src/necinputparser.cpp" line="117"/>
         <location filename="../../src/necinputparser.cpp" line="205"/>
         <source>The following line can not be parsed properly</source>
         <translation>La siguiente línea no pudo ser parseada correctamente</translation>
     </message>
     <message>
+        <location filename="../../src/necinputparser.cpp" line="119"/>
         <location filename="../../src/necinputparser.cpp" line="207"/>
         <source>The string list is</source>
         <translation>La lista de datos es</translation>
     </message>
     <message>
+        <location filename="../../src/necinputparser.cpp" line="226"/>
+        <location filename="../../src/necinputparser.cpp" line="234"/>
         <location filename="../../src/necinputparser.cpp" line="244"/>
         <source>QAntenna - NEC input parser</source>
         <translation>QAntenna - Parser de archivos NEC de entrada</translation>
@@ -581,12 +588,12 @@ p, li { white-space: pre-wrap; }
         <translation>El archivo está vacío</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="65"/>
+        <location filename="../../src/main.cpp" line="69"/>
         <source>We don&apos;t have OpenGL support</source>
         <translation>No se dispone de soporte OpenGL</translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="68"/>
+        <location filename="../../src/main.cpp" line="71"/>
         <source>There is no OpenGL support in your system.&lt;br&gt;Closing QAntenna</source>
         <translation>No hay soporte OpenGL en ésta máquina.&lt;br&gt;Cerrando QAntenna</translation>
     </message>
