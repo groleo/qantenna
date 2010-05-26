@@ -58,7 +58,7 @@ void AntennaDelegate::paint(QPainter *painter,
 }
 
 QWidget * AntennaDelegate::createEditor(QWidget * parent,
-                                        const QStyleOptionViewItem &option,
+                                        const QStyleOptionViewItem &/*option*/,
                                         const QModelIndex &index) const
 {
 	// Are we editing the frequency?
