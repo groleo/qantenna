@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Lisandro Dami�n Nicanor P�rez Meyer - perezmeyer en/at gmail.com      *
+ *   Lisandro Damiï¿½n Nicanor Pï¿½rez Meyer - perezmeyer en/at gmail.com      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -91,7 +91,7 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
 		qDebug("NEC output parser - The file does not exist\n");
 		return 1;
 	}
-	//The file exists, but �can we read it?
+	//The file exists, but ï¿½can we read it?
 	if (!theFile.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
 		//We can not read the file
@@ -107,7 +107,7 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
 	QString elDato;
 	int sense = 0;
 
-	//We opened the file, but �is it empty?
+	//We opened the file, but ï¿½is it empty?
 	if(text.atEnd())
 	{
 		qDebug("The file is empty\n");

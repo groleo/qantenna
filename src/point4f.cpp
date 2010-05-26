@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007 by Lisandro Damián Nicanor Pérez Meyer             *
+ *   Copyright (C) 2007 by Lisandro DamiÃ¡n Nicanor PÃ©rez Meyer             *
  *   perezmeyer@gmail.com                                                  *
  *   This code is mostly based on the code for QPointF of the sources      *
  *   of qt4-x11-4.3.2 obtained by Debian sources.                          *

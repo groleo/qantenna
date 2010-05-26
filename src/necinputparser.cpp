@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005-7 by                                               *
- *   Lisandro Dami·n Nicanor PÈrez Meyer - perezmeyer en/at gmail.com      *
- *   Gustavo Gonz·lez - gonzalgustavo en/at gmail.com                      *
+ *   Lisandro Dami√°n Nicanor P√©rez Meyer - perezmeyer en/at gmail.com      *
+ *   Gustavo Gonz√°lez - gonzalgustavo en/at gmail.com                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -227,7 +227,7 @@ int NECInputParser(NECInput * theNECInput)
 		qDebug() << QWidget::tr("The file does not exists");
 		return 1;
 	}
-	//The file exists, but øcan we read it?
+	//The file exists, but ¬øcan we read it?
 	if (!theFile.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
 		//We can not read the file
@@ -238,7 +238,7 @@ int NECInputParser(NECInput * theNECInput)
 	//We generate the stream from the file
 	QTextStream text(&theFile);
 
-	//We opened the file, but øis it empty?
+	//We opened the file, but ¬øis it empty?
 	if(text.atEnd())
 	{
 		qDebug() << QWidget::tr("QAntenna - NEC input parser");

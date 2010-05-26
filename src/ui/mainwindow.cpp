@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Lisandro Dami·n Nicanor PÈrez Meyer - perezmeyer en/at gmail.com      *
- *   Gustavo Gonz·lez - gonzalgustavo en/at gmail.com                      *
+ *   Lisandro Dami√°n Nicanor P√©rez Meyer - perezmeyer en/at gmail.com      *
+ *   Gustavo Gonz√°lez - gonzalgustavo en/at gmail.com                      *
  *   Pablo Odorico  pablo.odorico en/at gmail.com                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -513,7 +513,7 @@ void MainWindow::about()
 	"<a href=\"http://www.gnu.org/licenses/gpl.txt\">GPL v2</a>&nbsp;</i><br><br>" \
 	"<u>Authors</u>:" \
 	"<table>" \
-	"<tr><td>&nbsp;&nbsp;-</td><td>Lisandro Dami·n Nicanor PÈrez Meyer<br>" \
+	"<tr><td>&nbsp;&nbsp;-</td><td>Lisandro Dami√°n Nicanor P√©rez Meyer<br>" \
 	"<a href=\"mailto:perezmeyer@gmail.com\">perezmeyer@gmail.com</a></td></tr>" \
 	"<tr><td>&nbsp;&nbsp;-</td><td>Gustavo Gonzalez<br>" \
 	"<a href=\"mailto:gonzalgustavo@gmail.com\">gonzalgustavo@gmail.com</a></td></tr>" \

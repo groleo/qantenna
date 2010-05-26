@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2005-2007 by Lisandro Dami·n Nicanor PÈrez Meyer        *
+ *   Copyright (C) 2005-2007 by Lisandro Dami√°n Nicanor P√©rez Meyer        *
  *   perezmeyer@gmail.com                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

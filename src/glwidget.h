@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Lisandro Dami·n Nicanor PÈrez Meyer - perezmeyer en/at gmail.com      *
- *   Gustavo Gonz·lez - gonzalgustavo en/at gmail.com                      *
+ *   Lisandro Dami√°n Nicanor P√©rez Meyer - perezmeyer en/at gmail.com      *
+ *   Gustavo Gonz√°lez - gonzalgustavo en/at gmail.com                      *
  *   Pablo Odorico  pablo.odorico en/at gmail.com                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

@@ -76,9 +76,9 @@ Vec3 quadNormal(const Vec3 &v1, const Vec3 &v2, const Vec3 &v3, const Vec3 &v4)
 	Calculates a quad normal as an average of the triangle
 	normals at the four corners
 		1------4
-		| ·  · |  Counter Clock-Wise (right hand rule)
+		| Â·  Â· |  Counter Clock-Wise (right hand rule)
 		|      |
-		| ·  · |
+		| Â·  Â· |
 		2------3
 	*/
 

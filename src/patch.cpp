@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Gustavo Gonz·lez - gonzalgustavo en/at gmail.com                      *
+ *   Gustavo Gonz√°lez - gonzalgustavo en/at gmail.com                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *

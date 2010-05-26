@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2005 by                                                 *
- *   Gustavo González - gonzalgustavo en/at gmail.com                      *
- *   Lisandro Damián Nicanor Pérez Meyer - perezmeyer en/at gmail.com      *
+ *   Gustavo GonzÃ¡lez - gonzalgustavo en/at gmail.com                      *
+ *   Lisandro DamiÃ¡n Nicanor PÃ©rez Meyer - perezmeyer en/at gmail.com      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -786,7 +786,7 @@ void NECInput::Render()
 	glColorPointer(4,GL_DOUBLE,0,quadsColorArray.data());
 	glDrawArrays(GL_QUADS,0,quadsVertexArray.size()/3);
 
-	// I think this is a horrible hack ¿Is there any glSomething to do this?
+	// I think this is a horrible hack Â¿Is there any glSomething to do this?
 	glLineWidth(1);
 
 		// We disable the arrays
