@@ -281,7 +281,6 @@ void DataManager::openDialog()
 
   // Give an URL to the examples
   sideBarUrls << QUrl::fromLocalFile(QString(EXAMPLES_PATH));
-  qDebug() << sideBarUrls;
   dialog.setSidebarUrls(sideBarUrls);
 
   /*
