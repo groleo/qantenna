@@ -31,264 +31,276 @@
 NECContainer::NECContainer(QString theFilename, GLWidget * gl,
                            QObject * parent) : QObject(parent)
 {
-	glWidget = gl;
-	fileName = theFilename;
+  glWidget = gl;
+  fileName = theFilename;
 
-	/*
-		We grab the system's time to create temp files that have a very little
-		chance to overwrite themselves if multiple process are running in the
-		same machine
-	*/
-	QTime time;
-	time.start();
-	creationTime = time.toString("hhmmsszzz");
+  /*
+    We grab the system's time to create temp files that have a very little
+    chance to overwrite themselves if multiple process are running in the
+    same machine
+  */
+  QTime time;
+  time.start();
+  creationTime = time.toString("hhmmsszzz");
 
-	// Just in case something fails, we set the frequency to 128.0 MHz
-	frequency = 128.0;
+  // Just in case something fails, we set the frequency to 128.0 MHz
+  frequency = 128.0;
 
-	// We create the necInput
-	necInput = new NECInput(theFilename,creationTime);
+  // We create the necInput
+  necInput = new NECInput(theFilename,creationTime);
 
-	// We parse the input file
-	NECInputParser(necInput);
-	// And then we process it's data
-	necInput->ProcessData();
-	// We get the frequency
-	frequency = necInput->getFrequency();
+  // We parse the input file
+  NECInputParser(necInput);
+  // And then we process it's data
+  necInput->ProcessData();
+  // We get the frequency
+  frequency = necInput->getFrequency();
 
-	radiationPatternCalculated = false;
+  radiationPatternCalculated = false;
 
-	show = true;
+  show = true;
 }
 
 NECContainer::~NECContainer()
 {
-	delete necInput;
-	delete necOutput;
+  delete necInput;
+  delete necOutput;
 
-	// And finally we must remove all the temporary files
-	QString thePath = QDir::tempPath();
-	/*
-		We clean the path, given us a path without a final separator, no matter
-		which OS we are running (some OSs give it and some doesn't)
-	*/
-	thePath = QDir::cleanPath(thePath);
-	// We append a final separator
-	thePath.append("/");
+  // And finally we must remove all the temporary files
+  QString thePath = QDir::tempPath();
+  /*
+    We clean the path, given us a path without a final separator, no matter
+    which OS we are running (some OSs give it and some doesn't)
+  */
+  thePath = QDir::cleanPath(thePath);
+  // We append a final separator
+  thePath.append("/");
 
-	QFile file(thePath + "input" + creationTime +".necin");
-	if(file.exists())
-		file.remove();
+  QFile file(thePath + "input" + creationTime +".necin");
+  if(file.exists())
+    file.remove();
 
-	file.setFileName(thePath + "output" + creationTime + ".necout");
-	if(file.exists())
-		file.remove();
+  file.setFileName(thePath + "output" + creationTime + ".necout");
+  if(file.exists())
+    file.remove();
 }
 
 QString NECContainer::getFileName()
 {
-	return fileName;
+  return fileName;
 }
 
 double NECContainer::getFrequency()
 {
-	return frequency;
+  return frequency;
 }
 
 bool NECContainer::getShow()
 {
-	return show;
+  return show;
 }
 
 bool NECContainer::getRadiationPatternCalculated()
 {
-	return radiationPatternCalculated;
+  return radiationPatternCalculated;
 }
 
 void NECContainer::Render()
 {
-	if(!show) return;
+  if(!show) return;
 
-	necInput->Render();
-	if(radiationPatternCalculated)
-		necOutput->Render();
+  necInput->Render();
+  if(radiationPatternCalculated)
+    necOutput->Render();
 }
 
 void NECContainer::setFrequency(double newFrequency)
 {
-	frequency = newFrequency;
-	radiationPatternCalculated = false;
-	// We set necInput to it's new frequency
-	necInput->setSimulationFrequency(newFrequency);
-	// We re-process the data
-	necInput->ProcessData();
+  frequency = newFrequency;
+  radiationPatternCalculated = false;
+  // We set necInput to it's new frequency
+  necInput->setSimulationFrequency(newFrequency);
+  // We re-process the data
+  necInput->ProcessData();
 }
 
 void NECContainer::setComponentsRadius(double newRadius)
 {
-	necInput->SetRadius(newRadius);
+  necInput->SetRadius(newRadius);
 }
 
 void NECContainer::setDisplacement()
 {
-	double x = 0.0;
-	double y = 0.0;
-	double z = 0.0;
-	double temp;
+  double x = 0.0;
+  double y = 0.0;
+  double z = 0.0;
+  double temp;
 
-	// We get the real coordinates of the center
-	necInput->GetPosition(x,y,z);
+  // We get the real coordinates of the center
+  necInput->GetPosition(x,y,z);
 
-	// We now transform between real and OGL coordinates
-	temp = -1.0*y;
-	y = z;
-	z = temp;
+  // We now transform between real and OGL coordinates
+  temp = -1.0*y;
+  y = z;
+  z = temp;
 
-	// And we pass it to the radiattion pattern
-	necOutput->setDisplacement(x,y,z);
+  // And we pass it to the radiattion pattern
+  necOutput->setDisplacement(x,y,z);
 }
 
 void NECContainer::setRenderSurface(bool render)
 {
-	necOutput->setRenderSurface(render);
+  necOutput->setRenderSurface(render);
 }
 
 void NECContainer::setRenderSpheres(bool render)
 {
-	necOutput->setRenderSpheres(render);
+  necOutput->setRenderSpheres(render);
 }
 
 void NECContainer::setRenderMesh(bool render)
 {
-	necOutput->setRenderMesh(render);
+  necOutput->setRenderMesh(render);
 }
 
 void NECContainer::setRenderInsideTriangles(bool render)
 {
-	necOutput->setRenderInsideTriangles(render);
+  necOutput->setRenderInsideTriangles(render);
 }
 
 void NECContainer::setDBMinimum(double newDB)
 {
-	necOutput->setDBMinimum(newDB);
+  necOutput->setDBMinimum(newDB);
 }
 
 void NECContainer::setRadius(double newRadius)
 {
-	necOutput->setRadius(newRadius);
+  necOutput->setRadius(newRadius);
 }
 
 void NECContainer::setAlpha(double newAlpha)
 {
-	necOutput->setAlpha(newAlpha);
+  necOutput->setAlpha(newAlpha);
 }
 
 void NECContainer::setSurfaceSize(double surfaceSize)
 {
-	necOutput->setRo(surfaceSize);
+  necOutput->setRo(surfaceSize);
 }
 
 void NECContainer::setShow(bool newShow)
 {
-	show= newShow;
+  show= newShow;
 }
 
 void NECContainer::setRadiationPatternCalculated(bool newVal)
 {
-	radiationPatternCalculated= newVal;
+  radiationPatternCalculated= newVal;
 }
 
 void NECContainer::setColorScheme(int theColorScheme)
 {
-	necOutput->setColorScheme(theColorScheme);
+  necOutput->setColorScheme(theColorScheme);
 }
 
 void NECContainer::calculateRadiationPattern()
 {
-	LoadThread *necThread = new LoadThread(this);
-	connect(necThread, SIGNAL(finished()),
-			this, SLOT(renderFile()));
-	necThread->start();
-	//necThread->wait();
+  LoadThread *necThread = new LoadThread(this);
+  connect(necThread, SIGNAL(finished()),
+      this, SLOT(renderFile()));
+  necThread->start();
+  //necThread->wait();
 }
 
 void NECContainer::rebuildLists()
 {
-	glWidget->makeCurrent();
-	necInput->ProcessData();
-	necOutput->ProcessData();
+  glWidget->makeCurrent();
+  necInput->ProcessData();
+  necOutput->ProcessData();
 }
 
 void NECContainer::renderFile()
 {
-	// This funcion is called when the thread that calls nec2++ ends
-	emit logStart("spattern.png", tr("Rendering \"<font color=\"#000066\">")
-		+ DataManager::cleanPathName(fileName) + "</font>\"... ");
+  // This funcion is called when the thread that calls nec2++ ends
+  emit logStart("spattern.png", tr("Rendering \"<font color=\"#000066\">")
+    + DataManager::cleanPathName(fileName) + "</font>\"... ");
 
-	glWidget->makeCurrent();
+  glWidget->makeCurrent();
 
-	necOutput->ProcessData();
+  necOutput->ProcessData();
 
-	// We render the results
-	radiationPatternCalculated = true;
-	Render();
+  // We render the results
+  radiationPatternCalculated = true;
+  Render();
 
-	glWidget->update();
+  glWidget->update();
 
-	emit logEndOK(true);
+  emit logEndOK(true);
 
-	emit finishedCalc();
+  emit finishedCalc();
 }
 
 void NECContainer::loadFile()
 {
-	// The path to the temporary directory
-	QString thePath = QDir::tempPath();
-	/*
-		We clean the path, given us a path without a final separator, no matter
-		which OS we are running (some OSs give it and some doesn't)
-	*/
-	thePath = QDir::cleanPath(thePath);
-	// We append a final separator
-	thePath.append("/");
+  // The path to the temporary directory
+  QString thePath = QDir::tempPath();
+  /*
+    We clean the path, given us a path without a final separator, no matter
+    which OS we are running (some OSs give it and some doesn't)
+  */
+  thePath = QDir::cleanPath(thePath);
+  // We append a final separator
+  thePath.append("/");
 
-	if(radiationPatternCalculated)
-	{
-		// We delete the previous necOutput
-		delete necOutput;
-		// And the associated file
-		QFile file(thePath + "output" + creationTime +".necout");
-		if(file.exists())
-			file.remove();
-	}
+  if(radiationPatternCalculated)
+  {
+    // We delete the previous necOutput
+    delete necOutput;
+    // And the associated file
+    QFile file(thePath + "output" + creationTime +".necout");
+    if(file.exists())
+      file.remove();
+  }
 
-	// And we create a new one
-	necOutput = new NECOutput(glWidget);
+  // And we create a new one
+  necOutput = new NECOutput(glWidget);
 
-	// We generate input.necin
-	necInput->createNECInputFile();
+  // We generate input.necin
+  necInput->createNECInputFile();
 
-	// FIXME The antenna's frequency should be passed to the UI
+  // FIXME The antenna's frequency should be passed to the UI
 
-	// FIXME Check that input.necin exists
+  // FIXME Check that input.necin exists
 
-	// Now we pass the displacement of the antenna to necOutput
-	setDisplacement();
+  // Now we pass the displacement of the antenna to necOutput
+  setDisplacement();
 
-	// A QProcess to call nec2
-	QProcess *theProcess = new QProcess;
-	QString program = "nec2++";
+  // A QProcess to call nec2
+  QProcess *theProcess = new QProcess;
+  QString program = "nec2++";
 
-	// The arguments
-	QStringList arguments;
-	arguments << "-i" << thePath + "input" + creationTime + ".necin";
-	arguments << "-o" << thePath + "output" + creationTime + ".necout";
+  // The arguments
+  QStringList arguments;
+  arguments << "-i" << thePath + "input" + creationTime + ".necin";
+  arguments << "-o" << thePath + "output" + creationTime + ".necout";
 
-	// We start the process
-	theProcess->start(program,arguments);
-	// And we wait until it finishes
-	theProcess->waitForFinished();
+  // We start the process
+  theProcess->start(program,arguments);
+  // And we wait until it finishes
+  theProcess->waitForFinished();
 
-	// We open the radiation pattern
-	NECOutputParser(necOutput,thePath + "output" + creationTime + ".necout");
+  // Check that there weren't any errors.
+  if((theProcess->exitCode() != 0) && (theProcess->exitStatus() != 0))
+  {
+      QString errorString;
+      errorString = tr("nec2++ returned with exit code %1 and exit status %2.<br>");
+      errorString += tr("Check that nec2++ is installed and that the antenna is well defined.");
+      errorString.arg(theProcess->exitCode()).arg(theProcess->exitStatus());
+      QMessageBox::critical(0 , tr("QAntenna: problem calling nec2++"), errorString);
+
+      return;
+  }
+
+  // We open the radiation pattern
+  NECOutputParser(necOutput,thePath + "output" + creationTime + ".necout");
 }
