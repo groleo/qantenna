@@ -29,87 +29,87 @@
 
 int main(int argc, char *argv[])
 {
-	/* For every Qt graphical application, we need one QApplication instance */
-	QApplication app(argc, argv);
+  /* For every Qt graphical application, we need one QApplication instance */
+  QApplication app(argc, argv);
 
-	// Set the correct language
-	// Translations for Qt
-	QTranslator qtTranslator;
+  // Set the correct language
+  // Translations for Qt
+  QTranslator qtTranslator;
 
-	//We get the system's locale
-	QString locale = QLocale::system().name();
+  //We get the system's locale
+  QString locale = QLocale::system().name();
 
-	qtTranslator.load("qt_" + locale, "/usr/share/qt4/translations",
-	                  QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-	app.installTranslator(&qtTranslator);
+  qtTranslator.load("qt_" + locale, "/usr/share/qt4/translations",
+                    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+  app.installTranslator(&qtTranslator);
 
-	// Translations for QAntenna
-	QTranslator myappTranslator;
+  // Translations for QAntenna
+  QTranslator myappTranslator;
 
 #ifdef WIN32
-	QString transdir=".";
+  QString transdir=".";
 #else
-	QString transdir=PREFIX"/share/qantenna";
+  QString transdir=PREFIX"/share/qantenna";
 #endif
 
-	myappTranslator.load("qantenna_" + locale, transdir);
-	app.installTranslator(&myappTranslator);
+  myappTranslator.load("qantenna_" + locale, transdir);
+  app.installTranslator(&myappTranslator);
 
-	// The pixmap for the splash screen
-	QPixmap pixmap(":/img/splash.png");
+  // The pixmap for the splash screen
+  QPixmap pixmap(":/img/splash.png");
 
-	// A splash screen
-	QSplashScreen splashScreen(pixmap);
-	splashScreen.show();
+  // A splash screen
+  QSplashScreen splashScreen(pixmap);
+  splashScreen.show();
 
-	// Check whether we have OpenGL support or not
-	splashScreen.showMessage(QObject::tr("Checking if there is OpenGL support in this machine"));
-	
-	if(!QGLFormat::hasOpenGL())
-	{
-		qDebug() << QWidget::tr("We don't have OpenGL support");
-		QMessageBox::critical(0,"QAntenna - main.cpp",
-		                      QWidget::tr("There is no OpenGL support in your system.<br>"
-	                        "Closing QAntenna"));
-		return 1;
-	}
+  // Check whether we have OpenGL support or not
+  splashScreen.showMessage(QObject::tr("Checking if there is OpenGL support in this machine"));
 
-	// Load QAntenna
-	splashScreen.showMessage(QObject::tr("Loading QAntenna"));
-	
-	/***************************************************/
-	// Check that the necpp command nec2++ is available
-	
-	QProcess necppProcess;
-	necppProcess.start("nec2++", QStringList() << "-v");
-	
-	// Check for successful start + finish of nec2++
-	if (necppProcess.waitForStarted() && necppProcess.waitForFinished())
-	{
-		// nec2++ found!		
- 		necppProcess.close();
-	}
-	else
-	{
-		// If either fails, deliver the error
-		qDebug() << QWidget::tr("We don't have nec2++");
-		QMessageBox::critical(0,"QAntenna - main.cpp",
-		                      QWidget::tr("nec2++ command is missing!<br>"
-		                      "The required program necpp must first be installed.<br>"
-	                        "Closing QAntenna"));
-		return 1;
- 	}
-    /***************************************************/    	
-	
-	/* And we need a main window, which must be shown */
-	MainWindow mainWin;
+  if(!QGLFormat::hasOpenGL())
+  {
+    qDebug() << QWidget::tr("We don't have OpenGL support");
+    QMessageBox::critical(0,"QAntenna - main.cpp",
+                          QWidget::tr("There is no OpenGL support in your system.<br>"
+                          "Closing QAntenna"));
+    return 1;
+  }
 
-	/* We show the window, giving the user the choice to Maximize */
-	mainWin.showNormal();
+  // Load QAntenna
+  splashScreen.showMessage(QObject::tr("Loading QAntenna"));
 
-	// And close the splash screen
-	splashScreen.finish(&mainWin);
+  /***************************************************/
+  // Check that the necpp command nec2++ is available
 
-	/* The return value for the OS is returned by app */
-	return app.exec();
+  QProcess necppProcess;
+  necppProcess.start("nec2++", QStringList() << "-v");
+
+  // Check for successful start + finish of nec2++
+  if (necppProcess.waitForStarted() && necppProcess.waitForFinished())
+  {
+    // nec2++ found!
+    necppProcess.close();
+  }
+  else
+  {
+    // If either fails, deliver the error
+    qDebug() << QWidget::tr("We don't have nec2++");
+    QMessageBox::critical(0,"QAntenna - main.cpp",
+                          QWidget::tr("nec2++ command is missing!<br>"
+                          "The required program necpp must first be installed.<br>"
+                          "Closing QAntenna."));
+    return 1;
+  }
+    /***************************************************/
+
+  /* And we need a main window, which must be shown */
+  MainWindow mainWin;
+
+  /* We show the window, giving the user the choice to Maximize */
+  mainWin.showNormal();
+
+  // And close the splash screen
+  splashScreen.finish(&mainWin);
+
+  /* The return value for the OS is returned by app */
+  return app.exec();
 }
