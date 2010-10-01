@@ -62,8 +62,9 @@ int main(int argc, char *argv[])
 	QSplashScreen splashScreen(pixmap);
 	splashScreen.show();
 
-	// Check wheter we have OpenGL support or not
+	// Check whether we have OpenGL support or not
 	splashScreen.showMessage(QObject::tr("Checking if there is OpenGL support in this machine"));
+	
 	if(!QGLFormat::hasOpenGL())
 	{
 		qDebug() << QWidget::tr("We don't have OpenGL support");
@@ -75,13 +76,36 @@ int main(int argc, char *argv[])
 
 	// Load QAntenna
 	splashScreen.showMessage(QObject::tr("Loading QAntenna"));
-
-	// TODO Check that nec2++ is available
-	/* And we need a main window, which must be showed */
+	
+	/***************************************************/
+	// Check that the necpp command nec2++ is available
+	
+	QProcess necppProcess;
+	necppProcess.start("nec2++", QStringList() << "-v");
+	
+	// Check for successful start + finish of nec2++
+	if (necppProcess.waitForStarted() && necppProcess.waitForFinished())
+	{
+		// nec2++ found!		
+ 		necppProcess.close();
+	}
+	else
+	{
+		// If either fails, deliver the error
+		qDebug() << QWidget::tr("We don't have nec2++");
+		QMessageBox::critical(0,"QAntenna - main.cpp",
+		                      QWidget::tr("nec2++ command is missing!<br>"
+		                      "The required program necpp must first be installed.<br>"
+	                        "Closing QAntenna"));
+		return 1;
+ 	}
+    /***************************************************/    	
+	
+	/* And we need a main window, which must be shown */
 	MainWindow mainWin;
 
-	/* We show the window */
-	mainWin.showMaximized();
+	/* We show the window, giving the user the choice to Maximize */
+	mainWin.showNormal();
 
 	// And close the splash screen
 	splashScreen.finish(&mainWin);
