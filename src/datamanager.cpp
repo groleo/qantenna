@@ -3,6 +3,7 @@
  *   Lisandro Damián Nicanor Pérez Meyer - perezmeyer en/at gmail.com      *
  *   Gustavo González - gonzalgustavo en/at gmail.com                      *
  *   Pablo Odorico  pablo.odorico en/at gmail.com                          *
+ *   Graham Seale graham.seale en/at gmail.com                             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -266,9 +267,50 @@ void DataManager::removeAntennas(QList<int> selectedList)
   emit updatedAntennaList();
 }
 
+// Drag and drop: new function to to the task of opening files so we can
+// have both ways (drag+drop and File>Open) functional.
+void DataManager::fileOpen(QStringList theFiles)
+{
+  QString fileName;
+
+  while (!theFiles.isEmpty())
+  {
+    fileName = theFiles.first();
+    theFiles.removeFirst();
+
+    QApplication::restoreOverrideCursor();
+
+    // TODO: Needs proper validation in addition to checking if the
+    // file is already open.
+    if(fileExists(fileName))
+    {
+      QMessageBox::information(NULL,"QAntenna",
+      tr("The file \"")+cleanPathName(fileName)+tr("\" is already open."));
+      }
+      else
+      {
+        openNECFile(fileName);
+      }
+  }
+
+  // Do the calculation after all the files are open by either route.
+  if(calcAtOpen)
+  {
+    calculateRadiationPattern();
+  }
+  else
+  {
+    emit antennasWithoutCalc(true);
+  }
+
+  emit updatedAntennaList();
+}
+
+// Drag and drop: half of this function has been moved to fileOpen.
 void DataManager::openDialog()
 {
-  QStringList fileNames, filterList;
+  // Removed fileNames; no longer needed
+  QStringList filterList;
   QList<QUrl> sideBarUrls;
   QFileDialog dialog;
 
@@ -294,28 +336,7 @@ void DataManager::openDialog()
   // Keep the last directory
   currentDirectory = dialog.directory();
 
-  fileNames = dialog.selectedFiles();
-
-  // Opens all the files
-  for(int i=0; i<fileNames.size(); ++i) {
-    QApplication::restoreOverrideCursor();
-    if(fileExists(fileNames.at(i))) {
-      QMessageBox::information(NULL,
-        "QAntenna",
-        tr("The file \"")+cleanPathName(fileNames.at(i))+tr("\" is already open."));
-    } else {
-      openNECFile(fileNames.at(i));
-    }
-
-  }
-
-  if(calcAtOpen) {
-    calculateRadiationPattern();
-  } else {
-    emit antennasWithoutCalc(true);
-  }
-
-  emit updatedAntennaList();
+  fileOpen(dialog.selectedFiles());
 }
 
 void DataManager::openNECFile(QString fileName)

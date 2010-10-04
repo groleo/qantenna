@@ -3,6 +3,7 @@
  *   Lisandro Damián Nicanor Pérez Meyer - perezmeyer en/at gmail.com      *
  *   Gustavo González - gonzalgustavo en/at gmail.com                      *
  *   Pablo Odorico  pablo.odorico en/at gmail.com                          *
+ *   Graham Seale graham.seale en/at gmail.com                             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -33,137 +34,141 @@ class GLWidget;
 class QDir;
 
 /**
-	This class takes cares of all the data in the program.
+  This class takes cares of all the data in the program.
 */
 
 class DataManager : public QObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	DataManager(GLWidget * gl, QObject * parent = 0);
-	~DataManager();
+  DataManager(GLWidget * gl, QObject * parent = 0);
+  ~DataManager();
 
-	/// Returns the file name from the absolute path
-	static QString cleanPathName(QString path);
+  /// Returns the file name from the absolute path
+  static QString cleanPathName(QString path);
 
-	/// FIXME - Get the container list - Can this be avoided?
-	QList<NECContainer*>* getContainerList();
+  /// FIXME - Get the container list - Can this be avoided?
+  QList<NECContainer*>* getContainerList();
 
-	/// Frequency
-	void setFrequency(int antennaIndex, double newFrequency);
-	double getFrequency(int antennaIndex);
+  /// Frequency
+  void setFrequency(int antennaIndex, double newFrequency);
+  double getFrequency(int antennaIndex);
 
-	/// Calculated
-	void setCalculated(int antennaIndex, bool newVal);
-	bool getCalculated(int antennaIndex);
+  /// Calculated
+  void setCalculated(int antennaIndex, bool newVal);
+  bool getCalculated(int antennaIndex);
 
-	/// Show
-	void setShow(int antennaIndex, bool newVal);
-	bool getShow(int antennaIndex);
+  /// Show
+  void setShow(int antennaIndex, bool newVal);
+  bool getShow(int antennaIndex);
 
-	/// In case we need to use more GLWidgets in the future...
-	void setGLWidget(GLWidget * gl);
+  /// In case we need to use more GLWidgets in the future...
+  void setGLWidget(GLWidget * gl);
+
+  // Updated file opener to accomodate drag and drop
+  void fileOpen(QStringList theFile);
+
 
 public slots:
-	/// Hey you!!! Render!!!
-	void Render();
+  /// Hey you!!! Render!!!
+  void Render();
 
-	// Render selections
-	void setRenderSurface(bool activate);
-	void setRenderSpheres(bool activate);
-	void setRenderMesh(bool activate);
-	void setRenderInsideTriangles(bool activate);
-	void setRenderGrid(bool activate);
+  // Render selections
+  void setRenderSurface(bool activate);
+  void setRenderSpheres(bool activate);
+  void setRenderMesh(bool activate);
+  void setRenderInsideTriangles(bool activate);
+  void setRenderGrid(bool activate);
 
-	/// The minimum in the scale
-	void setDBMinimum(double newDB);
+  /// The minimum in the scale
+  void setDBMinimum(double newDB);
 
-	/// The radius of the spheres
-	void setRadius(int newRadius);
+  /// The radius of the spheres
+  void setRadius(int newRadius);
 
-	/// The transparency (alpha) of the surfaces
-	void setAlpha(int newAlpha);
+  /// The transparency (alpha) of the surfaces
+  void setAlpha(int newAlpha);
 
-	/// Set surface size
-	void setSurfaceSize(int newSurfaceSize);
+  /// Set surface size
+  void setSurfaceSize(int newSurfaceSize);
 
-	/// The radius of the antenna's components
-	void setComponentsRadius(int newRadius);
+  /// The radius of the antenna's components
+  void setComponentsRadius(int newRadius);
 
-	/// Calculate antenna at open
-	void setCalcAtOpen(bool activate);
+  /// Calculate antenna at open
+  void setCalcAtOpen(bool activate);
 
-	/// Loading an antenna NEC file
-	void openDialog();
+  /// Loading an antenna NEC file
+  void openDialog();
 
-	/// Remove selected antennas (selectedList should
-	/// contain valid necContainerList indexes)
-	void removeAntennas(QList<int> selectedList);
+  /// Remove selected antennas (selectedList should
+  /// contain valid necContainerList indexes)
+  void removeAntennas(QList<int> selectedList);
 
-	/// Rebuild OpenGL lists of necContainerList
-	void rebuildLists();
+  /// Rebuild OpenGL lists of necContainerList
+  void rebuildLists();
 
-	/// Calculate the radiation pattern
-	void calculateRadiationPattern();
+  /// Calculate the radiation pattern
+  void calculateRadiationPattern();
 
 signals:
-	void updatedAntennaList();
-	void antennasWithoutCalc(bool state);
+  void updatedAntennaList();
+  void antennasWithoutCalc(bool state);
 
-	/// Some antenna finished the calculation of its pattern
-	void finishedCalc();
-	/// All antennas are calculated
-	void finishedAllCalc();
-	/// started to calc
-	void startedCalc();
+  /// Some antenna finished the calculation of its pattern
+  void finishedCalc();
+  /// All antennas are calculated
+  void finishedAllCalc();
+  /// started to calc
+  void startedCalc();
 
-	// Log item
-	void logStart(QString logo, QString msg);
-	void log(QString msg);
-	void logEndOK(bool ok);
+  // Log item
+  void logStart(QString logo, QString msg);
+  void log(QString msg);
+  void logEndOK(bool ok);
 
 private slots:
-	/**
-		If the last container was calculated,
-		emits finishedCalc
-	*/
-	void checkFinishedCalc();
+  /**
+    If the last container was calculated,
+    emits finishedCalc
+  */
+  void checkFinishedCalc();
 
 private:
-	/// A list of NECInputs (antennas)
-	QList<NECContainer*> necContainerList;
+  /// A list of NECInputs (antennas)
+  QList<NECContainer*> necContainerList;
 
-	/// File open dialog directory
-	/**
-	By default it will open in ".", but then we will save the last directory
-	the user used.
-	*/
-	QDir currentDirectory;
+  /// File open dialog directory
+  /**
+  By default it will open in ".", but then we will save the last directory
+  the user used.
+  */
+  QDir currentDirectory;
 
-	/// Opens and adds file fileName to necContainerList
-	void openNECFile(QString fileName);
+  /// Opens and adds file fileName to necContainerList
+  void openNECFile(QString fileName);
 
-	/// FIXME WTF???
-	bool fileExists(QString fileName);
+  /// FIXME WTF???
+  bool fileExists(QString fileName);
 
-	/// Should we calculate the antenna when opened?
-	bool calcAtOpen;
+  /// Should we calculate the antenna when opened?
+  bool calcAtOpen;
 
-	/// Grid enabled
-	bool gridEnabled;
+  /// Grid enabled
+  bool gridEnabled;
 
-	/// A pointer to a GLWidget
-	GLWidget *glWidget;
+  /// A pointer to a GLWidget
+  GLWidget *glWidget;
 
-	/// FIXME Change after 0.2 release
-	/// Needed to pass information in the Vis tab
-	double dBMinumum;
-	int radius;
-	int alpha;
-	int surfaceSize;
-	int componentsRadius;
-	bool surface, spheres, mesh, insideTriangles;
+  /// FIXME Change after 0.2 release
+  /// Needed to pass information in the Vis tab
+  double dBMinumum;
+  int radius;
+  int alpha;
+  int surfaceSize;
+  int componentsRadius;
+  bool surface, spheres, mesh, insideTriangles;
 };
 
 #endif //DATAMANAGER_H
