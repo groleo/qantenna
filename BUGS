@@ -1,1 +1,2 @@
-No known bugs at the moment.
+* QAntenna closes with an error in case of any parsing error.
+* If a non-nec file is opened, QAntenna fails.
