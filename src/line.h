@@ -25,7 +25,7 @@
 #include <QString>
 #include <QVector>
 /**
-	This class is used to crate each line of the antenna. It inherit its functions
+	This class is used to create each line of the antenna. It inherit its functions
 	of primitive class which is a virtual one. It provides all necessary funtions
 	to process the lines. It class has a label which indicate this primitive is a
 	line, 2 vertex, end1 and end2, to indicate line position. Tag Number contains
