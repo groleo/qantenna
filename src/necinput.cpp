@@ -698,7 +698,7 @@ void NECInput::ProcessData()
       */
       grcard = (GRCard*)cardsList.at(i);
       double roz = 360/grcard->getNumberOfOcurrencies();
-      end1[0] = roz;
+      end1[2] = roz;	// Rotation about Z axis (index counts from zero 0,1,2)
       newLine = new Line("GM", end1, end2, grcard->getTagNumberIncrement(), grcard->getNumberOfOcurrencies()-1, 0);
       // Unsure about NRPT ever being allowed to be negative - (Graham)
       primitiveList.append(newLine);
