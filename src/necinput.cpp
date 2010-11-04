@@ -437,12 +437,14 @@ void NECInput::ProcessGACard(int index)
 
   for(int i=0; i<ns; i++)
   {
-    end1.append(rada * cos(point));
-    end1.append(0.0);
-    end1.append(rada * sin(point));
-    end2.append(rada * cos(point+step));
-    end2.append(0.0);
-    end2.append(rada * sin(point+step));
+    end1[0] = rada * cos(point);
+    end1[1] = 0.0;
+    end1[2] = rada * sin(point);
+
+    end2[0] = rada * cos(point+step);
+    end2[1] = 0.0;
+    end2[2] = rada * sin(point+step);
+
     point = point + step;
     newLine = new Line("GW", end1, end2, tag, 0, 0);
     CompareModule(newLine->CalculateMaxModule());
