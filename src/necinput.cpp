@@ -414,6 +414,11 @@ void NECInput::ProcessGACard(int index)
   QVector<double> end2;
   QVector<double> temp;
 
+  // Initialise the vectors so we don't get a null index exception
+  end1.append(0.0); end1.append(0.0); end1.append(0.0);
+  end2.append(0.0); end2.append(0.0); end2.append(0.0);
+
+
   int tag = primitiveList.at(index)->GetTagNumber();
   int ns = primitiveList.at(index)->GetCardParameter();
 
