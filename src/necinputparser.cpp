@@ -49,7 +49,7 @@ void parseTwoIntegers(QString & line, int & integer1, int & integer2,
 	QStringList stringList;
 	line.replace(',',' ');
 	line.simplified();
-	stringList = line.split(' ');
+	stringList = line.split( QRegExp("\\s+") );
 
 	int i = 1;
 	int integerNumber = 0;
@@ -133,7 +133,8 @@ void parseFourIntegers(QString & line, int & integer1, int & integer2,
 	QStringList stringList;
 	line.replace(',',' ');
 	line.simplified();
-	stringList = line.split(' ');
+
+	stringList = line.split( QRegExp("\\s+") );
 
 	int i = 1;
 	int integerNumber = 0;
