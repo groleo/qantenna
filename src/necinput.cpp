@@ -41,7 +41,8 @@ NECInput::NECInput(QString theFileName, QString theCreationTime,
 
   foundFRCard = false;
 
-  // We create three values
+  // We create three values, which are Cartesian co-ordinates of the origin
+  // of the space containing the antenna stuctures.
   centerPosition.append(0.0);
   centerPosition.append(0.0);
   centerPosition.append(0.0);
@@ -170,34 +171,82 @@ void NECInput::ProcessGMCard(int index)
 {
   QVector<double> ang;
   QVector<double> pos;
+  // Declare these to be integers.
   int its; 	// TagNumber of the transfomation begin.
   int nrpt;	// Number of new structures to be created.
-  int itgg;	// Tag increment
+  int itgg;	// Tag increment (Originally known as ITGI)
 
-  ang = primitiveList.at(index)->GetEnd1();
-  pos = primitiveList.at(index)->GetEnd2();
-  itgg = primitiveList.at(index)->GetTagNumber();
-  its = primitiveList.at(index)->GetCardParameter1();
-  nrpt = primitiveList.at(index)->GetCardParameter();
+/*
+ * ***************************************************************************
+ * For clarity here, we explain GetEnd1() and GetEnd2() in relation to an
+ * (ang)le quantity and a pos(itional) quantity.
+ *
+ * The concept of an "End1" and an "End2" relates to the ENDS of a wire element
+ * defined by the six fields (4,5,6,7,8,9) in a "GW" card, these being Cartesian
+ * co-ordinates representing Wire_End1(X,Y,Z) and Wire_End2(X,Y,Z).
+ *
+ * The functions GetEnd1() and GetEnd2() were named after their role to extract
+ * these co-ordinates.
+ *
+ * In another type of card "GM", these very same field positions are used for
+ * the entirely different quantities of angles and displacements as needed
+ * to implement the "Coordinate Transformations" purposes of a "GM" card.
+ *
+ * When used in the context of "GM" card values, the GetEnd1() function is
+ * actually fetching three *angles*, and GetEnd2() is actually fetching three
+ * *translation displacements*. They fetch the correct numbers from the card
+ * fields, even though they remain (pehaps inappropriately) named after the
+ * quantities they were originally conceived to represent.
+ *
+ * ***************************************************************************
+ */
+				// Thus - for the GM Coordinate Transformations card.
+  ang = primitiveList.at(index)->GetEnd1();	// Fetch 3 rotation angles.
+  // ROX (F1), ROY (F2), ROZ (F3)
+
+  pos = primitiveList.at(index)->GetEnd2();	// Fetch 3 translation displacements
+  // XS (F4), YS (F5), ZS (F6)
+
+  itgg = primitiveList.at(index)->GetTagNumber();// This might actually be ITGI
+  // Original NEC variable was ITGI - the Tag Number Increment in field (I1)
+
+  its = primitiveList.at(index)->GetCardParameter1();// OCR error in documentation
+  // Unsure how to use it. If ITS is blanki (usual case) or zero, then the
+  // entire structure is moved. This one is in (F7)
+
+  nrpt = primitiveList.at(index)->GetCardParameter();// Number of repeats (I2)
+  // If NRPT is zero, the structure is moved by the specified rotation and
+  // translation, leaving nothing in the original location. If NRPT > 0,
+  // original structures remain, and repeated new structures are formed, each
+  // shifted from the previous by the requested transformation.
+
   primitiveList.removeAt(index);
 
   if(nrpt==0)
   { // GM with NRPT = 0.
     for(int i=0; i<index; i++)
     {
-      if(primitiveList.at(i)->GetTagNumber()>=its)	// Check if tagNumber starts always at 1.
+      // Check if tagNumber starts always at 1.
+      if(primitiveList.at(i)->GetTagNumber()>=its)
       {
         primitiveList.at(i)->Rotate(ang);
         primitiveList.at(i)->Move(pos);
         CompareModule(primitiveList.at(i)->CalculateMaxModule());
-        // TODO Check!!  We save the antenna center which is the same that radiation pattern center.
+        // TODO Check!!  We save the antenna center which is the same that
+        // radiation pattern center.
+
+        // Eh?? Antenna structures can have radiation pattern "centres" that
+        // are not on or near the antenna elements themselves, being made up of
+        // the summed contributions and cancellations from all parts.
+
         centerPosition[0] = pos[0];
         centerPosition[1] = pos[1];
         centerPosition[2] = pos[2];
       }
     }
   }else
-  { // GM with NRPT > 0. We must generate new structures.
+  {
+    // GM with NRPT > 0. We must generate new structures.
     Line* newLine;
     Patch* newPatch;
     Primitive* oldPrim;
@@ -633,11 +682,18 @@ void NECInput::ProcessData()
       /*
         In this card tagNumber contains tag increment.
         CardParameter indicates how many new structures are built.
+
+        Note: From NEC2 Manual..
+        The GR card produces the same effect on the structure as a GM
+        card if I2 on the GR card is equal to (NRPT+1) on the GM card and if
+        ROZ on the GM card is equal to 360/(NRPT+1) degrees. If the GM card is
+        used, however, the program will not be set to take advantage of symmetry.
       */
       grcard = (GRCard*)cardsList.at(i);
       double roz = 360/grcard->getNumberOfOcurrencies();
       end1[0] = roz;
       newLine = new Line("GM", end1, end2, grcard->getTagNumberIncrement(), grcard->getNumberOfOcurrencies()-1, 0);
+      // Unsure about NRPT ever being allowed to be negative - (Graham)
       primitiveList.append(newLine);
       grcard = 0;
     }
@@ -691,6 +747,9 @@ void NECInput::ProcessData()
         If we are re-calcuating, we set the above frequency, which should be
         already NECContainer's frequency.
       */
+
+      // Umm.. Some antenna arrays do have multiple exitation elements,
+      // and they are intentionally at different frequencies  :|
       else
       {
         frcard = (FRCard*)cardsList.at(i);
@@ -973,7 +1032,7 @@ void NECInput::createNECInputFile()
     QTextStream textStream(&theFile);
     for(int i=0; i<cardsList.size(); i++)
       textStream << cardsList.at(i)->getCard();
-    // Everything that is opened must be closed befor leaving
+    // Everything that is opened must be closed before leaving
     theFile.close();
   }
   else
