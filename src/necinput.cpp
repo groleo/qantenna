@@ -446,7 +446,7 @@ void NECInput::ProcessGACard(int index)
     end2[2] = rada * sin(point+step);
 
     point = point + step;
-    newLine = new Line("GW", end1, end2, tag, 0, 0);
+    newLine = new Line("GW", end1, end2, tag, 0, 0); // the Line class expects a 3-vector
     CompareModule(newLine->CalculateMaxModule());
     primitiveList.insert((index+i), newLine);
   }
