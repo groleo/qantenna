@@ -44,6 +44,8 @@ int cleanRadiationPatternLine(QString line, QStringList & data)
   line = line.simplified();
   // TODO The following line should be enabled when CSV is enabled
   //line.remove(" ");
+
+
   data = line.split(" ");
 
   if( data.size() == DATALIST_NUMBER )
@@ -84,6 +86,9 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
   QLocale::setDefault(QLocale::C);
   QFile theFile(theFileName);
 
+  //RadiationPattern * nullRP;
+  //nullRP = new RadiationPattern(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0);
+
   //Let's check that the file exists
   if ( !theFile.exists() )
   {
@@ -123,81 +128,50 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
   */
   while((!text.atEnd()) &&
         (line != "DEGREES DEGREES DB DB DB RATIO DEG. VOLTS/M DEGREES VOLTS/M DEGREES") &&
-        (line != "DEGREES DEGREES DB DB DB RATIO DEGREES VOLTS/M DEGREES VOLTS/M DEGREES"))
+        (line != "DEGREES DEGREES DB DB DB RATIO DEGREES VOLTS/M DEGREES VOLTS/M DEGREES")
+      &&(!line.contains("GEOMETRY DATA CARD ERROR")) )
   {
     //We read a single line
     line = text.readLine();
     line = line.simplified();
   }
 
-
-  RadiationPattern * newRP;
-
-  //We scan the radiation patterns for data
-  line = text.readLine();
-  // We now check which kind of alignment we have
-  sense = cleanRadiationPatternLine(line,dataList);
-
-  // And now we check that we didn't have any errors
-  if( sense == -1 )
-    return 1;
-
-  /*
-    We scan the data until Theta <= 180, because all the rest of the data
-    is redundant.
-    For making the plotting of the surface much easier, we will need an
-    extra set of data {(Theta == 180) == (Theta == 0) }. If we don't have
-    Theta == 180, we will make one more iteration, which is considered
-    below.
-  */
-
-  bool exists180 = false;
-
-  while(!text.atEnd() && line !="" && dataList.at(1).toDouble()<=180.0)
+  if (line.contains("GEOMETRY DATA CARD ERROR"))
   {
-    if(sense != 3)
-    {
-      newRP = new RadiationPattern(dataList.at(0).toDouble(),
-                  dataList.at(1).toDouble(),
-                  dataList.at(2).toDouble(), dataList.at(3).toDouble(),
-                  dataList.at(4).toDouble(), dataList.at(5).toDouble(),
-                  dataList.at(6).toDouble(), sense,
-                  dataList.at(8).toDouble(), dataList.at(9).toDouble(),
-                  dataList.at(10).toDouble(), dataList.at(11).toDouble());
-    }
-    else
-    {
-      // We don't have a Sense field
-      newRP = new RadiationPattern(dataList.at(0).toDouble(),
-                  dataList.at(1).toDouble(),
-                  dataList.at(2).toDouble(), dataList.at(3).toDouble(),
-                  dataList.at(4).toDouble(), dataList.at(5).toDouble(),
-                  dataList.at(6).toDouble(), sense,
-                  dataList.at(7).toDouble(), dataList.at(8).toDouble(),
-                  dataList.at(9).toDouble(), dataList.at(10).toDouble());
-    }
-    theNECOutput->SetRadiationPattern(newRP);
+    qDebug("Geometry data card error\n");
+    return 1;
+  }
+  else if (text.atEnd())
+  {
+    qDebug("Radiation pattern data from nec2++ is missing\n");
+    return 1;
+  }
+  else
+  {
+
+    RadiationPattern * newRP;
+
+    //We scan the radiation patterns for data
     line = text.readLine();
     // We now check which kind of alignment we have
-    if(line != "")
-      sense = cleanRadiationPatternLine(line,dataList);
+    sense = cleanRadiationPatternLine(line,dataList);
+
     // And now we check that we didn't have any errors
     if( sense == -1 )
       return 1;
-    // Check if we have theta == 180
-    if(dataList.at(1).toDouble() == 180.0)
-      exists180 = true;
-  }
 
-  /*
-    Now we must take into account the case in which we don't have
-    Theta == 180 but a bigger number.
-    Take into account that now Theta can't be less than 180.
-  */
-  double stop = 0.0;
-  if(!exists180)
-    stop = dataList.at(1).toDouble();
-    while(!text.atEnd() && line !="" && dataList.at(1).toDouble()==stop)
+    /*
+      We scan the data until Theta <= 180, because all the rest of the data
+      is redundant.
+      For making the plotting of the surface much easier, we will need an
+      extra set of data {(Theta == 180) == (Theta == 0) }. If we don't have
+      Theta == 180, we will make one more iteration, which is considered
+      below.
+    */
+
+    bool exists180 = false;
+
+    while(!text.atEnd() && line !="" && dataList.at(1).toDouble()<=180.0)
     {
       if(sense != 3)
       {
@@ -228,6 +202,52 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
       // And now we check that we didn't have any errors
       if( sense == -1 )
         return 1;
+      // Check if we have theta == 180
+      if(dataList.at(1).toDouble() == 180.0)
+        exists180 = true;
+    }
+
+    /*
+      Now we must take into account the case in which we don't have
+      Theta == 180 but a bigger number.
+      Take into account that now Theta can't be less than 180.
+    */
+    double stop = 0.0;
+    if(!exists180)
+      stop = dataList.at(1).toDouble();
+      while(!text.atEnd() && line !="" && dataList.at(1).toDouble()==stop)
+      {
+        if(sense != 3)
+        {
+          newRP = new RadiationPattern(dataList.at(0).toDouble(),
+                      dataList.at(1).toDouble(),
+                      dataList.at(2).toDouble(), dataList.at(3).toDouble(),
+                      dataList.at(4).toDouble(), dataList.at(5).toDouble(),
+                      dataList.at(6).toDouble(), sense,
+                      dataList.at(8).toDouble(), dataList.at(9).toDouble(),
+                      dataList.at(10).toDouble(), dataList.at(11).toDouble());
+        }
+        else
+        {
+          // We don't have a Sense field
+          newRP = new RadiationPattern(dataList.at(0).toDouble(),
+                      dataList.at(1).toDouble(),
+                      dataList.at(2).toDouble(), dataList.at(3).toDouble(),
+                      dataList.at(4).toDouble(), dataList.at(5).toDouble(),
+                      dataList.at(6).toDouble(), sense,
+                      dataList.at(7).toDouble(), dataList.at(8).toDouble(),
+                      dataList.at(9).toDouble(), dataList.at(10).toDouble());
+        }
+        theNECOutput->SetRadiationPattern(newRP);
+        line = text.readLine();
+        // We now check which kind of alignment we have
+        if(line != "")
+          sense = cleanRadiationPatternLine(line,dataList);
+        // And now we check that we didn't have any errors
+        if( sense == -1 )
+          return 1;
+    }
+
   }
 
   //All that has been opened must be closed before leaving
