@@ -5,3 +5,65 @@ time to ellaborate them).
 * have a touchstone file export for the impedance so users can use it
 e.g. in qucs to create the matching and feeding network (Thanks Stefan)
 
+I (Graham) also have a wish list.
+
+* Add a "Recent Files" choose list to the File Menu.
+  How many are in the list should be settable somehow, say by a value in
+  a user "Preferences" file which overides a "defaults" version kept
+  wherever qantenna puts its resources. Having an expansive "Preferences"
+  feature is not high priority right now, but if somebody knows how to
+  set up the basic method, that would be welcome.
+
+* Have qantenna display ground plane and radial structures, and offer
+  display of infinite perfect, SOMNEC ground, free-space choices.
+
+* Printable plots of RP projections horizontal and vertical. Also, plots
+  of "slice" where the slice plane can be tilted and shifted. Slice
+  outputs specified by card inputs have been a high-speed calculation
+  feature of NEC2 since the beginning. Adding such features by using the
+  handy dodge of artificially "adding in" a card line that was maybe not
+  present in the original input is OK.
+
+* Comparison plots in different colours for different conditions,
+  e.g. one antenna compared to another, or same antenna at different
+  frequencies.
+
+* Frequency sweep, both as requested from file inputs, and interactive
+  chosen by the user, again by artificially inserting card line inputs.
+  The output set can then be displayed at spot frequencies using spinbox
+  and/or animation. Related to this is cleanup of temporary files.
+
+* Impedance, SWR and similar plots. Again, delivered if requested from
+  card file content, or simply included anyway, regardless of card file
+  input. These cursors on these should change in object-oriented fashion
+  to match the current spinbox setting, and have cursors to aid getting
+  numerical information from them. Multiple displays on the same graphs
+  should have colours that match the colour of the corresponding antenna
+  RP plot.
+
+* Option for using density-gradient radiation pattern displays, so that
+  3D displays of antenna can be compared, by using a different colour
+  for each antenna. For single antennas, the present colour-spectrum
+  display is very nice.
+
+* Have the choice of gain displays Linear Power, Linear Voltage E-Field
+  (to better show up side lobes), ARRL definition exp(0.05827*gain),
+  and Logarithmic. these should be available for various polarization
+  types, Near Field and Far Field. I have no idea yet what a nice
+  user interface would be for these, nor what the defaults should be.
+
+* Display of NEC warning outputs about file structures having geometric
+  conditions that limit accuracy, such as unsuitable radius conductors,
+  bad join angles, etc.
+
+* An editor aid, able to modify/fix existing input files, and to create
+  new antenna files from the beginning, save/save-as with warning about
+  overwriting existing files.
+
+* Scaling function, to be able to calculate the new antenna dimensions
+  for an existing design, made for a new frequency. This feature has
+  been available in programs even from the days of DOS only.
+
+Much of this is beyond what I know how to do, but I am hoping some of
+the skilled programmer folk out there may be able to help us get there.
+

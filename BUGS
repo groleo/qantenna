@@ -1,2 +1,14 @@
 * QAntenna closes with an error in case of any parsing error.
 * If a non-nec file is opened, QAntenna fails.
+
+* Fix that qantenna suddenly quits if a (valid) NEC file is tried that
+  does not happen to contain a RP card.
+
+* Fix that qantenna suddenly quits if a GN card is encountered *before*
+  a RP card. Other issues around this are features to be added,
+  mentioned in TODO.
+
+  Note: As of version ??? Nov 2010, there have been updates that will
+  remove many bugs that were previously inevitable. It may also make
+  visible a whole new set of bugs that previously simply could not
+  be seen, being masked by the crash.
