@@ -200,7 +200,7 @@ void NECInput::ProcessGMCard(int index)
  *
  * ***************************************************************************
  */
-				// Thus - for the GM Coordinate Transformations card.
+  // Thus - for the GM Coordinate Transformations card.
   ang = primitiveList.at(index)->GetEnd1();	// Fetch 3 rotation angles.
   // ROX (F1), ROY (F2), ROZ (F3)
 
