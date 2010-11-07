@@ -290,39 +290,71 @@ void NECInput::ProcessGMCard(int index)
 }
 
 void NECInput::ProcessGXCard(int index)
-{
+{	
+	// The GX card is about forming structures that have planes of symmetry
+	// by using REFLECTION, so that only part of the structure need be fully
+	// specified, the rest being reflected in the co-ordinate planes.
+	//
+	// Note that this is *not only* about a quick way of generating a bigger
+	// symmetrical structure. By superposition, the fields calculated from
+	// the basic part can be reflected and summed using the symmetry, so
+	// *greatly* reducing the calculation!
+	//
+	// GX will set flags that will signal NEC2 to use symmetry in the solution.
+	
   Line* newLine;
   Patch* newPatch;
   Primitive* oldPrim;
   int inc=1;
 
-  bool x = false;
+  bool x = false;	// Initialise the reflection states
   bool y = false;
   bool z = false;
 
-  QVector<double> end1;
-  QVector<double> end2;
-  QVector<double> end3;
+  QVector<double> end1;	// Not sure why we need doubles..
+  QVector<double> end2; // The decimal number fields are not used in a GX card
+  QVector<double> end3; // Fields after I2 are blank in the card input.
   QVector<double> end4;
 
   int its = primitiveList.at(index)->GetTagNumber();
+  		// The first integer is *NOT* a tag number.
+  		//  It is a tag number *INCREMENT* used to avoid duplication of tag
+  		// numbers in the image segments. When combinations of reflections
+  		// are used, the tag increment is doubled after each reflection.
+  		// A tag increment greater than or equal to the largest tag number
+  		// in the original structure ensures no duplicate tags are generated.
+  		//
+  		// GX card cannot be used if any original segments cross or are located
+  		// in the reflection plane, such that they would collide with or occupy
+  		// the same space as the images. I do not know if NEC2 warns about this
+  		// OR if necpp parsing warns of it, or whether qantenna should trap such
+  		// situations.
+  		 
   int reflect = primitiveList.at(index)->GetCardParameter();
   primitiveList.removeAt(index);
 
-  if(reflect>=100)
+  if(reflect>=100) // Reflection along X-axis,the reflect plane being Y-Z
+  					// .. and maybe more to come
   {
     x = true;
-    reflect = reflect-100;
+    reflect = reflect-100; // This loses the 1 in the X column.
   }
-  if(reflect>=10)
+  if(reflect>=10)	// This came from 010, after the leftmost 1 was removed.
+  					// So we test if reflection along Y or Z is still expected.
   {
     y = true;
-    reflect = reflect -10;
+    reflect = reflect -10;// Now lose the 1 in the Y column, if its there.
   }
-  if(reflect==1)
+  if(reflect==1)	// Test the remaining Z-axis reflect condition		
   {
     z = true;
   }
+  
+  // TODO: These three conditionals have been copy-pasted...
+  // And have not been updated, so only the Z one is correct.
+  // Also, there's no need to read from x, y, z inside a conditional
+  // based on themselves; the calls to Reflect might as well just 
+  // have e.g. Reflect(false, false, true)
   if(z)
   {
     for (int i=0; i<index; i++)
