@@ -22,20 +22,36 @@
 
 GNCard::GNCard()
 {
-	groundType = -1;
-	infiniteGround = false;
-	cardType = "GN";
+  // Free space conditions.
+  groundType = -1;
+  infiniteGround = false;
+  cardType = "GN";
+
+  // Set the rest of the values to 0.
+  numberOfRadialWires = 0;
+  relativeDielectricConstant = 0;
+  conductivity = 0;
+  double1 = 0;
+  double2 = 0;
+  double3 = 0;
+  double4 = 0;
 }
 
 GNCard::GNCard(int theGroundType, int theNumberOfRadialWires,
                double theRelativeDielectricConstant, double theConductivity)
 {
-	groundType = theGroundType;
-	numberOfRadialWires = theNumberOfRadialWires;
-	relativeDielectricConstant = theRelativeDielectricConstant;
-	conductivity = theConductivity;
-	infiniteGround = true;
-	cardType = "GN";
+  groundType = theGroundType;
+  numberOfRadialWires = theNumberOfRadialWires;
+  relativeDielectricConstant = theRelativeDielectricConstant;
+  conductivity = theConductivity;
+  infiniteGround = true;
+  cardType = "GN";
+
+  // Set the rest of the values to 0.
+  double1 = 0;
+  double2 = 0;
+  double3 = 0;
+  double4 = 0;
 }
 
 GNCard::GNCard(int theGroundType, int theNumberOfRadialWires,
