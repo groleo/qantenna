@@ -1,7 +1,8 @@
 /***************************************************************************
- *   Copyright (C) 2005 by                                                 *
- *   Gustavo González - gonzalgustavo en/at gmail.com                      *
- *   Lisandro Damián Nicanor Pérez Meyer - perezmeyer en/at gmail.com      *
+ *   Copyright (C) by                                                      *
+ *   2005 Gustavo González - gonzalgustavo en/at gmail.com                 *
+ *   2005-2010 Lisandro Damián Nicanor Pérez Meyer -                       *
+ *             perezmeyer en/at gmail.com                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
