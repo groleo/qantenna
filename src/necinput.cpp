@@ -715,7 +715,7 @@ void NECInput::ProcessData()
       primitiveList.append(newLine);
       gxcard = 0;
     }
-    // This card is trated as a particular case of GM card (see NEC2 tutorial).
+    // This card is treated as a particular case of GM card (see NEC2 tutorial).
     else if(card->getCardType() == "GR")
     {
       /*
