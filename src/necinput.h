@@ -86,14 +86,14 @@ public:
     */
   void ProcessData();
 
-	/// Calls the list made by CreateOpenGLList.
-	void Render();
+  /// Calls the list made by CreateOpenGLList.
+  void Render();
 
-	/// We must return the file name.
-	QString GetFileName();
+  /// We must return the file name.
+  QString GetFileName();
 
-	/// Create input.necin
-	void createNECInputFile();
+  /// Create input.necin
+  void createNECInputFile();
 
 public slots:
   /// Set the radius of the structure components.
