@@ -621,6 +621,7 @@ void NECInput::ProcessData()
   GRCard * grcard = 0;
   GWCard * gwcard = 0;
   GACard * gacard = 0;
+  GNCard * gncard = 0;
   FRCard * frcard = 0;
   SPCard * spcard = 0;
   SMCard * smcard = 0;
@@ -733,6 +734,29 @@ void NECInput::ProcessData()
       newLine = new Line("GA", end1, end2, gacard->getTagNumber(),gacard->getNumberOfSegments(), 0 );
       primitiveList.append(newLine);
       gacard = 0;
+    }
+    else if(card->getCardType() == "GN")
+    {
+      gncard = (GNCard*)cardsList.at(i);
+
+      // Radial wires begins always in the same place.
+      end1[0] = 0.0;
+      end1[1] = 0.0;
+      end1[2] = 0.0;
+
+      // Get how many lines we have to draw.
+      int numberOfRadialWires = gncard->getNumberOfRadialWires();
+      double step = 360.0/numberOfRadialWires*i;
+
+      for(int i=0; i < numberOfRadialWires; i++)
+      {
+        end2[0] = 100*cos(step*i);
+        end2[1] = 100*sin(step*i);
+        end2[2] = 0.0;
+        newLine = new Line("GN", end1, end2, 0, 0, 0);
+      }
+
+      gncard = 0;
     }
     else if (card->getCardType() == "SP")
     {
