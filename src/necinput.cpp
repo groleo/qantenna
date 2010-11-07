@@ -365,7 +365,7 @@ void NECInput::ProcessGXCard(int index)
         end1 = oldPrim->GetEnd1();
         end2 = oldPrim->GetEnd2();
         newLine = new Line("GW", end1, end2, oldPrim->GetTagNumber()+its,0,0);
-        newLine->Reflect(false, false, z);
+        newLine->Reflect(false, false, true);
         primitiveList.insert((i+index),newLine);
       }
       // It's a patch.
@@ -376,7 +376,7 @@ void NECInput::ProcessGXCard(int index)
         end3 = ((Patch*)oldPrim)->GetEnd3();
         end4 = ((Patch*)oldPrim)->GetEnd4();
         newPatch = new Patch("SP", end1, end2, end3, end4, 0, 0, 0);
-        newPatch->Reflect(false, false, z);
+        newPatch->Reflect(false, false, true);
         primitiveList.insert((i+index),newPatch);
       }
 
@@ -393,7 +393,7 @@ void NECInput::ProcessGXCard(int index)
         end1 = oldPrim->GetEnd1();
         end2 = oldPrim->GetEnd2();
         newLine = new Line("GW", end1, end2, oldPrim->GetTagNumber()+its,0,0);
-        newLine->Reflect(false, false, z);
+        newLine->Reflect(false, true, false);
         primitiveList.insert((i+inc*index),newLine);
       }
       // It's a patch.
@@ -404,7 +404,7 @@ void NECInput::ProcessGXCard(int index)
         end3 = ((Patch*)oldPrim)->GetEnd3();
         end4 = ((Patch*)oldPrim)->GetEnd4();
         newPatch = new Patch("SP", end1, end2, end3, end4, 0, 0, 0);
-        newPatch->Reflect(false, y, false);
+        newPatch->Reflect(false, true, false);
         primitiveList.insert((i+inc*index),newPatch);
       }
     }
@@ -420,7 +420,7 @@ void NECInput::ProcessGXCard(int index)
         end1 = oldPrim->GetEnd1();
         end2 = oldPrim->GetEnd2();
         newLine = new Line("GW", end1, end2, oldPrim->GetTagNumber()+its,0,0);
-        newLine->Reflect(false, false, z);
+        newLine->Reflect(true, false, false);
         primitiveList.insert((i+inc*index),newLine);
       }
       // It's a patch.
@@ -431,7 +431,7 @@ void NECInput::ProcessGXCard(int index)
         end3 = ((Patch*)oldPrim)->GetEnd3();
         end4 = ((Patch*)oldPrim)->GetEnd4();
         newPatch = new Patch("SP", end1, end2, end3, end4, 0, 0, 0);
-        newPatch->Reflect(x, false, false);
+        newPatch->Reflect(true, false, false);
         primitiveList.insert((i+inc*index),newPatch);
       }
     }
