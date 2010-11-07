@@ -78,10 +78,13 @@ public:
   /// Returns the NEC file's frequency
   double getFrequency() const;
 
-	/// The function ProcessData is the start of the information procedure.
-	/// It converts data stored in elementList to a primitive format, more apropiate
-	/// to process it. Then it call ProcessLine function.
-	void ProcessData();
+  /**
+    \brief converts data stored in elementList to a primitive format.
+
+    This funtion is the start of the procedure for obtaining data from a NEC
+    file.
+    */
+  void ProcessData();
 
 	/// Calls the list made by CreateOpenGLList.
 	void Render();
