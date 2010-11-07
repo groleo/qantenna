@@ -8,6 +8,19 @@
   a RP card. Other issues around this are features to be added,
   mentioned in TODO.
 
+* Perhaps related to the previous bug above, qantenna does not display
+  the results of a ground present, even though necpp does deliver the
+  answers according to the input card requests.
+
+* Qantenna has a serious anomaly pattern on a free space antenna shown
+  up on an example known as "bigwheel.nec". Previously, this one had a
+  very broken display that is now fixed, but the RP remains wrong.
+
+* Fix angle rotation stepping anomaly where only part of the RP is
+  delivered, even over a correct element display. The test example is
+  a file known as 10-30m_vert.nec from the xnec2c distribution.
+
+
   Note: As of version ??? Nov 2010, there have been updates that will
   remove many bugs that were previously inevitable. It may also make
   visible a whole new set of bugs that previously simply could not
