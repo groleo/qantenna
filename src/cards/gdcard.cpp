@@ -52,22 +52,16 @@ double GDCard::getDistanceMedium2Below1() const
 
 QString GDCard::getCard()
 {
-// 	QString card = cardType;
-// 	/**
-// 		Note that the four integer columns are empty, so we should pad the first
-// 		value accordingly
-// 	*/
-// 	card.append(QString("%1").arg(relativeDielectricConstant,28,'f'));
-// 	card.append(QString("%1").arg(conductivity,10,'f'));
-// 	card.append(QString("%1").arg(distanceToJoin,10,'f'));
-// 	card.append(QString("%1").arg(distanceMedium2Below1,10,'f'));
-// 	card.append("\n");
-// 	return card;
-	return cardType + QString(" 0 0 0 0 %1 %2 %3 %4\n")
-	       .arg(relativeDielectricConstant,0,'f',6)
-	       .arg(conductivity,0,'f',6)
-	       .arg(distanceToJoin,0,'f',6)
-	       .arg(distanceMedium2Below1,0,'f',6);
+/**
+  Note that the four integer columns are empty, so we should pad the first
+  value accordingly
+  */
+
+  return cardType + QString(" 0 0 0 0 %1 %2 %3 %4 0.0 0.0\n")
+         .arg(relativeDielectricConstant,0,'e',6)
+         .arg(conductivity,0,'e',6)
+         .arg(distanceToJoin,0,'e',6)
+         .arg(distanceMedium2Below1,0,'e',6);
 }
 
 
