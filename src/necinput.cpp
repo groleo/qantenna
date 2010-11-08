@@ -232,13 +232,11 @@ void NECInput::ProcessGMCard(int index)
         primitiveList.at(i)->Rotate(ang);
         primitiveList.at(i)->Move(pos);
         CompareModule(primitiveList.at(i)->CalculateMaxModule());
-        // TODO Check!!  We save the antenna center which is the same that
-        // radiation pattern center.
 
-        // Eh?? Antenna structures can have radiation pattern "centres" that
-        // are not on or near the antenna elements themselves, being made up of
-        // the summed contributions and cancellations from all parts.
-
+        /* 
+          We save the antenna's drawing displacement centre, wich we will use to
+          displace the RP in the same ammount.
+         */
         centerPosition[0] = pos[0];
         centerPosition[1] = pos[1];
         centerPosition[2] = pos[2];
