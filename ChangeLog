@@ -1,3 +1,6 @@
+QAntenna 0.3.0 UNRELEASED:
+* Fixed GD card parsing, it's a four integers card.
+
 QAntenna 0.2.2:
 * The Open File Dialog now starts in the user's home directory, and remembers
 the last path used.
