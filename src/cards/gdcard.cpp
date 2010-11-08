@@ -23,31 +23,31 @@
 GDCard::GDCard(double theRelativeDielectricConstant, double theConductivity,
                double theDistanceToJoin, double theDistanceMedium2Below1)
 {
-	relativeDielectricConstant = theRelativeDielectricConstant;
-	conductivity = theConductivity;
-	distanceToJoin = theDistanceToJoin;
-	distanceMedium2Below1 = theDistanceMedium2Below1;
-	cardType = "GD";
+  relativeDielectricConstant = theRelativeDielectricConstant;
+  conductivity = theConductivity;
+  distanceToJoin = theDistanceToJoin;
+  distanceMedium2Below1 = theDistanceMedium2Below1;
+  cardType = "GD";
 }
 
 double GDCard::getRelativeDielectricConstant() const
 {
-	return relativeDielectricConstant;
+  return relativeDielectricConstant;
 }
 
 double GDCard::getConductivity() const
 {
-	return conductivity;
+  return conductivity;
 }
 
 double GDCard::getDistanceToJoin() const
 {
-	return distanceToJoin;
+  return distanceToJoin;
 }
 
 double GDCard::getDistanceMedium2Below1() const
 {
-	return distanceMedium2Below1;
+  return distanceMedium2Below1;
 }
 
 QString GDCard::getCard()
