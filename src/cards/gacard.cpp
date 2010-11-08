@@ -24,54 +24,54 @@ GACard::GACard(int theTagNumber, int theNumberOfSegments, double theArcRadius,
                double theFirstEndAngle, double theSecondEndAngle,
                double theWireRadius)
 {
-	tagNumber = theTagNumber;
-	numberOfSegments = theNumberOfSegments;
-	arcRadius = theArcRadius;
-	firstEndAngle = theFirstEndAngle;
-	secondEndAngle = theSecondEndAngle;
-	wireRadius = theWireRadius;
-	cardType = "GA";
+  tagNumber = theTagNumber;
+  numberOfSegments = theNumberOfSegments;
+  arcRadius = theArcRadius;
+  firstEndAngle = theFirstEndAngle;
+  secondEndAngle = theSecondEndAngle;
+  wireRadius = theWireRadius;
+  cardType = "GA";
 }
 
 int GACard::getTagNumber() const
 {
-	return tagNumber;
+  return tagNumber;
 }
 
 int GACard::getNumberOfSegments() const
 {
-	return numberOfSegments;
+  return numberOfSegments;
 }
 
 double GACard::getArcRadius() const
 {
-	return arcRadius;
+  return arcRadius;
 }
 
 double GACard::getFirstEndAngle() const
 {
-	return firstEndAngle;
+  return firstEndAngle;
 }
 
 double GACard::getSecondEndAngle() const
 {
-	return secondEndAngle;
+  return secondEndAngle;
 }
 
 double GACard::getWireRadius() const
 {
-	return wireRadius;
+  return wireRadius;
 }
 
 QString GACard::getCard()
 {
-	return cardType + QString(" %1 %2 %3 %4 %5 %6\n")
-	       .arg(tagNumber)
-	       .arg(numberOfSegments)
-	       .arg(arcRadius,0,'f',6)
-	       .arg(firstEndAngle,0,'f',6)
-	       .arg(secondEndAngle,0,'f',6)
-	       .arg(arcRadius,0,'f',6);
+  return cardType + QString(" %1 %2 %3 %4 %5 %6\n")
+         .arg(tagNumber)
+         .arg(numberOfSegments)
+         .arg(arcRadius,0,'e',6)
+         .arg(firstEndAngle,0,'e',6)
+         .arg(secondEndAngle,0,'e',6)
+         .arg(arcRadius,0,'e',6);
 }
 
 

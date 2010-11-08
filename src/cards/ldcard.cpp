@@ -22,107 +22,107 @@
 
 LDCard::LDCard(int theLoadType)
 {
-	loadType = theLoadType;
-	shortAllLoads = true;
-	cardType = "LD";
+  loadType = theLoadType;
+  shortAllLoads = true;
+  cardType = "LD";
 }
 
 LDCard::LDCard(int theLoadType, int theTagNumber, int theEqualToM, int theEqualToN,
                double theResistance, double theInductance, double theCapacitance)
 {
-	loadType = theLoadType;
-	tagNumber = theTagNumber;
-	equalToM = theEqualToM;
-	equalToN = theEqualToN;
-	resistance = theResistance;
-	inductance = theInductance;
-	capacitance = theCapacitance;
-	shortAllLoads = false;
-	cardType = "LD";
+  loadType = theLoadType;
+  tagNumber = theTagNumber;
+  equalToM = theEqualToM;
+  equalToN = theEqualToN;
+  resistance = theResistance;
+  inductance = theInductance;
+  capacitance = theCapacitance;
+  shortAllLoads = false;
+  cardType = "LD";
 }
 
 LDCard::LDCard(int theLoadType, int theTagNumber, int theEqualToM, int theEqualToN,
                double theResistance, double theReactance)
 {
-	loadType = theLoadType;
-	tagNumber = theTagNumber;
-	equalToM = theEqualToM;
-	equalToN = theEqualToN;
-	resistance = theResistance;
-	inductance = theReactance;
-	shortAllLoads = false;
-	cardType = "LD";
+  loadType = theLoadType;
+  tagNumber = theTagNumber;
+  equalToM = theEqualToM;
+  equalToN = theEqualToN;
+  resistance = theResistance;
+  inductance = theReactance;
+  shortAllLoads = false;
+  cardType = "LD";
 }
 
 LDCard::LDCard(int theLoadType, int theTagNumber, int theEqualToM, int theEqualToN,
                double theConductivity)
 {
-	loadType = theLoadType;
-	tagNumber = theTagNumber;
-	equalToM = theEqualToM;
-	equalToN = theEqualToN;
-	resistance = theConductivity;
-	shortAllLoads = false;
-	cardType = "LD";
+  loadType = theLoadType;
+  tagNumber = theTagNumber;
+  equalToM = theEqualToM;
+  equalToN = theEqualToN;
+  resistance = theConductivity;
+  shortAllLoads = false;
+  cardType = "LD";
 }
 
 bool LDCard::getShortAllLoads() const
 {
-	return shortAllLoads;
+  return shortAllLoads;
 }
 
 int LDCard::getLoadType() const
 {
-	return loadType;
+  return loadType;
 }
 
 int LDCard::getTagNumber() const
 {
-	return tagNumber;
+  return tagNumber;
 }
 
 int LDCard::getEqualToM() const
 {
-	return equalToM;
+  return equalToM;
 }
 
 int LDCard::getEqualToN() const
 {
-	return equalToN;
+  return equalToN;
 }
 
 double LDCard::getResistance() const
 {
-	return resistance;
+  return resistance;
 }
 
 double LDCard::getInductance() const
 {
-	return inductance;
+  return inductance;
 }
 
 double LDCard::getCapacitance() const
 {
-	return capacitance;
+  return capacitance;
 }
 
 QString LDCard::getCard()
 {
-	QString card = cardType + QString(" %1").arg(loadType);
-	if(shortAllLoads)
-		return card + "\n";
-	card.append(QString(" %1 %2 %3 %4")
-	            .arg(tagNumber)
-	            .arg(equalToM)
-	            .arg(equalToN)
-	            .arg(resistance,0,'f',6));
-	if(loadType == 5)
-		return card + "\n";
-	card.append(QString(" %1").arg(inductance,0,'f',6));
-	if(loadType == 4)
-		return card + "\n";
-	card.append(QString(" %1\n").arg(capacitance,0,'f',6));
+  QString card = cardType + QString(" %1").arg(loadType);
+  if(shortAllLoads)
+    return card + "\n";
+  card.append(QString(" %1 %2 %3 %4")
+              .arg(tagNumber)
+              .arg(equalToM)
+              .arg(equalToN)
+              .arg(resistance,0,'e',6));
+  if(loadType == 5)
+    return card + "\n";
+  card.append(QString(" %1").arg(inductance,0,'e',6));
+  if(loadType == 4)
+    return card + "\n";
+  card.append(QString(" %1\n").arg(capacitance,0,'e',6));
 
-	return card;
+  return card;
 }
 

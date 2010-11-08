@@ -23,24 +23,24 @@
 SCCard::SCCard(int thePatchShape, double theXCoordinateCorner3,
                double theYCoordinateCorner3, double theZCoordinateCorner3)
 {
-	patchShape = thePatchShape;
-	xCoordinateCorner3 = theXCoordinateCorner3;
-	yCoordinateCorner3 = theYCoordinateCorner3;
-	zCoordinateCorner3 = theZCoordinateCorner3;
-	patchShape = true;
-	fourCorners = false;
-	cardType = "SC";
+  patchShape = thePatchShape;
+  xCoordinateCorner3 = theXCoordinateCorner3;
+  yCoordinateCorner3 = theYCoordinateCorner3;
+  zCoordinateCorner3 = theZCoordinateCorner3;
+  patchShape = true;
+  fourCorners = false;
+  cardType = "SC";
 }
 
 SCCard::SCCard(double theXCoordinateCorner3, double theYCoordinateCorner3,
                double theZCoordinateCorner3)
 {
-	xCoordinateCorner3 = theXCoordinateCorner3;
-	yCoordinateCorner3 = theYCoordinateCorner3;
-	zCoordinateCorner3 = theZCoordinateCorner3;
-	patchShape = false;
-	fourCorners = false;
-	cardType = "SC";
+  xCoordinateCorner3 = theXCoordinateCorner3;
+  yCoordinateCorner3 = theYCoordinateCorner3;
+  zCoordinateCorner3 = theZCoordinateCorner3;
+  patchShape = false;
+  fourCorners = false;
+  cardType = "SC";
 }
 
 SCCard::SCCard(int thePatchShape, double theXCoordinateCorner3,
@@ -48,80 +48,80 @@ SCCard::SCCard(int thePatchShape, double theXCoordinateCorner3,
                double theXCoordinateCorner4, double theYCoordinateCorner4,
                double theZCoordinateCorner4)
 {
-	patchShape = thePatchShape;
-	xCoordinateCorner3 = theXCoordinateCorner3;
-	yCoordinateCorner3 = theYCoordinateCorner3;
-	zCoordinateCorner3 = theZCoordinateCorner3;
-	xCoordinateCorner4 = theXCoordinateCorner4;
-	yCoordinateCorner4 = theYCoordinateCorner4;
-	zCoordinateCorner4 = theZCoordinateCorner4;
-	patchShape = true;
-	fourCorners = true;
-	cardType = "SC";
+  patchShape = thePatchShape;
+  xCoordinateCorner3 = theXCoordinateCorner3;
+  yCoordinateCorner3 = theYCoordinateCorner3;
+  zCoordinateCorner3 = theZCoordinateCorner3;
+  xCoordinateCorner4 = theXCoordinateCorner4;
+  yCoordinateCorner4 = theYCoordinateCorner4;
+  zCoordinateCorner4 = theZCoordinateCorner4;
+  patchShape = true;
+  fourCorners = true;
+  cardType = "SC";
 }
 
 bool SCCard::getPatchShapeExists() const
 {
-	return patchShapeExists;
+  return patchShapeExists;
 }
 
 bool SCCard::getFourCorners() const
 {
-	return fourCorners;
+  return fourCorners;
 }
 
 int SCCard::getPatchShape() const
 {
-	return patchShape;
+  return patchShape;
 }
 
 double SCCard::getXCoordinateCorner3() const
 {
-	return xCoordinateCorner3;
+  return xCoordinateCorner3;
 }
 
 double SCCard::getYCoordinateCorner3() const
 {
-	return yCoordinateCorner3;
+  return yCoordinateCorner3;
 }
 
 double SCCard::getZCoordinateCorner3() const
 {
-	return zCoordinateCorner3;
+  return zCoordinateCorner3;
 }
 
 
 double SCCard::getXCoordinateCorner4() const
 {
-	return xCoordinateCorner4;
+  return xCoordinateCorner4;
 }
 
 double SCCard::getYCoordinateCorner4() const
 {
-	return yCoordinateCorner4;
+  return yCoordinateCorner4;
 }
 
 double SCCard::getZCoordinateCorner4() const
 {
-	return zCoordinateCorner4;
+  return zCoordinateCorner4;
 }
 
 QString SCCard::getCard()
 {
-	/// FIXME read NEC2++ doc and re write this card
-	QString card = cardType;
+  /// FIXME read NEC2++ doc and re write this card
+  QString card = cardType;
 
-	if(patchShapeExists)
-		card.append(QString(" %1 %2").arg(patchShape).arg(xCoordinateCorner3,0,'f',6));
-	else
-		card.append(QString(" 0 %1").arg(xCoordinateCorner3,0,'f',6));
+  if(patchShapeExists)
+    card.append(QString(" %1 %2").arg(patchShape).arg(xCoordinateCorner3,0,'e',6));
+  else
+    card.append(QString(" 0 %1").arg(xCoordinateCorner3,0,'e',6));
 
-	card.append(QString(" %1 %2").arg(yCoordinateCorner3,0,'f',6).arg(zCoordinateCorner3,0,'f',6));
-	if(fourCorners)
-		card.append(QString(" %1 %2 %3")
-		            .arg(xCoordinateCorner4,0,'f',6)
-		            .arg(yCoordinateCorner4,0,'f',6)
-		            .arg(zCoordinateCorner4,0,'f',6));
-	card.append("\n");
-	return card;
+  card.append(QString(" %1 %2").arg(yCoordinateCorner3,0,'e',6).arg(zCoordinateCorner3,0,'e',6));
+  if(fourCorners)
+    card.append(QString(" %1 %2 %3")
+                .arg(xCoordinateCorner4,0,'e',6)
+                .arg(yCoordinateCorner4,0,'e',6)
+                .arg(zCoordinateCorner4,0,'e',6));
+  card.append("\n");
+  return card;
 }

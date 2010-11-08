@@ -23,33 +23,33 @@
 GCCard::GCCard(double theRatioLenghtToLenght, double theRadiusFirstSegment,
                double theRadiusLastSegment)
 {
-	ratioLenghtToLenght = theRatioLenghtToLenght;
-	radiusFirstSegment = theRadiusFirstSegment;
-	radiusLastSegment = theRadiusLastSegment;
-	cardType = "GC";
+  ratioLenghtToLenght = theRatioLenghtToLenght;
+  radiusFirstSegment = theRadiusFirstSegment;
+  radiusLastSegment = theRadiusLastSegment;
+  cardType = "GC";
 }
 
 double GCCard::getRatioLenghtToLenght() const
 {
-	return ratioLenghtToLenght;
+  return ratioLenghtToLenght;
 }
 
 double GCCard::getRadiusFirstSegment() const
 {
-	return radiusFirstSegment;
+  return radiusFirstSegment;
 }
 
 double GCCard::getRadiusLastSegment() const
 {
-	return radiusLastSegment;
+  return radiusLastSegment;
 }
 
 QString GCCard::getCard()
 {
-	return cardType + QString(" 0 0 %1 %2 %3\n")
-	       .arg(ratioLenghtToLenght,0,'f',6)
-	       .arg(radiusFirstSegment,0,'f',6)
-	       .arg(radiusLastSegment,0,'f',6);
+  return cardType + QString(" 0 0 %1 %2 %3\n")
+         .arg(ratioLenghtToLenght,0,'e',6)
+         .arg(radiusFirstSegment,0,'e',6)
+         .arg(radiusLastSegment,0,'e',6);
 }
 
 

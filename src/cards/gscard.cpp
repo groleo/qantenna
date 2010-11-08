@@ -22,22 +22,22 @@
 
 GSCard::GSCard(int theTimes, double theScale)
 {
-	times = theTimes;
-	scale = theScale;
-	cardType = "GS";
+  times = theTimes;
+  scale = theScale;
+  cardType = "GS";
 }
 
 int GSCard::getTimes() const
 {
-	return times;
+  return times;
 }
 
 double GSCard::getScale() const
 {
-	return scale;
+  return scale;
 }
 
 QString GSCard::getCard()
 {
-	return cardType + QString(" %1 0 %2\n").arg(times).arg(scale,0,'f',6);
+  return cardType + QString(" %1 0 %2\n").arg(times).arg(scale,0,'e',6);
 }

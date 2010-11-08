@@ -22,9 +22,9 @@
 
 TLCard::TLCard(int theTagNumber, int theEqualToM)
 {
-	tagNumber = theTagNumber;
-	equalToM = theEqualToM;
-	cardType = "TL";
+  tagNumber = theTagNumber;
+  equalToM = theEqualToM;
+  cardType = "TL";
 }
 
 TLCard::TLCard(int theTagNumber, int theEqualToM, int theTagNumber2,
@@ -32,85 +32,85 @@ TLCard::TLCard(int theTagNumber, int theEqualToM, int theTagNumber2,
                double theRealAdmittancePort1, double theImaginaryAdmittancePort1,
                double theRealAdmittancePort2, double theImaginaryAdmittancePort2)
 {
-	tagNumber = theTagNumber;
-	equalToM = theEqualToM;
-	tagNumber2 = theTagNumber2;
-	equalToN = theEqualToN;
-	characteristicImpedance = theCharacteristicImpedance;
-	lenght = theLenght;
-	realAdmittancePort1 = theRealAdmittancePort1;
-	imaginaryAdmittancePort1 = theImaginaryAdmittancePort1;
-	realAdmittancePort2 = theRealAdmittancePort2;
-	imaginaryAdmittancePort2 = theImaginaryAdmittancePort2;
-	cardType = "TL";
+  tagNumber = theTagNumber;
+  equalToM = theEqualToM;
+  tagNumber2 = theTagNumber2;
+  equalToN = theEqualToN;
+  characteristicImpedance = theCharacteristicImpedance;
+  lenght = theLenght;
+  realAdmittancePort1 = theRealAdmittancePort1;
+  imaginaryAdmittancePort1 = theImaginaryAdmittancePort1;
+  realAdmittancePort2 = theRealAdmittancePort2;
+  imaginaryAdmittancePort2 = theImaginaryAdmittancePort2;
+  cardType = "TL";
 }
 
 int TLCard::getTagNumber() const
 {
-	return tagNumber;
+  return tagNumber;
 }
 
 int TLCard::getEqualToM() const
 {
-	return equalToM;
+  return equalToM;
 }
 
 int TLCard::getTagNumber2() const
 {
-	return tagNumber2;
+  return tagNumber2;
 }
 
 int TLCard::getEqualToN() const
 {
-	return equalToN;
+  return equalToN;
 }
 
 double TLCard::getCharacteristicImpedance() const
 {
-	return characteristicImpedance;
+  return characteristicImpedance;
 }
 
 double TLCard::getLenght() const
 {
-	return lenght;
+  return lenght;
 }
 
 double TLCard::getRealAdmittancePort1() const
 {
-	return realAdmittancePort1;
+  return realAdmittancePort1;
 }
 
 double TLCard::getImaginaryAdmittancePort1() const
 {
-	return imaginaryAdmittancePort1;
+  return imaginaryAdmittancePort1;
 }
 
 double TLCard::getRealAdmittancePort2() const
 {
-	return realAdmittancePort2;
+  return realAdmittancePort2;
 }
 
 double TLCard::getImaginaryAdmittancePort2() const
 {
-	return imaginaryAdmittancePort2;
+  return imaginaryAdmittancePort2;
 }
 
 QString TLCard::getCard()
 {
-	QString card = cardType;
-	card.append(QString(" %1 %2").arg(tagNumber).arg(equalToM));
-	if(equalToM == -1)
-		return card + "\n";
-	card.append(QString(" %1 %2 %3 %4 %5 %6 %7 %8\n")
-	            .arg(tagNumber2)
-	            .arg(equalToN)
-	            .arg(characteristicImpedance,0,'f',6)
-	            .arg(lenght,0,'f',6)
-	            .arg(realAdmittancePort1,0,'f',6)
-	            .arg(imaginaryAdmittancePort1,0,'f',6)
-	            .arg(realAdmittancePort2,0,'f',6)
-	            .arg(imaginaryAdmittancePort2,0,'f',6));
-	return card;
+  QString card = cardType;
+  card.append(QString(" %1 %2").arg(tagNumber).arg(equalToM));
+  if(equalToM == -1)
+    return card + "\n";
+  card.append(QString(" %1 %2 %3 %4 %5 %6 %7 %8\n")
+              .arg(tagNumber2)
+              .arg(equalToN)
+              .arg(characteristicImpedance,0,'e',6)
+              .arg(lenght,0,'e',6)
+              .arg(realAdmittancePort1,0,'e',6)
+              .arg(imaginaryAdmittancePort1,0,'e',6)
+              .arg(realAdmittancePort2,0,'e',6)
+              .arg(imaginaryAdmittancePort2,0,'e',6));
+  return card;
 }
 
 

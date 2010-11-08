@@ -21,97 +21,97 @@
 #include "nenhcards.h"
 
 NENHCards::NENHCards(bool isItNECard, int theCoordinateSystemType,
-										 int theNumberOfPointsXR, int theNumberOfPointsYPhi,
-										 int theNumberOfPointsZTheta, double theCoordinateXR,
-										 double theCoordinateYPhi, double theCoordinateZTheta,
-										 double theIncrementXR, double theIncrementYPhi,
-										 double theIncrementZTheta)
+                     int theNumberOfPointsXR, int theNumberOfPointsYPhi,
+                     int theNumberOfPointsZTheta, double theCoordinateXR,
+                     double theCoordinateYPhi, double theCoordinateZTheta,
+                     double theIncrementXR, double theIncrementYPhi,
+                     double theIncrementZTheta)
 {
-	isNECard = isItNECard;
-	coordinateSystemType = theCoordinateSystemType;
-	numberOfPointsXR = theNumberOfPointsXR;
-	numberOfPointsYPhi = theNumberOfPointsYPhi;
-	numberOfPointsZTheta = theNumberOfPointsZTheta;
-	coordinateXR = theCoordinateXR;
-	coordinateYPhi = theCoordinateYPhi;
-	coordinateZTheta = theCoordinateZTheta;
-	incrementXR = theIncrementXR;
-	incrementYPhi = theIncrementYPhi;
-	incrementZTheta = theIncrementZTheta;
-	if(isNECard)
-		cardType = "NE";
-	else
-		cardType = "NH";
+  isNECard = isItNECard;
+  coordinateSystemType = theCoordinateSystemType;
+  numberOfPointsXR = theNumberOfPointsXR;
+  numberOfPointsYPhi = theNumberOfPointsYPhi;
+  numberOfPointsZTheta = theNumberOfPointsZTheta;
+  coordinateXR = theCoordinateXR;
+  coordinateYPhi = theCoordinateYPhi;
+  coordinateZTheta = theCoordinateZTheta;
+  incrementXR = theIncrementXR;
+  incrementYPhi = theIncrementYPhi;
+  incrementZTheta = theIncrementZTheta;
+  if(isNECard)
+    cardType = "NE";
+  else
+    cardType = "NH";
 }
 
 bool NENHCards::getIsNECard() const
 {
-	return isNECard;
+  return isNECard;
 }
 
 int NENHCards::getCoordinateSystemType() const
 {
-	return coordinateSystemType;
+  return coordinateSystemType;
 }
 
 int NENHCards::getNumberOfPointsXR() const
 {
-	return numberOfPointsXR;
+  return numberOfPointsXR;
 }
 
 int NENHCards::getNumberOfPointsYPhi() const
 {
-	return numberOfPointsYPhi;
+  return numberOfPointsYPhi;
 }
 
 int NENHCards::getNumberOfPointsZTheta() const
 {
-	return numberOfPointsZTheta;
+  return numberOfPointsZTheta;
 }
 
 double NENHCards::getCoordinateXR() const
 {
-	return coordinateXR;
+  return coordinateXR;
 }
 
 double NENHCards::getCoordinateYPhi() const
 {
-	return coordinateYPhi;
+  return coordinateYPhi;
 }
 
 double NENHCards::getCoordinateZTheta() const
 {
-	return coordinateZTheta;
+  return coordinateZTheta;
 }
 
 double NENHCards::getIncrementXR() const
 {
-	return incrementXR;
+  return incrementXR;
 }
 
 double NENHCards::getIncrementYPhi() const
 {
-	return incrementYPhi;
+  return incrementYPhi;
 }
 
 double NENHCards::getIncrementZTheta() const
 {
-	return incrementZTheta;
+  return incrementZTheta;
 }
 
 QString NENHCards::getCard()
 {
-	return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9 %10\n")
-	       .arg(coordinateSystemType)
-	       .arg(numberOfPointsXR)
-	       .arg(numberOfPointsYPhi)
-	       .arg(numberOfPointsZTheta)
-	       .arg(coordinateXR,0,'f',6)
-	       .arg(coordinateYPhi,0,'f',6)
-	       .arg(coordinateZTheta,0,'f',6)
-	       .arg(incrementXR,0,'f',6)
-	       .arg(incrementYPhi,0,'f',6)
-	       .arg(incrementZTheta,0,'f',6);
+  return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9 %10\n")
+         .arg(coordinateSystemType)
+         .arg(numberOfPointsXR)
+         .arg(numberOfPointsYPhi)
+         .arg(numberOfPointsZTheta)
+         .arg(coordinateXR,0,'e',6)
+         .arg(coordinateYPhi,0,'e',6)
+         .arg(coordinateZTheta,0,'e',6)
+         .arg(incrementXR,0,'e',6)
+         .arg(incrementYPhi,0,'e',6)
+         .arg(incrementZTheta,0,'e',6);
 }
 
 

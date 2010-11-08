@@ -26,75 +26,75 @@ GMCard::GMCard(int theTagNumberIncrement, int theNumberOfNewStructures,
                double theYTranslation, double theZTranslation,
                double theInitialTag)
 {
-	tagNumberIncrement = theTagNumberIncrement;
-	numberOfNewStructures = theNumberOfNewStructures;
-	xRotationAngle = theXRotationAngle;
-	yRotationAngle = theYRotationAngle;
-	zRotationAngle = theZRotationAngle;
-	xTranslation = theXTranslation;
-	yTranslation = theYTranslation;
-	zTranslation = theZTranslation;
-	initialTag = theInitialTag;
-	cardType = "GM";
+  tagNumberIncrement = theTagNumberIncrement;
+  numberOfNewStructures = theNumberOfNewStructures;
+  xRotationAngle = theXRotationAngle;
+  yRotationAngle = theYRotationAngle;
+  zRotationAngle = theZRotationAngle;
+  xTranslation = theXTranslation;
+  yTranslation = theYTranslation;
+  zTranslation = theZTranslation;
+  initialTag = theInitialTag;
+  cardType = "GM";
 }
 
 int GMCard::getTagNumberIncrement() const
 {
-	return tagNumberIncrement;
+  return tagNumberIncrement;
 }
 
 int GMCard::getNumberOfNewStructures() const
 {
-	return numberOfNewStructures;
+  return numberOfNewStructures;
 }
 
 double GMCard::getXRotationAngle() const
 {
-	return xRotationAngle;
+  return xRotationAngle;
 }
 
 double GMCard::getYRotationAngle() const
 {
-	return yRotationAngle;
+  return yRotationAngle;
 }
 
 double GMCard::getZRotationAngle() const
 {
-	return zRotationAngle;
+  return zRotationAngle;
 }
 
 double GMCard::getXTranslation() const
 {
-	return xTranslation;
+  return xTranslation;
 }
 
 double GMCard::getYTranslation() const
 {
-	return yTranslation;
+  return yTranslation;
 }
 
 double GMCard::getZTranslation() const
 {
-	return zTranslation;
+  return zTranslation;
 }
 
 double GMCard::getInitialTag() const
 {
-	return initialTag;
+  return initialTag;
 }
 
 QString GMCard::getCard()
 {
-	return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9\n")
-	       .arg(tagNumberIncrement)
-	       .arg(numberOfNewStructures)
-	       .arg(xRotationAngle,0,'f',6)
-	       .arg(yRotationAngle,0,'f',6)
-	       .arg(zRotationAngle,0,'f',6)
-	       .arg(xTranslation,0,'f',6)
-	       .arg(yTranslation,0,'f',6)
-	       .arg(zTranslation,0,'f',6)
-	       .arg(initialTag,0,'f',6);
+  return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9\n")
+         .arg(tagNumberIncrement)
+         .arg(numberOfNewStructures)
+         .arg(xRotationAngle,0,'e',6)
+         .arg(yRotationAngle,0,'e',6)
+         .arg(zRotationAngle,0,'e',6)
+         .arg(xTranslation,0,'e',6)
+         .arg(yTranslation,0,'e',6)
+         .arg(zTranslation,0,'e',6)
+         .arg(initialTag,0,'e',6);
 }
 
 

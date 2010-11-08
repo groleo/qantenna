@@ -22,9 +22,9 @@
 
 NTCard::NTCard(int theTagNumber, int theEqualToM)
 {
-	tagNumber = theTagNumber;
-	equalToM = theEqualToM;
-	cardType = "NT";
+  tagNumber = theTagNumber;
+  equalToM = theEqualToM;
+  cardType = "NT";
 }
 
 NTCard::NTCard(int theTagNumber, int theEqualToM, int theTagNumber2,
@@ -32,84 +32,84 @@ NTCard::NTCard(int theTagNumber, int theEqualToM, int theTagNumber2,
                double theReal12, double theImaginary12, double theReal22,
                double theImaginary22)
 {
-	tagNumber = theTagNumber;
-	equalToM = theEqualToM;
-	tagNumber2 = theTagNumber2;
-	equalToN = theEqualToN;
-	real11 = theReal11;
-	imaginary11 = theImaginary11;
-	real12 = theReal12;
-	imaginary12 = theImaginary12;
-	real22 = theReal22;
-	imaginary22 = theImaginary22;
-	cardType = "NT";
+  tagNumber = theTagNumber;
+  equalToM = theEqualToM;
+  tagNumber2 = theTagNumber2;
+  equalToN = theEqualToN;
+  real11 = theReal11;
+  imaginary11 = theImaginary11;
+  real12 = theReal12;
+  imaginary12 = theImaginary12;
+  real22 = theReal22;
+  imaginary22 = theImaginary22;
+  cardType = "NT";
 }
 
 int NTCard::getTagNumber() const
 {
-	return tagNumber;
+  return tagNumber;
 }
 
 int NTCard::getEqualToM() const
 {
-	return equalToM;
+  return equalToM;
 }
 
 int NTCard::getTagNumber2() const
 {
-	return tagNumber2;
+  return tagNumber2;
 }
 
 int NTCard::getEqualToN() const
 {
-	return equalToN;
+  return equalToN;
 }
 
 double NTCard::getReal11() const
 {
-	return real11;
+  return real11;
 }
 
 double NTCard::getImaginary11() const
 {
-	return imaginary11;
+  return imaginary11;
 }
 
 double NTCard::getReal12() const
 {
-	return real12;
+  return real12;
 }
 
 double NTCard::getImaginary12() const
 {
-	return imaginary12;
+  return imaginary12;
 }
 
 double NTCard::getReal22() const
 {
-	return real22;
+  return real22;
 }
 
 double NTCard::getImaginary22() const
 {
-	return imaginary22;
+  return imaginary22;
 }
 
 QString NTCard::getCard()
 {
-	QString card = cardType + QString(" %1 %2").arg(tagNumber).arg(equalToM);
-	if(equalToM == -1)
-		return card + "\n";
-	card.append(QString(" %1 %2 %3 %4 %5 %6 %7 %8\n")
-	            .arg(tagNumber2))
-	            .arg(equalToN)
-	            .arg(real11,0,'f',6)
-	            .arg(imaginary11,0,'f',6)
-	            .arg(real12,0,'f',6)
-	            .arg(imaginary12,0,'f',6)
-	            .arg(real22,0,'f',6)
-	            .arg(imaginary22,0,'f',6);
-	return card;
+  QString card = cardType + QString(" %1 %2").arg(tagNumber).arg(equalToM);
+  if(equalToM == -1)
+    return card + "\n";
+  card.append(QString(" %1 %2 %3 %4 %5 %6 %7 %8\n")
+              .arg(tagNumber2))
+              .arg(equalToN)
+              .arg(real11,0,'e',6)
+              .arg(imaginary11,0,'e',6)
+              .arg(real12,0,'e',6)
+              .arg(imaginary12,0,'e',6)
+              .arg(real22,0,'e',6)
+              .arg(imaginary22,0,'e',6);
+  return card;
 }
 
 

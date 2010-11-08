@@ -23,70 +23,70 @@
 FRCard::FRCard(int theTypeOfStepping, int theNumberOfFrequencySteps,
                double theFrequency, double theFrequencyIncrement)
 {
-	typeOfStepping = theTypeOfStepping;
-	numberOfFrequencySteps = theNumberOfFrequencySteps;
-	frequency = theFrequency;
-	frequencyIncrement = theFrequencyIncrement;
-	cardType = "FR";
+  typeOfStepping = theTypeOfStepping;
+  numberOfFrequencySteps = theNumberOfFrequencySteps;
+  frequency = theFrequency;
+  frequencyIncrement = theFrequencyIncrement;
+  cardType = "FR";
 
-	/**
-		Note: for the special case of QAntenna (at the time of version 0.1 to version
-		0.2), the number of frequency steps and the frequency increment would be set
-		to 1 and 0 in the constructor, as only one radiation pattern is
-		considered.
-	*/
-	numberOfFrequencySteps = 1;
-	frequencyIncrement = 0;
+  /**
+    Note: for the special case of QAntenna (at the time of version 0.1 to version
+    0.2), the number of frequency steps and the frequency increment would be set
+    to 1 and 0 in the constructor, as only one radiation pattern is
+    considered.
+  */
+  numberOfFrequencySteps = 1;
+  frequencyIncrement = 0;
 }
 
 
 int FRCard::getTypeOfStepping() const
 {
-	return typeOfStepping;
+  return typeOfStepping;
 }
 
 int FRCard::getNumberOfFrequencySteps() const
 {
-	return numberOfFrequencySteps;
+  return numberOfFrequencySteps;
 }
 
 double FRCard::getFrequency() const
 {
-	return frequency;
+  return frequency;
 }
 
 double FRCard::getFrequencyIncrement() const
 {
-	return frequencyIncrement;
+  return frequencyIncrement;
 }
 
 void FRCard::setTypeOfStepping(int theTypeOfStepping)
 {
-	typeOfStepping = theTypeOfStepping;
+  typeOfStepping = theTypeOfStepping;
 }
 
 void FRCard::setNumberOfFrequencySteps(int theNumberOfFrequencySteps)
 {
-	numberOfFrequencySteps = theNumberOfFrequencySteps;
+  numberOfFrequencySteps = theNumberOfFrequencySteps;
 }
 
 void FRCard::setFrequency(double theFrequency)
 {
-	frequency = theFrequency;
+  frequency = theFrequency;
 }
 
 void FRCard::setFrequencyIncrement(double theFrequencyIncrement)
 {
-	frequencyIncrement = theFrequencyIncrement;
+  frequencyIncrement = theFrequencyIncrement;
 }
 
 QString FRCard::getCard()
 {
-	return cardType + QString(" %1 %2 0 0 %3 %4\n")
-	       .arg(typeOfStepping)
-	       .arg(numberOfFrequencySteps)
-	       .arg(frequency,0,'f',6)
-	       .arg(frequencyIncrement,0,'f',6);
+  return cardType + QString(" %1 %2 0 0 %3 %4\n")
+         .arg(typeOfStepping)
+         .arg(numberOfFrequencySteps)
+         .arg(frequency,0,'e',6)
+         .arg(frequencyIncrement,0,'e',6);
 }
 
 

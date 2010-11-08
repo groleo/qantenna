@@ -21,72 +21,72 @@
 #include "smcard.h"
 
 SMCard::SMCard(int theCorners12Divisions, int theCorners34Divisions,
-							 double theXCoordinateCorner1, double theYCoordinateCorner1,
-							 double theZCoordinateCorner1, double theXCoordinateCorner2,
-							 double theYCoordinateCorner2, double theZCoordinateCorner2)
+               double theXCoordinateCorner1, double theYCoordinateCorner1,
+               double theZCoordinateCorner1, double theXCoordinateCorner2,
+               double theYCoordinateCorner2, double theZCoordinateCorner2)
 {
-	corners12Divisions = theCorners12Divisions;
-	corners34Divisions = theCorners34Divisions;
-	xCoordinateCorner1 = theXCoordinateCorner1;
-	yCoordinateCorner1 = theYCoordinateCorner1;
-	zCoordinateCorner1 = theZCoordinateCorner1;
-	xCoordinateCorner2 = theXCoordinateCorner2;
-	yCoordinateCorner2 = theYCoordinateCorner2;
-	zCoordinateCorner2 = theZCoordinateCorner2;
-	cardType = "SM";
+  corners12Divisions = theCorners12Divisions;
+  corners34Divisions = theCorners34Divisions;
+  xCoordinateCorner1 = theXCoordinateCorner1;
+  yCoordinateCorner1 = theYCoordinateCorner1;
+  zCoordinateCorner1 = theZCoordinateCorner1;
+  xCoordinateCorner2 = theXCoordinateCorner2;
+  yCoordinateCorner2 = theYCoordinateCorner2;
+  zCoordinateCorner2 = theZCoordinateCorner2;
+  cardType = "SM";
 }
 
 int SMCard::getCorners12Divisions() const
 {
-	return corners12Divisions;
+  return corners12Divisions;
 }
 
 int SMCard::getCorners34Divisions() const
 {
-	return corners34Divisions;
+  return corners34Divisions;
 }
 
 double SMCard::getXCoordinateCorner1() const
 {
-	return xCoordinateCorner1;
+  return xCoordinateCorner1;
 }
 
 double SMCard::getYCoordinateCorner1() const
 {
-	return yCoordinateCorner1;
+  return yCoordinateCorner1;
 }
 
 double SMCard::getZCoordinateCorner1() const
 {
-	return zCoordinateCorner1;
+  return zCoordinateCorner1;
 }
 
 double SMCard::getXCoordinateCorner2() const
 {
-	return xCoordinateCorner2;
+  return xCoordinateCorner2;
 }
 
 double SMCard::getYCoordinateCorner2() const
 {
-	return yCoordinateCorner2;
+  return yCoordinateCorner2;
 }
 
 double SMCard::getZCoordinateCorner2() const
 {
-	return zCoordinateCorner2;
+  return zCoordinateCorner2;
 }
 
 QString SMCard::getCard()
 {
-	return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8\n")
-	       .arg(corners12Divisions)
-	       .arg(corners34Divisions)
-	       .arg(xCoordinateCorner1,0,'f',6)
-	       .arg(yCoordinateCorner1,0,'f',6)
-	       .arg(zCoordinateCorner1,0,'f',6)
-	       .arg(xCoordinateCorner2,0,'f',6)
-	       .arg(yCoordinateCorner2,0,'f',6)
-	       .arg(zCoordinateCorner2,0,'f',6);
+  return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8\n")
+         .arg(corners12Divisions)
+         .arg(corners34Divisions)
+         .arg(xCoordinateCorner1,0,'e',6)
+         .arg(yCoordinateCorner1,0,'e',6)
+         .arg(zCoordinateCorner1,0,'e',6)
+         .arg(xCoordinateCorner2,0,'e',6)
+         .arg(yCoordinateCorner2,0,'e',6)
+         .arg(zCoordinateCorner2,0,'e',6);
 }
 
 

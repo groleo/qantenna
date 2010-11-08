@@ -26,132 +26,132 @@ RPCard::RPCard(int theModeOfCalculation, int theNumberOfValuesOfTheta,
                double theIncrementPhi, double theRadialDistance,
                double theGainNormalization)
 {
-	modeOfCalculation = theModeOfCalculation;
-	numberOfValuesOfTheta = theNumberOfValuesOfTheta;
-	numberOfValuesOfPhi = theNumberOfValuesOfPhi;
-	xnda = theXNDA;
-	initialTheta = theInitialTheta;
-	initialPhi = theInitialPhi;
-	incrementTheta = theIncrementTheta;
-	incrementPhi = theIncrementPhi;
-	radialDistance = theRadialDistance;
-	gainNormalization = theGainNormalization;
-	cardType = "RP";
+  modeOfCalculation = theModeOfCalculation;
+  numberOfValuesOfTheta = theNumberOfValuesOfTheta;
+  numberOfValuesOfPhi = theNumberOfValuesOfPhi;
+  xnda = theXNDA;
+  initialTheta = theInitialTheta;
+  initialPhi = theInitialPhi;
+  incrementTheta = theIncrementTheta;
+  incrementPhi = theIncrementPhi;
+  radialDistance = theRadialDistance;
+  gainNormalization = theGainNormalization;
+  cardType = "RP";
 }
 
 int RPCard::getModeOfCalculation() const
 {
-	return modeOfCalculation;
+  return modeOfCalculation;
 }
 
 int RPCard::getNumberOfValuesOfTheta() const
 {
-	return numberOfValuesOfTheta;
+  return numberOfValuesOfTheta;
 }
 
 int RPCard::getNumberOfValuesOfPhi() const
 {
-	return numberOfValuesOfPhi;
+  return numberOfValuesOfPhi;
 }
 
 int RPCard::getXNDA() const
 {
-	return xnda;
+  return xnda;
 }
 
 double RPCard::getInitialTheta() const
 {
-	return initialTheta;
+  return initialTheta;
 }
 
 double RPCard::getInitialPhi() const
 {
-	return initialPhi;
+  return initialPhi;
 }
 
 double RPCard::getIncrementTheta() const
 {
-	return incrementTheta;
+  return incrementTheta;
 }
 
 double RPCard::getIncrementPhi() const
 {
-	return incrementPhi;
+  return incrementPhi;
 }
 
 double RPCard::getRadialDistance() const
 {
-	return radialDistance;
+  return radialDistance;
 }
 
 double RPCard::getGainMormalization() const
 {
-	return gainNormalization;
+  return gainNormalization;
 }
 
 void RPCard::setModeOfCalculation(int theModeOfCalculation)
 {
-	modeOfCalculation = theModeOfCalculation;
+  modeOfCalculation = theModeOfCalculation;
 }
 
 void RPCard::setNumberOfValuesOfTheta(int theNumberOfValuesOfTheta)
 {
-	numberOfValuesOfTheta = theNumberOfValuesOfTheta;
+  numberOfValuesOfTheta = theNumberOfValuesOfTheta;
 }
 
 void RPCard::setNumberOfValuesOfPhi(int theNumberOfValuesOfPhi)
 {
-	numberOfValuesOfPhi = theNumberOfValuesOfPhi;
+  numberOfValuesOfPhi = theNumberOfValuesOfPhi;
 }
 
 void RPCard::setXNDA(int theXNDA)
 {
-	xnda = theXNDA;
+  xnda = theXNDA;
 }
 
 void RPCard::setInitialTheta(double theInitialTheta)
 {
-	initialTheta = theInitialTheta;
+  initialTheta = theInitialTheta;
 }
 
 void RPCard::setInitialPhi(double theInitialPhi)
 {
-	initialPhi = theInitialPhi;
+  initialPhi = theInitialPhi;
 }
 
 void RPCard::setIncrementTheta(double theIncrementTheta)
 {
-	incrementTheta = theIncrementTheta;
+  incrementTheta = theIncrementTheta;
 }
 
 void RPCard::setIncrementPhi(double theIncrementPhi)
 {
-	incrementPhi = theIncrementPhi;
+  incrementPhi = theIncrementPhi;
 }
 
 void RPCard::setRadialDistance(double theRadialDistance)
 {
-	radialDistance = theRadialDistance;
+  radialDistance = theRadialDistance;
 }
 
 void RPCard::setGainMormalization(double theGainNormalization)
 {
-	gainNormalization = theGainNormalization;
+  gainNormalization = theGainNormalization;
 }
 
 QString RPCard::getCard()
 {
-	return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9 %10\n")
-	       .arg(modeOfCalculation)
-	       .arg(numberOfValuesOfTheta)
-	       .arg(numberOfValuesOfPhi)
-	       .arg(xnda)
-	       .arg(initialTheta,0,'f',6)
-	       .arg(initialPhi,0,'f',6)
-	       .arg(incrementTheta,0,'f',6)
-	       .arg(incrementPhi,0,'f',6)
-	       .arg(radialDistance,0,'f',6)
-	       .arg(gainNormalization,0,'f',6);
+  return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9 %10\n")
+         .arg(modeOfCalculation)
+         .arg(numberOfValuesOfTheta)
+         .arg(numberOfValuesOfPhi)
+         .arg(xnda)
+         .arg(initialTheta,0,'e',6)
+         .arg(initialPhi,0,'e',6)
+         .arg(incrementTheta,0,'e',6)
+         .arg(incrementPhi,0,'e',6)
+         .arg(radialDistance,0,'e',6)
+         .arg(gainNormalization,0,'e',6);
 }
 
 

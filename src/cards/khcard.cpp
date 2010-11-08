@@ -22,18 +22,18 @@
 
 KHCard::KHCard(double theApproximation)
 {
-	approximation = theApproximation;
-	cardType = "KH";
+  approximation = theApproximation;
+  cardType = "KH";
 }
 
 double KHCard::getApproximation() const
 {
-	return approximation;
+  return approximation;
 }
 
 QString KHCard::getCard()
 {
-	return cardType + QString(" 0 0 0 0 %1\n").arg(approximation,0,'f',6);
+  return cardType + QString(" 0 0 0 0 %1\n").arg(approximation,0,'e',6);
 }
 
 

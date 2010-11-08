@@ -26,75 +26,75 @@ GHCard::GHCard(int theTagNumber, int theNumberOfSegments,
                double theRadiusXZTotalLenght, double theRadiusYZTotalLenght,
                double theRadiusOfWire)
 {
-	tagNumber = theTagNumber;
-	numberOfSegments = theNumberOfSegments;
-	spacingBetweenTurns = theSpacingBetweenTurns;
-	totalLenght = theTotalLenght;
-	radiusXZ0 = theRadiusXZ0;
-	radiusYZ0 = theRadiusYZ0;
-	radiusXZTotalLenght = theRadiusXZTotalLenght;
-	radiusYZTotalLenght = theRadiusYZTotalLenght;
-	radiusOfWire = theRadiusOfWire;
-	cardType = "GH";
+  tagNumber = theTagNumber;
+  numberOfSegments = theNumberOfSegments;
+  spacingBetweenTurns = theSpacingBetweenTurns;
+  totalLenght = theTotalLenght;
+  radiusXZ0 = theRadiusXZ0;
+  radiusYZ0 = theRadiusYZ0;
+  radiusXZTotalLenght = theRadiusXZTotalLenght;
+  radiusYZTotalLenght = theRadiusYZTotalLenght;
+  radiusOfWire = theRadiusOfWire;
+  cardType = "GH";
 }
 
 int GHCard::getTagNumber() const
 {
-	return tagNumber;
+  return tagNumber;
 }
 
 int GHCard::getNumberOfSegments() const
 {
-	return numberOfSegments;
+  return numberOfSegments;
 }
 
 double GHCard::getSpacingBetweenTurns() const
 {
-	return spacingBetweenTurns;
+  return spacingBetweenTurns;
 }
 
 double GHCard::getTotalLenght() const
 {
-	return totalLenght;
+  return totalLenght;
 }
 
 double GHCard::getRadiusXZ0() const
 {
-	return radiusXZ0;
+  return radiusXZ0;
 }
 
 double GHCard::getRadiusYZ0() const
 {
-	return radiusYZ0;
+  return radiusYZ0;
 }
 
 double GHCard::getRadiusXZTotalLenght() const
 {
-	return radiusXZTotalLenght;
+  return radiusXZTotalLenght;
 }
 
 double GHCard::getRadiusYZTotalLenght() const
 {
-	return radiusYZTotalLenght;
+  return radiusYZTotalLenght;
 }
 
 double GHCard::getRadiusOfWire() const
 {
-	return radiusOfWire;
+  return radiusOfWire;
 }
 
 QString GHCard::getCard()
 {
-	return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9\n")
-	       .arg(tagNumber)
-	       .arg(numberOfSegments)
-	       .arg(spacingBetweenTurns,0,'f',6)
-	       .arg(totalLenght,0,'f',6)
-	       .arg(radiusXZ0,0,'f',6)
-	       .arg(radiusYZ0,0,'f',6)
-	       .arg(radiusXZTotalLenght,0,'f',6)
-	       .arg(radiusYZTotalLenght,0,'f',6)
-	       .arg(radiusOfWire,0,'f',6);
+  return cardType + QString(" %1 %2 %3 %4 %5 %6 %7 %8 %9\n")
+         .arg(tagNumber)
+         .arg(numberOfSegments)
+         .arg(spacingBetweenTurns,0,'e',6)
+         .arg(totalLenght,0,'e',6)
+         .arg(radiusXZ0,0,'e',6)
+         .arg(radiusYZ0,0,'e',6)
+         .arg(radiusXZTotalLenght,0,'e',6)
+         .arg(radiusYZTotalLenght,0,'e',6)
+         .arg(radiusOfWire,0,'e',6);
 }
 
 
