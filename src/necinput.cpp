@@ -750,10 +750,10 @@ void NECInput::ProcessData()
       int numberOfRadialWires = gncard->getNumberOfRadialWires();
       double angle = 2*PI/(double)numberOfRadialWires;
 
-      for(int i=0; i < numberOfRadialWires; i++)
+      for(int step=0; step < numberOfRadialWires; step++)
       {
-        end2[0] = 10*cos(step*i);
-        end2[1] = 10*sin(step*i);
+        end2[0] = 10*cos(angle*step);
+        end2[1] = 10*sin(angle*step);
         end2[2] = 0.0;
         newLine = new Line("GN", end1, end2, 0, 0, 0);
       }
