@@ -28,6 +28,8 @@
 #include <QtDebug>
 #include <QDir>
 
+const double PI = 3.14159265;
+
 NECInput::NECInput(QString theFileName, QString theCreationTime,
                    QWidget * parent) : QObject(parent)
 {
@@ -200,7 +202,7 @@ void NECInput::ProcessGMCard(int index)
  *
  * ***************************************************************************
  */
-				// Thus - for the GM Coordinate Transformations card.
+  // Thus - for the GM Coordinate Transformations card.
   ang = primitiveList.at(index)->GetEnd1();	// Fetch 3 rotation angles.
   // ROX (F1), ROY (F2), ROZ (F3)
 
@@ -619,6 +621,7 @@ void NECInput::ProcessData()
   GRCard * grcard = 0;
   GWCard * gwcard = 0;
   GACard * gacard = 0;
+  GNCard * gncard = 0;
   FRCard * frcard = 0;
   SPCard * spcard = 0;
   SMCard * smcard = 0;
@@ -731,6 +734,31 @@ void NECInput::ProcessData()
       newLine = new Line("GA", end1, end2, gacard->getTagNumber(),gacard->getNumberOfSegments(), 0 );
       primitiveList.append(newLine);
       gacard = 0;
+    }
+    else if(card->getCardType() == "GN")
+    {
+      gncard = (GNCard*)cardsList.at(i);
+
+      // Radial wires begins always in the same place.
+      end1[0] = 0.0;
+      end1[1] = 0.0;
+      end1[2] = 0.0;
+
+      // Get how many lines we have to draw.
+      int numberOfRadialWires = gncard->getNumberOfRadialWires();
+      double angle = 2*PI/(double)numberOfRadialWires;
+
+      for(int step=0; step < numberOfRadialWires; step++)
+      {
+        end2[0] = 10*cos(angle*step);
+        end2[1] = 10*sin(angle*step);
+        end2[2] = 0.0;
+        newLine = new Line("GN", end1, end2, 0, 0, 0);
+        primitiveList.append(newLine);
+      }
+
+      gncard = 0;
+      newLine = 0;
     }
     else if (card->getCardType() == "SP")
     {
@@ -982,6 +1010,31 @@ void NECInput::CreateOpenGLList()
         quadsVertexArray.append(temp.at(1));
         quadsVertexArray.append(temp.at(2));
       }
+    }
+    if(primitiveList.at(i)->GetLabel()=="GN")
+    {
+      // Add colour
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+
+      temp = primitiveList.at(i)->GetEnd1();
+      Transformate(temp);
+      linesVertexArray.append(temp.at(0));
+      linesVertexArray.append(temp.at(1));
+      linesVertexArray.append(temp.at(2));
+
+      temp = primitiveList.at(i)->GetEnd2();
+      Transformate(temp);
+      linesVertexArray.append(temp.at(0));
+      linesVertexArray.append(temp.at(1));
+      linesVertexArray.append(temp.at(2));
     }
   }
   ///FIXME We are not getting ground planes :-/
