@@ -46,15 +46,12 @@ GNCard::GNCard(int theGroundType, int theNumberOfRadialWires,
   conductivity = theConductivity;
   infiniteGround = true;
   cardType = "GN";
-<<<<<<< HEAD
-=======
 
   // Set the rest of the values to 0.
   double1 = 0;
   double2 = 0;
   double3 = 0;
   double4 = 0;
->>>>>>> gn_card_fix
 }
 
 GNCard::GNCard(int theGroundType, int theNumberOfRadialWires,
@@ -131,13 +128,8 @@ QString GNCard::getCard()
 
   card.append(QString(" %1 0 0 %2 %3")
               .arg(numberOfRadialWires)
-<<<<<<< HEAD
               .arg(relativeDielectricConstant,0,'e',6)
               .arg(conductivity,0,'e',6));
-=======
-              .arg(relativeDielectricConstant,0,'f',6)
-              .arg(conductivity,0,'f',6));
->>>>>>> gn_card_fix
 
   if(infiniteGround)
   {
@@ -146,17 +138,10 @@ QString GNCard::getCard()
   }
 
   card.append(QString(" %1 %2 %3 %4\n")
-<<<<<<< HEAD
               .arg(double1,0,'e',6)
               .arg(double2,0,'e',6)
               .arg(double3,0,'e',6)
               .arg(double4,0,'e',6));
-=======
-              .arg(double1,0,'f',6)
-              .arg(double2,0,'f',6)
-              .arg(double3,0,'f',6)
-              .arg(double4,0,'f',6));
->>>>>>> gn_card_fix
 
   return card;
 }
