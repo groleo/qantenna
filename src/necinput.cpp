@@ -1013,6 +1013,31 @@ void NECInput::CreateOpenGLList()
         quadsVertexArray.append(temp.at(2));
       }
     }
+    if(primitiveList.at(i)->GetLabel()=="GN")
+    {
+      // Add colour
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+      linesColorArray.append(0.0);
+      linesColorArray.append(1.0);
+
+      temp = primitiveList.at(i)->GetEnd1();
+      Transformate(temp);
+      linesVertexArray.append(temp.at(0));
+      linesVertexArray.append(temp.at(1));
+      linesVertexArray.append(temp.at(2));
+
+      temp = primitiveList.at(i)->GetEnd2();
+      Transformate(temp);
+      linesVertexArray.append(temp.at(0));
+      linesVertexArray.append(temp.at(1));
+      linesVertexArray.append(temp.at(2));
+    }
   }
   ///FIXME We are not getting ground planes :-/
   if(groundPlane)
