@@ -756,9 +756,11 @@ void NECInput::ProcessData()
         end2[1] = 10*sin(angle*step);
         end2[2] = 0.0;
         newLine = new Line("GN", end1, end2, 0, 0, 0);
+        primitiveList.append(newLine);
       }
 
       gncard = 0;
+      newLine = 0;
     }
     else if (card->getCardType() == "SP")
     {
