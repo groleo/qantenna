@@ -28,6 +28,8 @@
 #include <QtDebug>
 #include <QDir>
 
+const double PI = 3.14159265;
+
 NECInput::NECInput(QString theFileName, QString theCreationTime,
                    QWidget * parent) : QObject(parent)
 {
@@ -746,7 +748,7 @@ void NECInput::ProcessData()
 
       // Get how many lines we have to draw.
       int numberOfRadialWires = gncard->getNumberOfRadialWires();
-      double step = 360.0/numberOfRadialWires*i;
+      double angle = 2*PI/(double)numberOfRadialWires;
 
       for(int i=0; i < numberOfRadialWires; i++)
       {
