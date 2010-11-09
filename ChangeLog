@@ -6,6 +6,7 @@ QAntenna 0.3.0 UNRELEASED:
   [Lisandro Damián Nicanor Pérez Meyer]
   * Fixed GD card parsing, it's a four integers card.
   * Create input.necin with floats using exponencial nomenclature.
+  * Show radial wires when specified in the GN card.
 
 QAntenna 0.2.2:
 * The Open File Dialog now starts in the user's home directory, and remembers
