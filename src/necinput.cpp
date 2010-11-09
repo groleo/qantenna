@@ -750,8 +750,8 @@ void NECInput::ProcessData()
 
       for(int i=0; i < numberOfRadialWires; i++)
       {
-        end2[0] = 100*cos(step*i);
-        end2[1] = 100*sin(step*i);
+        end2[0] = 10*cos(step*i);
+        end2[1] = 10*sin(step*i);
         end2[2] = 0.0;
         newLine = new Line("GN", end1, end2, 0, 0, 0);
       }
