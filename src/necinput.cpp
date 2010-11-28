@@ -235,7 +235,7 @@ void NECInput::ProcessGMCard(int index)
         primitiveList.at(i)->Move(pos);
         CompareModule(primitiveList.at(i)->CalculateMaxModule());
 
-        /* 
+        /*
           We save the antenna's drawing displacement centre, wich we will use to
           displace the RP in the same ammount.
          */
@@ -1014,13 +1014,13 @@ void NECInput::CreateOpenGLList()
     if(primitiveList.at(i)->GetLabel()=="GN")
     {
       // Add colour
-      linesColorArray.append(0.0);
-      linesColorArray.append(1.0);
+      linesColorArray.append(0.5);
+      linesColorArray.append(0.3);
       linesColorArray.append(0.0);
       linesColorArray.append(1.0);
 
-      linesColorArray.append(0.0);
-      linesColorArray.append(1.0);
+      linesColorArray.append(0.5);
+      linesColorArray.append(0.3);
       linesColorArray.append(0.0);
       linesColorArray.append(1.0);
 
