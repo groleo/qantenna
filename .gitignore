@@ -1,3 +1,4 @@
 Makefile
 *.pro.user
 .qdevelop
+qantenna.tag
