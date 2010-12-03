@@ -29,35 +29,37 @@
 class GACard : public GenericCard
 {
 public:
-	GACard(int theTagNumber, int theNumberOfSegments, double theArcRadius,
-	       double theFirstEndAngle, double theSecondEndAngle,
-	       double theWireRadius);
+  /**
+   * \param theTagNumber Tag number assigned to all segments of the wire arc.
+   * \param theNumberOfSegments Number of segments into which the arc will be
+   *        divided.
+   * \param theArcRadius Arc radius (center is the origin and the axis is the y
+   *        axis).
+   * \param theFirstEndAngle Angle of first end of the arc measured from the x
+   *        axis in a left-hand direction about the y axis (degrees).
+   * \param theSecondEndAngle Angle of the second end of the arc.
+   * \param theWireRadius Wire radius.
+   */
+  GACard(int theTagNumber, int theNumberOfSegments, double theArcRadius,
+         double theFirstEndAngle, double theSecondEndAngle,
+         double theWireRadius);
 
-	int getTagNumber() const;
-	int getNumberOfSegments() const;
-	double getArcRadius() const;
-	double getFirstEndAngle() const;
-	double getSecondEndAngle() const;
-	double getWireRadius() const;
+  int getTagNumber() const;
+  int getNumberOfSegments() const;
+  double getArcRadius() const;
+  double getFirstEndAngle() const;
+  double getSecondEndAngle() const;
+  double getWireRadius() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/// Tag number assigned to all segments of the wire arc.
-	int tagNumber;
-	/// Number of segments into which the arc will be divided.
-	int numberOfSegments;
-	/// Arc radius (center is the origin and the axis is the y axis).
-	double arcRadius;
-	/**
-		Angle of first end of the arc measured from the x axis in a left-hand
-		direction about the y axis (degrees).
-	*/
-	double firstEndAngle;
-	/// Angle of the second end of the arc.
-	double secondEndAngle;
-	/// Wire radius.
-	double wireRadius;
+  int tagNumber;
+  int numberOfSegments;
+  double arcRadius;
+  double firstEndAngle;
+  double secondEndAngle;
+  double wireRadius;
 
 };
 
