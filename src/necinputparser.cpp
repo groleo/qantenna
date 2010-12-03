@@ -330,7 +330,8 @@ int NECInputParser(NECInput * theNECInput)
     // CE card
     if(line.contains("CE"))
     {
-      cecard = new CECard();
+      line.remove("CE");
+      cecard = new CECard(line);
       theNECInput->appendCard(cecard);
       cecard = 0;
     }
