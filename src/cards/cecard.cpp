@@ -20,12 +20,7 @@
 
 #include "cecard.h"
 
-CECard::CECard()
+CECard::CECard(QString theNewComment) : CMCard(theNewComment)
 {
-	cardType = "CE";
-}
-
-QString CECard::getCard()
-{
-	return cardType + "\n";
+  cardType = "CE";
 }

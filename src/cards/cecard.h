@@ -21,16 +21,14 @@
 #ifndef CECARD_H
 #define CECARD_H
 
-#include "genericcard.h"
+#include "cmcard.h"
 #include <QString>
 
 /** CE card: end comment card */
-class CECard : public GenericCard
+class CECard : public CMCard
 {
 public:
-	CECard();
-
-	QString getCard();
+  CECard(QString theNewComment);
 };
 
 #endif // CECARD_H
