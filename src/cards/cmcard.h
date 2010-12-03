@@ -24,20 +24,22 @@
 #include "genericcard.h"
 #include <QString>
 
-/** CM card: comments card */
+/**
+ * \brief comments card
+ * \param theNewComment The string that holds the comment.
+ */
 class CMCard : public GenericCard
 {
 public:
-	CMCard(QString theNewComment);
+  CMCard(QString theNewComment);
 
-	/// Get the comment
-	QString getComment() const;
+  /// Get the comment
+  QString getComment() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/// The string that holds the comment
-	QString theComment;
+  QString theComment;
 };
 
 #endif // CMCARD_H
