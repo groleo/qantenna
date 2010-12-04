@@ -25,30 +25,29 @@
 #include <QString>
 
 /** GE card: End geometry input */
-
 class GECard : public GenericCard
 {
 public:
-	GECard(int theGeometryGroundPlane);
+  /**
+   * \param theGeometryGroundPlane Geometry ground plain flag.
+   *
+   * 0 - no ground plane is present.
+   * 1 - Indicates a ground plane is present. Structure symmetry is modified as
+   * required, and the current expansion is modified so that the currents an
+   * segments touching the ground (X, Y plane) are interpolated to their images
+   * below the ground (charge at base is zero)
+   * -1 - Indicates a ground is present. Structure symmetry is modified as
+   * required. Current expansion, however, is not modified, Thus, currents on
+   * segments touching the ground will go to zero at the ground.
+   */
+  GECard(int theGeometryGroundPlane);
 
-	int getGeometryGroundPlane() const;
+  int getGeometryGroundPlane() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/**
-		pflag - Geometry ground plain flag.
-
-		0 - no ground plane is present.
-		1 - Indicates a ground plane is present. Structure symmetry is modified as
-		required, and the current expansion is modified so that the currents an
-		segments touching the ground (X, Y plane) are interpolated to their images
-		below the ground (charge at base is zero)
-		1 - Indicates a ground is present. Structure symmetry is modified as
-		required. Current expansion, however, is not modified, Thus, currents on
-		segments touching the ground will go to zero at the ground.
-	*/
-	int geometryGroundPlane;
+  int geometryGroundPlane;
 
 };
 
