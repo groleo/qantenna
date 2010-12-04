@@ -29,43 +29,48 @@
 class GHCard : public GenericCard
 {
 public:
-	GHCard(int theTagNumber, int theNumberOfSegments,
-	       double theSpacingBetweenTurns, double theTotalLenght,
-	       double theRadiusXZ0, double theRadiusYZ0,
-	       double theRadiusXZTotalLenght, double theRadiusYZTotalLenght,
-	       double theRadiusOfWire);
+  /**
+   * \param theTagnumber Tag number assigned to all segments of the helix or
+   * spiral.
+   * \param theNumberOfSegments Number of segments into which the helix or
+   * spiral will be divided.
+   * \param theSpacingBetweenTurns Spacing between turns.
+   * \param theTotalLength Total length of the helix (HL).
+   * \param theRadiusXZ0 Radius in x at z = 0.
+   * \param theRadiusYZ0 Radius in y at z = 0.
+   * \param theRadiusXZTotalLenght Radius in x at z = HL.
+   * \param theRadiusYZTotalLenght Radius in y at z = HL.
+   * \param theRadiusOfWire Radius of wire.
+   */
+  GHCard(int theTagNumber, int theNumberOfSegments,
+         double theSpacingBetweenTurns, double theTotalLenght,
+         double theRadiusXZ0, double theRadiusYZ0,
+         double theRadiusXZTotalLenght, double theRadiusYZTotalLenght,
+         double theRadiusOfWire);
 
-	int getTagNumber() const;
-	int getNumberOfSegments() const;
-	double getSpacingBetweenTurns() const;
-	double getTotalLenght() const;
-	double getRadiusXZ0() const;
-	double getRadiusYZ0() const;
-	double getRadiusXZTotalLenght() const;
-	double getRadiusYZTotalLenght() const;
-	double getRadiusOfWire() const;
+  int getTagNumber() const;
+  int getNumberOfSegments() const;
+  double getSpacingBetweenTurns() const;
+  double getTotalLenght() const;
+  double getRadiusXZ0() const;
+  double getRadiusYZ0() const;
+  double getRadiusXZTotalLenght() const;
+  double getRadiusYZTotalLenght() const;
+  double getRadiusOfWire() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/// Tag number assigned to all segments of the helix or	spiral.
-	int tagNumber;
-	/// Number of segments into which the helix or spiral will be divided.
-	int numberOfSegments;
-	/// Spacing between turns.
-	double spacingBetweenTurns;
-	/// Total length of the helix (HL)
-	double totalLenght;
-	/// Radius in x at z = 0.
-	double radiusXZ0;
-	/// Radius in y at z = 0.
-	double radiusYZ0;
-	/// Radius in x at z = HL
-	double radiusXZTotalLenght;
-	/// Radius in y at z = HL.
-	double radiusYZTotalLenght;
-	/// Radius of wire.
-	double radiusOfWire;
+  int tagNumber;
+  int numberOfSegments;
+
+  double spacingBetweenTurns;
+  double totalLenght;
+  double radiusXZ0;
+  double radiusYZ0;
+  double radiusXZTotalLenght;
+  double radiusYZTotalLenght;
+  double radiusOfWire;
 };
 
 #endif // GHCARD_H
