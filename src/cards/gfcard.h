@@ -29,18 +29,19 @@
 class GFCard : public GenericCard
 {
 public:
-	GFCard(int theTableOfCoordinates);
+  /**
+   * \param theTableOfCoordinates Prints a table of the coordinates of the ends
+   * of all segments in the NGF if I1 is not equal to 0. Normal printing
+   * otherwise.
+   */
+  GFCard(int theTableOfCoordinates);
 
-	int getTheTableOfCoordinates() const;
+  int getTheTableOfCoordinates() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/**
-		Prints a table of the coordinates of the ends of all segments in the NGF if
-		I1 not equal to 0. Normal printing otherwise.
-	*/
-	int tableOfCoordinates;
+  int tableOfCoordinates;
 };
 
 #endif // GFCARD_H
