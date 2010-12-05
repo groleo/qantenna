@@ -33,11 +33,29 @@
 class GMCard : public GenericCard
 {
 public:
-	GMCard(int theTagNumberIncrement, int theNumberOfNewStructures,
-	       double theXRotationAngle, double theYRotationAngle,
-	       double theZRotationAngle, double theXTranslation,
-	       double theYTranslation, double theZTranslation,
-	       double theInitialTag);
+  /**
+   * \param theTagNumberIncrement Tag number increment.
+   * \param theNumberOfNewStructures Number of new structures to be generated.
+   * \param theXRotationAngle Angle in degrees through wich the structure is
+   * rotated about the X-axis. A positive angle causes a right-hand rotation.
+   * \param theYRotationAngle Angle of rotation about the Y-axis.
+   * \param theZRotationAngle Angle of rotation about the Z-axis.
+   * \param theXTranslation X component of vector by wich the structure is
+   * translated with respect the coordinate system.
+   * \param theYTranslation Y component of vector by wich the structure is
+   * translated with respect the coordinate system.
+   * \param theZTranslation Z component of vector by wich the structure is
+   * translated with respect the coordinate system.
+   * \param theInitialTag input in decimal but rounded to nearest integer before
+   * use. Tag numbers are searched sequentially until a segment having a tag of
+   * this segment ??? through the end of the sequence of segments is moved by
+   * the card. If this field is blan (usual case) or zero. the entire structure is moved.
+   */
+  GMCard(int theTagNumberIncrement, int theNumberOfNewStructures,
+         double theXRotationAngle, double theYRotationAngle,
+         double theZRotationAngle, double theXTranslation,
+         double theYTranslation, double theZTranslation,
+         double theInitialTag);
 
   int getTagNumberIncrement() const;
   int getNumberOfNewStructures() const;
