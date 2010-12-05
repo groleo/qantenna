@@ -25,9 +25,10 @@
 #include <QString>
 
 /**
-	Scale Structure Dimensions (GS)
-	Scale all dimensions of a structure by a constant.
-	Note: the property "times" is only described at NEC2++'s doc.
+ * \class GSCard Scale Structure Dimensions.
+ *
+ * Scale all dimensions of a structure by a constant.
+ * Note: the property "times" is only described at NEC2++'s doc.
 */
 
 class GSCard : public GenericCard
