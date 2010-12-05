@@ -34,16 +34,16 @@
 class GRCard : public GenericCard
 {
 public:
-	GRCard(int theTagNumberIncrement, int theNumberOfOcurrencies);
+  GRCard(int theTagNumberIncrement, int theNumberOfOcurrencies);
 
-	int getTagNumberIncrement() const;
-	int getNumberOfOcurrencies() const;
+  int getTagNumberIncrement() const;
+  int getNumberOfOcurrencies() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	int tagNumberIncrement;
-	int numberOfOcurrencies;
+  int tagNumberIncrement;
+  int numberOfOcurrencies;
 
 };
 
