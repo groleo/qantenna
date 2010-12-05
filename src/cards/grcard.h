@@ -34,6 +34,11 @@
 class GRCard : public GenericCard
 {
 public:
+  /**
+   * \param theTagNumberIncrement Tag number increment.
+   * \param theNumberOfOcurrencies Total number of times that the structure is
+   * to occur in the cylindrical array.
+   */
   GRCard(int theTagNumberIncrement, int theNumberOfOcurrencies);
 
   int getTagNumberIncrement() const;
