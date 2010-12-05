@@ -25,39 +25,39 @@
 #include <QString>
 
 /**
-	Wire Specification (GW)
-	Generate a string of segments to represent a straight wire.
+  Wire Specification (GW)
+  Generate a string of segments to represent a straight wire.
 */
 
 class GWCard : public GenericCard
 {
 public:
-	GWCard(int theTagNumber, int theNumberOfSegments, double theXWire1,
-	       double theYWire1, double theZWire1, double theXWire2,
-	       double theYWire2, double theZWire2, double theWireRadius);
+  GWCard(int theTagNumber, int theNumberOfSegments, double theXWire1,
+         double theYWire1, double theZWire1, double theXWire2,
+         double theYWire2, double theZWire2, double theWireRadius);
 
-	int getTagNumber() const;
-	int getNumberOfSegments() const;
-	double getXWire1() const;
-	double getYWire1() const;
-	double getZWire1() const;
-	double getXWire2() const;
-	double getYWire2() const;
-	double getZWire2() const;
-	double getWireRadius() const;
+  int getTagNumber() const;
+  int getNumberOfSegments() const;
+  double getXWire1() const;
+  double getYWire1() const;
+  double getZWire1() const;
+  double getXWire2() const;
+  double getYWire2() const;
+  double getZWire2() const;
+  double getWireRadius() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	int tagNumber;
-	int numberOfSegments;
-	double xWire1;
-	double yWire1;
-	double zWire1;
-	double xWire2;
-	double yWire2;
-	double zWire2;
-	double wireRadius;
+  int tagNumber;
+  int numberOfSegments;
+  double xWire1;
+  double yWire1;
+  double zWire1;
+  double xWire2;
+  double yWire2;
+  double zWire2;
+  double wireRadius;
 };
 
 #endif // GWCARD_H
