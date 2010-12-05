@@ -25,9 +25,9 @@
 #include <QString>
 
 /**
-	Coordinate Transformation
-	Translate or rotate a structure with respect to the coordinate system or to
-	generate new structures translated or rotated from the original.
+  Coordinate Transformation
+  Translate or rotate a structure with respect to the coordinate system or to
+  generate new structures translated or rotated from the original.
 */
 
 class GMCard : public GenericCard
@@ -39,28 +39,28 @@ public:
 	       double theYTranslation, double theZTranslation,
 	       double theInitialTag);
 
-	int getTagNumberIncrement() const;
-	int getNumberOfNewStructures() const;
-	double getXRotationAngle() const;
-	double getYRotationAngle() const;
-	double getZRotationAngle() const;
-	double getXTranslation() const;
-	double getYTranslation() const;
-	double getZTranslation() const;
-	double getInitialTag() const;
+  int getTagNumberIncrement() const;
+  int getNumberOfNewStructures() const;
+  double getXRotationAngle() const;
+  double getYRotationAngle() const;
+  double getZRotationAngle() const;
+  double getXTranslation() const;
+  double getYTranslation() const;
+  double getZTranslation() const;
+  double getInitialTag() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	int tagNumberIncrement;
-	int numberOfNewStructures;
-	double xRotationAngle;
-	double yRotationAngle;
-	double zRotationAngle;
-	double xTranslation;
-	double yTranslation;
-	double zTranslation;
-	double initialTag;
+  int tagNumberIncrement;
+  int numberOfNewStructures;
+  double xRotationAngle;
+  double yRotationAngle;
+  double zRotationAngle;
+  double xTranslation;
+  double yTranslation;
+  double zTranslation;
+  double initialTag;
 
 };
 
