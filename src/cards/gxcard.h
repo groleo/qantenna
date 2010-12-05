@@ -25,12 +25,12 @@
 #include <QString>
 
 /**
-  GX card: reflection in Coordinate Planes
-  Form structures having planes of symmetry by reflecting part of the structure
-  in the coordinate planes, and to set flags so that symmetry is utilized in
-  the solution.
+ * \class GXCard Reflection in Coordinate Planes.
+ *
+ * Form structures having planes of symmetry by reflecting part of the structure
+ * in the coordinate planes, and to set flags so that symmetry is utilized in
+ * the solution.
  */
-
 class GXCard : public GenericCard
 {
 public:
