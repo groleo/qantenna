@@ -25,10 +25,10 @@
 #include <QString>
 
 /**
-  Wire Specification (GW)
-  Generate a string of segments to represent a straight wire.
-*/
-
+ * \class GWCard Wire Specification.
+ *
+ * Generate a string of segments to represent a straight wire.
+ */
 class GWCard : public GenericCard
 {
 public:
