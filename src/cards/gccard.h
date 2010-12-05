@@ -25,11 +25,9 @@
 #include <QString>
 
 /**
-  GC Card
-  Set parameters to taper the segment lengths and radius from one end of the
-  wire to the other. Used as a second card for GW.
-*/
-
+ * \class GCCard Set parameters to taper the segment lengths and radius from one
+ * end of the wire to the other. Used as a second card for GW.
+ */
 class GCCard : public GenericCard
 {
 public:
