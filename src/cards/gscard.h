@@ -33,16 +33,16 @@
 class GSCard : public GenericCard
 {
 public:
-	GSCard(int theTimes, double theScale);
+  GSCard(int theTimes, double theScale);
 
-	int getTimes() const;
-	double getScale() const;
+  int getTimes() const;
+  double getScale() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	int times;
-	double scale;
+  int times;
+  double scale;
 };
 
 #endif // GSCARD_H
