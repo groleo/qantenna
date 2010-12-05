@@ -25,12 +25,12 @@
 #include <QString>
 
 /**
-	Generate Cylindrical Structure (GR) \n
-	Reproduce a structure while rotating about the Z-axis to form a complete
-	cylindrical array and to set flags so that symmetry is utilized in the
-	solution.
-*/
-
+ * \class GRCard Generate Cylindrical Structure (GR).
+ *
+ * Reproduce a structure while rotating about the Z-axis to form a complete
+ * cylindrical array and to set flags so that symmetry is utilized in the
+ * solution.
+ */
 class GRCard : public GenericCard
 {
 public:
