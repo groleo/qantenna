@@ -25,11 +25,10 @@
 #include <QString>
 
 /**
-  NE and NH cards: Near Fields
-  Request calculation of near electric fields in the vicinity of the antenna
-  (NE) and to request near magnetic fields (NH).
-*/
-
+ * \brief NE and NH cards: Near Fields. Request calculation of near electric
+ * fields in the vicinity of the antenna (NE) and to request near magnetic
+ * fields (NH).
+ */
 class NENHCards : public GenericCard
 {
 public:
