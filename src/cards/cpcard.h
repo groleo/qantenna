@@ -25,30 +25,30 @@
 #include <QString>
 
 /**
-	CP card: Coupling Calculation
-	Request calculation of the maximum coupling between segments.
+  CP card: Coupling Calculation
+  Request calculation of the maximum coupling between segments.
 */
 
 class CPCard : public GenericCard
 {
 public:
-	CPCard( int theTag1, int theSegmentNumber1,
-	        int theTag2, int theSegmentNumber2);
+  CPCard( int theTag1, int theSegmentNumber1,
+          int theTag2, int theSegmentNumber2);
 
-	bool getSecondParameter() const;
-	int getTag1() const;
-	int getSegmentNumber1() const;
-	int getTag2() const;
-	int getSegmentNumber2() const;
+  bool getSecondParameter() const;
+  int getTag1() const;
+  int getSegmentNumber1() const;
+  int getTag2() const;
+  int getSegmentNumber2() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	bool secondParameter;
-	int tag1;
-	int segmentNumber1;
-	int tag2;
-	int segmentNumber2;
+  bool secondParameter;
+  int tag1;
+  int segmentNumber1;
+  int tag2;
+  int segmentNumber2;
 };
 
 #endif // CPCARD_H
