@@ -25,13 +25,24 @@
 #include <QString>
 
 /**
-  SM card: multiple patch surface
-  Cover a rectangular region with surface patches.
-*/
-
+ * \brief SM card: multiple patch surface. Cover a rectangular region with
+ * surface patches.
+ */
 class SMCard : public GenericCard
 {
 public:
+  /**
+   * \param theCorners12Divisions The rectangular surface is divided into
+   * corners12Divisions patches from corner 1 to corner 2.
+   * \param theCorners34Divisions The rectangular surface is divided into
+   * corners34Divisions patches from corner 3 to corner 4.
+   * \param theXCoordinateCorner1 X coordinate of corner 1.
+   * \param theYCoordinateCorner1 Y coordinate of corner 1.
+   * \param theZCoordinateCorner1 Z coordinate of corner 1.
+   * \param theXCoordinateCorner2 X coordinate of corner 2.
+   * \param theYCoordinateCorner2 Y coordinate of corner 2.
+   * \param theZCoordinateCorner2 Z coordinate of corner 2.
+   */
   SMCard(int theCorners12Divisions, int theCorners34Divisions,
          double theXCoordinateCorner1, double theYCoordinateCorner1,
          double theZCoordinateCorner1, double theXCoordinateCorner2,
@@ -49,15 +60,7 @@ public:
   QString getCard();
 
 private:
-  /**
-    The rectangular surface is divided into corners12Divisions patches from
-    corner 1 to corner 2
-  */
   int corners12Divisions;
-  /**
-    The rectangular surface is divided into corners34Divisions patches from
-    corner 3 to corner 4
-   */
   int corners34Divisions;
   double xCoordinateCorner1;
   double yCoordinateCorner1;
