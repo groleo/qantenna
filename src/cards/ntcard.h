@@ -25,14 +25,14 @@
 #include <QString>
 
 /**
-  NT card: networks
-  Generate a two-port nonradiating network connected between any two segments
-  in the structure. The characteristics of the network are specified by its
-  short-circuit admittance matrix elements. For the special case of a
-  transmission line, a separate card is provided for convenience although the
-  mathematical method is the same as for networks. Refer to the TL card.
-*/
-
+ * \brief NT card: networks. Generate a two-port nonradiating network connected
+ * between any two segments in the structure.
+ *
+ * The characteristics of the network are specified by its short-circuit
+ * admittance matrix elements. For the special case of a transmission line, a
+ * separate card is provided for convenience although the mathematical method is
+ * the same as for networks. Refer to the TL card.
+ */
 class NTCard : public GenericCard
 {
 public:
