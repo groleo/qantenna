@@ -26,56 +26,56 @@
 
 //FIXME The description of this card should be read from NEC2++'s doc and re-written
 /**
-	EX card: exitation
-	Specify the excitation for the structure. The excitation can be voltage
-	sources on the structure, an elementary current source, or a plane-wave
-	incident on the structure.
-	Note from the programmer: as the fields changes their uses depending on
-	the type of exitation, I did not botter to name them properly.
+  EX card: exitation
+  Specify the excitation for the structure. The excitation can be voltage
+  sources on the structure, an elementary current source, or a plane-wave
+  incident on the structure.
+  Note from the programmer: as the fields changes their uses depending on
+  the type of exitation, I did not botter to name them properly.
 */
 
 class EXCard : public GenericCard
 {
 public:
-	// typeOfExcitation == 0 or typeOfExcitation == 5
-	EXCard(int theTypeOfExcitation, int theInteger1, int theInteger2,
-	       int theInteger3, double theDouble1, double theDouble2,
-	       double theDouble3);
+  // typeOfExcitation == 0 or typeOfExcitation == 5
+  EXCard(int theTypeOfExcitation, int theInteger1, int theInteger2,
+         int theInteger3, double theDouble1, double theDouble2,
+         double theDouble3);
 
-	// typeOfExcitation == 4
-	EXCard(int theTypeOfExcitation, int theInteger3, double theDouble1,
-	       double theDouble2, double theDouble3, double theDouble4,
-	       double theDouble5, double theDouble6);
-	// The rest
-	EXCard(int theTypeOfExcitation, int theInteger1, int theInteger2,
-	       int theInteger3, double theDouble1, double theDouble2,
-	       double theDouble3, double theDouble4, double theDouble5,
-	       double theDouble6);
+  // typeOfExcitation == 4
+  EXCard(int theTypeOfExcitation, int theInteger3, double theDouble1,
+         double theDouble2, double theDouble3, double theDouble4,
+         double theDouble5, double theDouble6);
+  // The rest
+  EXCard(int theTypeOfExcitation, int theInteger1, int theInteger2,
+         int theInteger3, double theDouble1, double theDouble2,
+         double theDouble3, double theDouble4, double theDouble5,
+         double theDouble6);
 
-	int getTypeOfExitation() const;
-	int getInteger1() const;
-	int getInteger2() const;
-	int getInteger3() const;
-	double getDouble1() const;
-	double getDouble2() const;
-	double getDouble3() const;
-	double getDouble4() const;
-	double getDouble5() const;
-	double getDouble6() const;
+  int getTypeOfExitation() const;
+  int getInteger1() const;
+  int getInteger2() const;
+  int getInteger3() const;
+  double getDouble1() const;
+  double getDouble2() const;
+  double getDouble3() const;
+  double getDouble4() const;
+  double getDouble5() const;
+  double getDouble6() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	int typeOfExcitation;
-	int integer1;
-	int integer2;
-	int integer3;
-	double double1;
-	double double2;
-	double double3;
-	double double4;
-	double double5;
-	double double6;
+  int typeOfExcitation;
+  int integer1;
+  int integer2;
+  int integer3;
+  double double1;
+  double double2;
+  double double3;
+  double double4;
+  double double5;
+  double double6;
 };
 
 #endif // EXCARD_H
