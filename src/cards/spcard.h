@@ -25,13 +25,38 @@
 #include <QString>
 
 /**
-  SP card: surface patch
-  Input parameters of a single surface patch.
-*/
-
+ * \brief SP card: surface patch, input parameters of a single surface patch.
+ */
 class SPCard : public GenericCard
 {
 public:
+  /**
+   * \param thePatchShape Selects patch shape.
+   * - 0: (default) arbitrary patch shape.
+   * - 1: rectangular patch.
+   * - 2: triangular patch.
+   * - 3: quadrilateral patch.
+   * \param theXCoordinateCorner1 X coordinate corner 1.
+   * - patchShape == 0:  X coordinate of patch center.
+   * - patchShape != 0:  X coordinate of corner 1.
+   * \param theYCoordinateCorner1 Y coordinate corner 1.
+   * - patchShape == 0: Y coordinate of patch center.
+   * - patchShape != 0: Y coordinate of corner 1.
+   * \param theZCoordinateCorner1 Z coordinate center 1.
+   * - patchShape == 0: Z coordinate of patch center.
+   * - patchShape != 0: Z coordinate of corner 1.
+   * \param theXCoordinateCorner2 X coordinate corner 2.
+   * - patchShape == 0: elevation angle above the X-Y plane of outward normal
+   *  vector (degrees).
+   * - patchShape != 0: X coordinate of corner 2.
+   * \param theYCoordinateCorner2 Y coordinate corner 2.
+   * - patchShape == 0: azimuth angle from X-axis of outward normal vector
+   *  (degrees).
+   * - patchShape != 0: Y coordinate of corner 2.
+   * \param theZCoordinateCorner2 Z coordinate corner 2.
+   * - patchShape == 0: patch area (square of units used).
+   * - patchShape != 0: Z coordinate of corner 2.
+   */
   SPCard(int thePatchShape, double theXCoordinateCorner1,
          double theYCoordinateCorner1, double theZCoordinateCorner1,
          double theXCoordinateCorner2, double theYCoordinateCorner2,
@@ -48,55 +73,12 @@ public:
   QString getCard();
 
 private:
-  /**
-    Selects patch shape
-    0: (default) arbitrary patch shape
-    1: rectangular patch
-    2: triangular patch
-    3: quadrilateral patch
-  */
   int patchShape;
-  /**
-    patchShape = 0
-      X coordinate of patch center
-    patchShape != 0
-      X coordinate of corner 1
-  */
   double xCoordinateCorner1;
-  /**
-    patchShape = 0
-      Y coordinate of patch center
-    patchShape != 0
-      Y coordinate of corner 1
- */
   double yCoordinateCorner1;
-  /**
-    patchShape = 0
-      Z coordinate of patch center
-    patchShape != 0
-      Z coordinate of corner 1
-  */
   double zCoordinateCorner1;
-  /**
-    patchShape = 0
-      elevation angle above the X-Y plane of outward normal vector (degrees)
-    patchShape != 0
-      X coordinate of corner 2
-  */
   double xCoordinateCorner2;
-  /**
-    patchShape = 0
-      azimuth angle from X-axis of outward normal vector (degrees)
-    patchShape != 0
-      Y coordinate of corner 2
-  */
   double yCoordinateCorner2;
-  /**
-    patchShape = 0
-      patch area (square of units used)
-    patchShape != 0
-      Z coordinate of corner 2
-   */
   double zCoordinateCorner2;
 };
 
