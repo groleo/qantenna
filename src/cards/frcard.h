@@ -25,14 +25,13 @@
 #include <QString>
 
 /**
-  FR card: frequency
-  Specify the frequency(s) in megahertz
-  Note: for the special case of QAntenna (at the time of version 0.1 to version
-  0.2), the number of frequency steps and the frequency increment would be set
-  to 1 in both cases in the constructor, as only one radiation pattern is
-  considered.
-*/
-
+ * \brief FR card: specifies the frequency in MegaHertz.
+ *
+ * Note: for the special case of QAntenna (at the time of version 0.1 to version
+ * 0.2), the number of frequency steps and the frequency increment would be set
+ * to 1 in both cases in the constructor, as only one radiation pattern is
+ * considered.
+ */
 class FRCard : public GenericCard
 {
 public:
