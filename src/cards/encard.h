@@ -24,8 +24,9 @@
 #include "genericcard.h"
 #include <QString>
 
-/** EN card: end of run - No parameters */
-
+/**
+ * \brief EN card: end of run - No parameters.
+ */
 class ENCard : public GenericCard
 {
 public:
