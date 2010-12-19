@@ -26,27 +26,42 @@
 
 //FIXME The description of this card should be read from NEC2++'s doc and re-written
 /**
-  EX card: exitation
-  Specify the excitation for the structure. The excitation can be voltage
-  sources on the structure, an elementary current source, or a plane-wave
-  incident on the structure.
-  Note from the programmer: as the fields changes their uses depending on
-  the type of exitation, I did not botter to name them properly.
-*/
-
+ * \brief EX card: exitation. Specify the excitation for the structure.
+ *
+ * The excitation can be voltage sources on the structure, an elementary current
+ * source, or a plane-wave incident on the structure.
+ *
+ * Note from the programmer: as the fields changes their uses depending on
+ * the type of exitation, I did not botter to name them properly.
+ */
 class EXCard : public GenericCard
 {
 public:
-  // typeOfExcitation == 0 or typeOfExcitation == 5
+  /**
+   * \param theTypeOfExcitation Determines the type of exitation that is used:
+   * - 0: voltage source (applied-E-field source).
+   * - 1: incident plane wave, linear polarization.
+   * - 2: incident plane wave, right-hand (thumb along the incident k-vector)
+   *   elliptic polarization.
+   * - 3: incident plane wave, left-hand elliptic polarization.
+   * - 4: elementary current source.
+   * - 5: voltage source (current-slope-discontinuity).
+   *
+   * This constructor is suitable for types of exitation 0 and 5.
+   */
   EXCard(int theTypeOfExcitation, int theInteger1, int theInteger2,
          int theInteger3, double theDouble1, double theDouble2,
          double theDouble3);
 
-  // typeOfExcitation == 4
+  /**
+   * Same as above, suitable for type of exitation 4.
+   */
   EXCard(int theTypeOfExcitation, int theInteger3, double theDouble1,
          double theDouble2, double theDouble3, double theDouble4,
          double theDouble5, double theDouble6);
-  // The rest
+  /**
+   * Same as above, suitable for types of exitation 1, 2 and 3.
+   */
   EXCard(int theTypeOfExcitation, int theInteger1, int theInteger2,
          int theInteger3, double theDouble1, double theDouble2,
          double theDouble3, double theDouble4, double theDouble5,
