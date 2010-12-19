@@ -29,48 +29,48 @@
 class PQCard : public GenericCard
 {
 public:
-	PQCard(int thePrintControl, int theTagNumberToPrint);
-	PQCard(int thePrintControl, int theTagNumberToPrint,
-	       int theEqualToM, int theEqualToN);
+  PQCard(int thePrintControl, int theTagNumberToPrint);
+  PQCard(int thePrintControl, int theTagNumberToPrint,
+         int theEqualToM, int theEqualToN);
 
-	bool getBlankParameters() const;
-	int getPrintControl() const;
-	int getTagNumberToPrint() const;
-	int getEqualToM() const;
-	int getEqualToN() const;
+  bool getBlankParameters() const;
+  int getPrintControl() const;
+  int getTagNumberToPrint() const;
+  int getEqualToM() const;
+  int getEqualToN() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	bool blankParameters;
-	/**
-		IPTFLQ
-		-1 - suppress printing of charge densities. This is the default condition.
-		0 - (or blank) parint charge densities on segments speficied by the
-		following parameters. If the following parameters are blank, charge
-		densities are printed for all segments.
-	*/
-	int printControl;
-	/// IPTAQ Tag number of the segments for which charge densities will be printed
-	int tagNumberToPrint;
-	/**
-		IPTAQF
-		Equal to m specifies the mth segment of the set of segments haveing tag
-		numbers of IPTAQ. If IPTAQ is zero or blank, then IPTAQF refers to an
-		absolute segment number. If IPTAQF is left blank, then charge density
-		is printed for all segments.
-	*/
-	int equalToM;
-	/**
-		IPTAQT
-		Equal to n specifies the nth segment of the set of segmants having tag
-		numbers of IPTAQ. Charge densities are printed for segments having tag
-		IPTAQT number IPTAQ starting at the mth segment in the set and ending at the nth
-		segment. If IPTAQ is zero or blank, then IPTAQF and IPTAQT refer to
-		absolute segment numbers. If IPTAQT refer to ablolute segment numbers.
-		If IPTAQT is left blank, it is set equal to IPTAQF.
-	*/
-	int equalToN;
+  bool blankParameters;
+  /**
+    IPTFLQ
+    -1 - suppress printing of charge densities. This is the default condition.
+    0 - (or blank) parint charge densities on segments speficied by the
+    following parameters. If the following parameters are blank, charge
+    densities are printed for all segments.
+  */
+  int printControl;
+  /// IPTAQ Tag number of the segments for which charge densities will be printed
+  int tagNumberToPrint;
+  /**
+    IPTAQF
+    Equal to m specifies the mth segment of the set of segments haveing tag
+    numbers of IPTAQ. If IPTAQ is zero or blank, then IPTAQF refers to an
+    absolute segment number. If IPTAQF is left blank, then charge density
+    is printed for all segments.
+  */
+  int equalToM;
+  /**
+    IPTAQT
+    Equal to n specifies the nth segment of the set of segmants having tag
+    numbers of IPTAQ. Charge densities are printed for segments having tag
+    IPTAQT number IPTAQ starting at the mth segment in the set and ending at the nth
+    segment. If IPTAQ is zero or blank, then IPTAQF and IPTAQT refer to
+    absolute segment numbers. If IPTAQT refer to ablolute segment numbers.
+    If IPTAQT is left blank, it is set equal to IPTAQF.
+  */
+  int equalToN;
 };
 
 #endif // PQCARD_H
