@@ -25,49 +25,49 @@
 #include <QString>
 
 /**
-	GN card: Ground Parameters
-	Specify the relative dielectric constant and conductivity of ground in the
-	vicinity of the antenna. In addition, a second set of ground parameters for
-	a second medium can be specified, or a radial wire ground screen can be
-	modeled using a reflection coefficient approximation.
+  GN card: Ground Parameters
+  Specify the relative dielectric constant and conductivity of ground in the
+  vicinity of the antenna. In addition, a second set of ground parameters for
+  a second medium can be specified, or a radial wire ground screen can be
+  modeled using a reflection coefficient approximation.
 */
 
 class GNCard : public GenericCard
 {
 public:
-	/// groundType == -1  - Free space conditions
-	GNCard();
-	/// Infinite ground plane. No floating points used.
-	GNCard(int theGroundType, int theNumberOfRadialWires,
-	       double theRelativeDielectricConstant, double theConductivity);
-	/// Normal cases
-	GNCard(int theGroundType, int theNumberOfRadialWires,
-	       double theRelativeDielectricConstant, double theConductivity,
-	       double theDouble1, double theDouble2, double theDouble3,
-	       double theDouble4);
+  /// groundType == -1  - Free space conditions
+  GNCard();
+  /// Infinite ground plane. No floating points used.
+  GNCard(int theGroundType, int theNumberOfRadialWires,
+         double theRelativeDielectricConstant, double theConductivity);
+  /// Normal cases
+  GNCard(int theGroundType, int theNumberOfRadialWires,
+         double theRelativeDielectricConstant, double theConductivity,
+         double theDouble1, double theDouble2, double theDouble3,
+         double theDouble4);
 
-	bool getInfiniteGround();
-	int getGroundType() const;
-	int getNumberOfRadialWires() const;
-	double getRelativeDielectricConstant() const;
-	double getConductivity() const;
-	double getDouble1() const;
-	double getDouble2() const;
-	double getDouble3() const;
-	double getDouble4() const;
+  bool getInfiniteGround();
+  int getGroundType() const;
+  int getNumberOfRadialWires() const;
+  double getRelativeDielectricConstant() const;
+  double getConductivity() const;
+  double getDouble1() const;
+  double getDouble2() const;
+  double getDouble3() const;
+  double getDouble4() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	bool infiniteGround;
-	int groundType;
-	int numberOfRadialWires;
-	double relativeDielectricConstant;
-	double conductivity;
-	double double1;
-	double double2;
-	double double3;
-	double double4;
+  bool infiniteGround;
+  int groundType;
+  int numberOfRadialWires;
+  double relativeDielectricConstant;
+  double conductivity;
+  double double1;
+  double double2;
+  double double3;
+  double double4;
 };
 
 #endif // GNCARD_H
