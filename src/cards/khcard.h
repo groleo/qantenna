@@ -25,22 +25,22 @@
 #include <QString>
 
 /**
-	KH card: Interaction approximation range
-	Set the minimum separation distance for use of a time-saving approximation in
-	filling the interaction matrix.
+  KH card: Interaction approximation range
+  Set the minimum separation distance for use of a time-saving approximation in
+  filling the interaction matrix.
 */
 
 class KHCard : public GenericCard
 {
 public:
-	KHCard(double theApproximation);
+  KHCard(double theApproximation);
 
-	double getApproximation() const;
+  double getApproximation() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	double approximation;
+  double approximation;
 };
 
 #endif // KHCARD_H
