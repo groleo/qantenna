@@ -25,43 +25,43 @@
 #include <QString>
 
 /**
-	GD card: Additional Ground Parameters
-	Specify the ground parameters of a second medium which is not in the
-	immediate vicinity of the antenna. This card may only be used if a GN
-	cart has also been used. It does not affect the field of surface patches.
+  GD card: Additional Ground Parameters
+  Specify the ground parameters of a second medium which is not in the
+  immediate vicinity of the antenna. This card may only be used if a GN
+  cart has also been used. It does not affect the field of surface patches.
 */
 
 class GDCard : public GenericCard
 {
 public:
-	GDCard(double theRelativeDielectricConstant, double theConductivity,
-	       double theDistanceToJoin, double theDistanceMedium2Below1);
+  GDCard(double theRelativeDielectricConstant, double theConductivity,
+         double theDistanceToJoin, double theDistanceMedium2Below1);
 
-	double getRelativeDielectricConstant() const;
-	double getConductivity() const;
-	double getDistanceToJoin() const;
-	double getDistanceMedium2Below1() const;
+  double getRelativeDielectricConstant() const;
+  double getConductivity() const;
+  double getDistanceToJoin() const;
+  double getDistanceMedium2Below1() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/// Relative dielectric constant of the second medium.
-	double relativeDielectricConstant;
-	/// Conductivity in mhos/mecer of the second medium.
-	double conductivity;
-	/**
-		Distance in meters from the origin of the coordinate system to the join
-		between medium 1 and 2. This distance is either the radius of the circle
-		where the two media Join or the distance out the plus X axis to where the
-		two media join in a line parallel to the Y axis. Specification of the
-		circular or linear option is on the RP cart.
-	*/
-	double distanceToJoin;
-	/**
-		Distance in meters (positive or zero) by which the surface of medium 2 is
-		below medium 1.
-	*/
-	double distanceMedium2Below1;
+  /// Relative dielectric constant of the second medium.
+  double relativeDielectricConstant;
+  /// Conductivity in mhos/mecer of the second medium.
+  double conductivity;
+  /**
+    Distance in meters from the origin of the coordinate system to the join
+    between medium 1 and 2. This distance is either the radius of the circle
+    where the two media Join or the distance out the plus X axis to where the
+    two media join in a line parallel to the Y axis. Specification of the
+    circular or linear option is on the RP cart.
+  */
+  double distanceToJoin;
+  /**
+    Distance in meters (positive or zero) by which the surface of medium 2 is
+    below medium 1.
+  */
+  double distanceMedium2Below1;
 };
 
 #endif // GDCARD_H
