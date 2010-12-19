@@ -25,79 +25,79 @@
 #include <QString>
 
 /**
-	SP card: surface patch
-	Input parameters of a single surface patch.
+  SP card: surface patch
+  Input parameters of a single surface patch.
 */
 
 class SPCard : public GenericCard
 {
 public:
-	SPCard(int thePatchShape, double theXCoordinateCorner1,
-	       double theYCoordinateCorner1, double theZCoordinateCorner1,
-	       double theXCoordinateCorner2, double theYCoordinateCorner2,
-	       double theZCoordinateCorner2 );
+  SPCard(int thePatchShape, double theXCoordinateCorner1,
+         double theYCoordinateCorner1, double theZCoordinateCorner1,
+         double theXCoordinateCorner2, double theYCoordinateCorner2,
+         double theZCoordinateCorner2 );
 
-	int getPatchShape() const;
-	double getXCoordinateCorner1() const;
-	double getYCoordinateCorner1() const;
-	double getZCoordinateCorner1() const;
-	double getXCoordinateCorner2() const;
-	double getYCoordinateCorner2() const;
-	double getZCoordinateCorner2() const;
+  int getPatchShape() const;
+  double getXCoordinateCorner1() const;
+  double getYCoordinateCorner1() const;
+  double getZCoordinateCorner1() const;
+  double getXCoordinateCorner2() const;
+  double getYCoordinateCorner2() const;
+  double getZCoordinateCorner2() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/**
-		Selects patch shape
-		0: (default) arbitrary patch shape
-		1: rectangular patch
-		2: triangular patch
-		3: quadrilateral patch
-	*/
-	int patchShape;
-	/**
-		patchShape = 0
-			X coordinate of patch center
-		patchShape != 0
-			X coordinate of corner 1
-	*/
-	double xCoordinateCorner1;
-	/**
-		patchShape = 0
-			Y coordinate of patch center
-		patchShape != 0
-			Y coordinate of corner 1
+  /**
+    Selects patch shape
+    0: (default) arbitrary patch shape
+    1: rectangular patch
+    2: triangular patch
+    3: quadrilateral patch
+  */
+  int patchShape;
+  /**
+    patchShape = 0
+      X coordinate of patch center
+    patchShape != 0
+      X coordinate of corner 1
+  */
+  double xCoordinateCorner1;
+  /**
+    patchShape = 0
+      Y coordinate of patch center
+    patchShape != 0
+      Y coordinate of corner 1
  */
-	double yCoordinateCorner1;
-	/**
-		patchShape = 0
-			Z coordinate of patch center
-		patchShape != 0
-			Z coordinate of corner 1
-	*/
-	double zCoordinateCorner1;
-	/**
-		patchShape = 0
-			elevation angle above the X-Y plane of outward normal vector (degrees)
-		patchShape != 0
-			X coordinate of corner 2
-	*/
-	double xCoordinateCorner2;
-	/**
-		patchShape = 0
-			azimuth angle from X-axis of outward normal vector (degrees)
-		patchShape != 0
-			Y coordinate of corner 2
-	*/
-	double yCoordinateCorner2;
-	/**
-		patchShape = 0
-			patch area (square of units used)
-		patchShape != 0
-			Z coordinate of corner 2
-	 */
-	double zCoordinateCorner2;
+  double yCoordinateCorner1;
+  /**
+    patchShape = 0
+      Z coordinate of patch center
+    patchShape != 0
+      Z coordinate of corner 1
+  */
+  double zCoordinateCorner1;
+  /**
+    patchShape = 0
+      elevation angle above the X-Y plane of outward normal vector (degrees)
+    patchShape != 0
+      X coordinate of corner 2
+  */
+  double xCoordinateCorner2;
+  /**
+    patchShape = 0
+      azimuth angle from X-axis of outward normal vector (degrees)
+    patchShape != 0
+      Y coordinate of corner 2
+  */
+  double yCoordinateCorner2;
+  /**
+    patchShape = 0
+      patch area (square of units used)
+    patchShape != 0
+      Z coordinate of corner 2
+   */
+  double zCoordinateCorner2;
 };
 
 #endif // SPCARD_H
