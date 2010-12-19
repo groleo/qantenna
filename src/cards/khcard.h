@@ -25,11 +25,10 @@
 #include <QString>
 
 /**
-  KH card: Interaction approximation range
-  Set the minimum separation distance for use of a time-saving approximation in
-  filling the interaction matrix.
-*/
-
+ * \brief KH card: Interaction approximation range. Set the minimum separation
+ * distance for use of a time-saving approximation in filling the interaction
+ * matrix.
+ */
 class KHCard : public GenericCard
 {
 public:
