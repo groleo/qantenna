@@ -25,16 +25,15 @@
 #include <QString>
 
 /**
-	NX card: signal the end of data for one structure and the beginning of data
-	for the next.
-*/
-
+ * \brief NX card: signal the end of data for one structure and the beginning of
+ * data for the next.
+ */
 class NXCard : public GenericCard
 {
 public:
-	NXCard();
+  NXCard();
 
-	QString getCard();
+  QString getCard();
 
 };
 
