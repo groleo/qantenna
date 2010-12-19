@@ -25,46 +25,46 @@
 #include <QString>
 
 /**
-	SM card: multiple patch surface
-	Cover a rectangular region with surface patches.
+  SM card: multiple patch surface
+  Cover a rectangular region with surface patches.
 */
 
 class SMCard : public GenericCard
 {
 public:
-	SMCard(int theCorners12Divisions, int theCorners34Divisions,
-	       double theXCoordinateCorner1, double theYCoordinateCorner1,
-	       double theZCoordinateCorner1, double theXCoordinateCorner2,
-	       double theYCoordinateCorner2, double theZCoordinateCorner2);
+  SMCard(int theCorners12Divisions, int theCorners34Divisions,
+         double theXCoordinateCorner1, double theYCoordinateCorner1,
+         double theZCoordinateCorner1, double theXCoordinateCorner2,
+         double theYCoordinateCorner2, double theZCoordinateCorner2);
 
-	int getCorners12Divisions() const;
-	int getCorners34Divisions() const;
-	double getXCoordinateCorner1() const;
-	double getYCoordinateCorner1() const;
-	double getZCoordinateCorner1() const;
-	double getXCoordinateCorner2() const;
-	double getYCoordinateCorner2() const;
-	double getZCoordinateCorner2() const;
+  int getCorners12Divisions() const;
+  int getCorners34Divisions() const;
+  double getXCoordinateCorner1() const;
+  double getYCoordinateCorner1() const;
+  double getZCoordinateCorner1() const;
+  double getXCoordinateCorner2() const;
+  double getYCoordinateCorner2() const;
+  double getZCoordinateCorner2() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	/**
-		The rectangular surface is divided into corners12Divisions patches from
-		corner 1 to corner 2
-	*/
-	int corners12Divisions;
-	/**
-		The rectangular surface is divided into corners34Divisions patches from
-		corner 3 to corner 4
-	 */
-	int corners34Divisions;
-	double xCoordinateCorner1;
-	double yCoordinateCorner1;
-	double zCoordinateCorner1;
-	double xCoordinateCorner2;
-	double yCoordinateCorner2;
-	double zCoordinateCorner2;
+  /**
+    The rectangular surface is divided into corners12Divisions patches from
+    corner 1 to corner 2
+  */
+  int corners12Divisions;
+  /**
+    The rectangular surface is divided into corners34Divisions patches from
+    corner 3 to corner 4
+   */
+  int corners34Divisions;
+  double xCoordinateCorner1;
+  double yCoordinateCorner1;
+  double zCoordinateCorner1;
+  double xCoordinateCorner2;
+  double yCoordinateCorner2;
+  double zCoordinateCorner2;
 };
 
 #endif // SMCARD_H
