@@ -25,10 +25,9 @@
 #include <QString>
 
 /**
-  CP card: Coupling Calculation
-  Request calculation of the maximum coupling between segments.
-*/
-
+ * \brief CP card: Coupling Calculation. Request calculation of the maximum
+ * coupling between segments.
+ */
 class CPCard : public GenericCard
 {
 public:
