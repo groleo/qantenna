@@ -29,9 +29,9 @@
 class ENCard : public GenericCard
 {
 public:
-	ENCard();
+  ENCard();
 
-	QString getCard();
+  QString getCard();
 };
 
 #endif // ENCARD_H
