@@ -25,10 +25,9 @@
 #include <QString>
 
 /**
-  EK card: Extended Thin-Wire Kernal
-  Control use of the extended thin-wire kernal approximation.
-*/
-
+ * \brief EK card: Extended Thin-Wire Kernel. Control use of the extended
+ * thin-wire kernal approximation.
+ */
 class EKCard : public GenericCard
 {
 public:
