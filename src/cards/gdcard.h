@@ -25,12 +25,12 @@
 #include <QString>
 
 /**
-  GD card: Additional Ground Parameters
-  Specify the ground parameters of a second medium which is not in the
-  immediate vicinity of the antenna. This card may only be used if a GN
-  cart has also been used. It does not affect the field of surface patches.
-*/
-
+ * \brief GD card: Additional Ground Parameters. Specify the ground parameters
+ * of a second medium which is not in the immediate vicinity of the antenna.
+ *
+ * This card may only be used if a GN card has also been used. It does not
+ * affect the field of surface patches.
+ */
 class GDCard : public GenericCard
 {
 public:
