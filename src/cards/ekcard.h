@@ -25,21 +25,21 @@
 #include <QString>
 
 /**
-	EK card: Extended Thin-Wire Kernal
-	Control use of the extended thin-wire kernal approximation.
+  EK card: Extended Thin-Wire Kernal
+  Control use of the extended thin-wire kernal approximation.
 */
 
 class EKCard : public GenericCard
 {
 public:
-	EKCard(int  theExtendedThinWireKernelFlag);
+  EKCard(int  theExtendedThinWireKernelFlag);
 
-	int getExtendedThinWireKernelFlag() const;
+  int getExtendedThinWireKernelFlag() const;
 
-	QString getCard();
+  QString getCard();
 
 private:
-	int extendedThinWireKernelFlag;
+  int extendedThinWireKernelFlag;
 };
 
 #endif // EKCARD_H
