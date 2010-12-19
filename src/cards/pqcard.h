@@ -24,8 +24,9 @@
 #include "genericcard.h"
 #include <QString>
 
-/** PQ card: Print Control For Charge on Wires */
-
+/**
+ * \brief PQ card: Print control for charge on wires.
+ */
 class PQCard : public GenericCard
 {
 public:
