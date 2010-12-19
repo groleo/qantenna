@@ -25,15 +25,62 @@
 #include <QString>
 
 /**
-  RP card: Radiation Pattern
-  Specify radiation pattern sampling parameters and to cause program execution.
-  Options for a field computation include a radial wire ground screen, a cliff,
-  or surface-wave fields.
-*/
-
+ * \brief RP card: Radiation Pattern. Specify radiation pattern sampling
+ * parameters and to cause program execution.
+ *
+ * Options for a field computation include a radial wire ground screen, a cliff,
+ * or surface-wave fields.
+ */
 class RPCard : public GenericCard
 {
 public:
+  /**
+   * \param theModeOfCalculation (I1) This integer selects the mode of
+   * calculation for the radiated field.
+   * Some values of (I1) will affect the meaning of the remaining parameters on
+   * the cart. Options available for I1 are:
+   * - O: normal mode. Space-wave fields are computed. An infinite ground plane
+   * is included if it has been specified previously on a GN cart; otherwise,
+   * antenna is in free space.
+   * - 1: surface wave propagating along ground is added to the normal space
+   * wave. This option changes the meaning of some of the other parameters on
+   * the RP cart as explained below, and the results appear in a special output
+   * format. Ground parameters must have been input on a GN card.
+   * The following options cause calculation of only the space wave but with
+   * special ground conditions. ground conditions include a two medium ground
+   * (cliff) where the media join in a circle or a line, and a radial wire
+   * ground screen. Ground parameters and dimensions must be input on a GN or GD
+   * card before the RP card is read. The RP card only selects the option for
+   * inclusion in the field calculation. (Refer to the GN and GD cards for
+   * further explanation.)
+   * - 2: linear cliff with antenna above upper level. Lower medium parameters
+   * are as specified for the second medium on the GN cart or on the GD card.
+   * - 3: circular cliff centered at origin of coordinate system: with antenna
+   * above upper level. Lower medium parameters are as specified for the second
+   * medium on the GN card or on the GD card.
+   * - 4: radial wire ground screen centered at origin.
+   * - 5: both radial wire ground screen and linear cliff.
+   * - 6: both radial wire ground screen ant circular cliff.
+   * The field point is specified in spherical coordinates (R. sigma, theta),
+   * illustrated in figure 18, except when the surface wave is computed. For
+   * computing the surface wave field (I1 = 1), cylindrical coordinates (phi,
+   * theta, z) are used to accurately define points near the ground plane at
+   * large radial distances. The RP cart allows automatic stepping of the field
+   * point to compute the field over a region about the antenna at uniformly
+   * spaced points. The integers I2 and I3 and floating point numbers Fl, F2, F3
+   * and F4 control the field-point stepping.
+   *
+   * \param theNumberOfValuesOfTheta Number of values of theta.
+   * Number of values of theta (e) at which the field is to be computed (number
+   * of values of z for I1 = 1).
+   *
+   * \param theNumberOfValuesOfPhi Number of values of phi.
+   * Number of values of phi (f) at which field is to be computed. The total
+   * number of field points requested by the card is NTH x NPH. If I2 or I3 is
+   * left blank, a value of one will be assumed.
+   *
+   * \param theXNDA
+   */
   RPCard(int theModeOfCalculation, int theNumberOfValuesOfTheta,
          int theNumberOfValuesOfPhi, int theXNDA, double theInitialTheta,
          double theInitialPhi, double theIncrementTheta,
@@ -65,56 +112,8 @@ public:
   QString getCard();
 
 private:
-  /**
-    (I1) This integer selects the mode of calculation for the radiated field.
-    Some values of (I1) will affect the meaning of the remaining parameters on
-    the cart. Options available for I1 are:
-
-    O - normal mode. Space-wave fields are computed. An infinite ground plane
-    is included if it has been specified previously on a GN cart; otherwise,
-    antenna is in free space.
-    1 - surface wave propagating along ground is added to the normal space
-    wave. This option changes the meaning of some of the other parameters on
-    the RP cart as explained below, and the results appear in a special output
-    format. Ground parameters must have been input on a GN card.
-
-    The following options cause calculation of only the space wave but with
-    special ground conditions. ground conditions include a two medium ground
-    (cliff) where the media join in a circle or a line, and a radial wire
-    ground screen. Ground parameters and dimensions must be input on a GN or GD
-    card before the RP card is read. The RP card only selects the option for
-    inclusion in the field calculation. (Refer to the GN and GD cards for
-    further explanation.)
-
-    2 - linear cliff with antenna above upper level. Lower medium parameters
-    are as specified for the second medium on the GN cart or on the GD card.
-    3 - circular cliff centered at origin of coordinate system: with antenna
-    above upper level. Lower medium parameters are as specified for the second
-    medium on the GN card or on the GD card.
-    4 - radial wire ground screen centered at origin.
-    5 - both radial wire ground screen and linear cliff.
-    6 - both radial wire ground screen ant circular cliff.
-
-    The field point is specified in spherical coordinates (R. sigma, theta),
-    illustrated in figure 18, except when the surface wave is computed. For
-    computing the surface wave field (I1 = 1), cylindrical coordinates (phi,
-    theta, z) are used to accurately define points near the ground plane at
-    large radial distances. The RP cart allows automatic stepping of the field
-    point to compute the field over a region about the antenna at uniformly
-    spaced points. The integers I2 and I3 and floating point numbers Fl, F2, F3
-    and F4 control the field-point stepping.
-  */
   int modeOfCalculation;
-  /**
-    Number of values of theta (e) at which the field is to be computed (number
-    of values of z for I1 = 1).
-  */
   int numberOfValuesOfTheta;
-  /**
-    Number of values of phi (f) at which field is to be computed. The total
-    number of field points requested by the card is NTH x NPH. If I2 or I3 is
-    left blank, a value of one will be assumed.
-  */
   int numberOfValuesOfPhi;
   /**
     XNDA (I4) - This optional integer consists of four independent digits in
