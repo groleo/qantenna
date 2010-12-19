@@ -25,13 +25,13 @@
 #include <QString>
 
 /**
-  GN card: Ground Parameters
-  Specify the relative dielectric constant and conductivity of ground in the
-  vicinity of the antenna. In addition, a second set of ground parameters for
-  a second medium can be specified, or a radial wire ground screen can be
-  modeled using a reflection coefficient approximation.
-*/
-
+ * \brief GN card: Ground Parameters. Specify the relative dielectric constant
+ * and conductivity of ground in the vicinity of the antenna.
+ *
+ * In addition, a second set of ground parameters for a second medium can be
+ * specified, or a radial wire ground screen can be modeled using a reflection
+ * coefficient approximation.
+ */
 class GNCard : public GenericCard
 {
 public:
