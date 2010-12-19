@@ -24,8 +24,9 @@
 #include "genericcard.h"
 #include <QString>
 
-/** PT card: Page Title */
-
+/**
+ * PT card: Page title / print control for current on wires.
+ */
 class PTCard : public GenericCard
 {
 public:
