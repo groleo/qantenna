@@ -83,12 +83,10 @@ public:
    * digits in columns 17, 18, 19 and 20, each having a different function.
    * The mnemonic XNDA is not a variable name in the program. Rather, each
    * letter represents a mnemonic for the corresponding digit in I4. If I1 = 1,
-   * then I4 has no effect and should be left blank.
-   *
-   * - X - (column l7) control output format.
+   * then I4 has no effect and should be left blank.\n\n
+   * X - (column l7) control output format.
    * - X = 0 major axis, minor axis and total gain printed.
-   * - X = 1 vertical, horizontal ant total gain printed.
-   *
+   * - X = 1 vertical, horizontal ant total gain printed.\n\n
    * N - (column 18) causes normalized gain for the specified field points to be
    * printed after the standard gain output. The number of field points for
    * which the normalized gain can be printed is limited by an array dimension
@@ -97,26 +95,22 @@ public:
    * omitted from the normalized gain. The gain may be normalized to its maximum
    * or to a value input in field F6. The type of gain that is normalized is
    * determined by the value of N as follows:
-   *
    * - N = 0 no normalized gain.
    * - N = 1 major axis gain normalized.
    * - N = 2 minor axis gain normalized.
    * - N = 3 vertical axis gain normalized.
    * - N = 4 horizontal axis gain normalized.
-   * - N = 5 total gain normalized.
-   *
+   * - N = 5 total gain normalized.\n\n
    * D - (column 19) selects either power gain or directive gain for both
    * standard printing ant normalization. If the structure excitation is an
    * incident plane wave, the quantities printed under the heading gain will
    * actually be the scattering cross section (a/lambda 2 ) and will not be
    * affected by the value of D. The column heading for the output will still
    * read "power" or "directive gain," however.
-   *
    * - D = 0 power gain.
-   * - D = 1 directive gain.
-   * - A - (column 20) requests calculation of average power gain over the
+   * - D = 1 directive gain.\n\n
+   * A - (column 20) requests calculation of average power gain over the
    * region covered by field points.
-   *
    * - A = 0 no averaging.
    * - A = 1 average gain computed.
    * - A = 2 average gain computed, printing of gain at the field points used
@@ -124,17 +118,17 @@ public:
    * will not be computed for any value of A since the area of the region
    * covered by field points vanishes.
    *
-   * \brief theInitialTheta Initial theta angle in degrees (initial z coordinate
+   * \param theInitialTheta Initial theta angle in degrees (initial z coordinate
    * in meters if I1 = 1)
    *
-   * \brief theInitialPhi Initial phi angle in degrees.
+   * \param theInitialPhi Initial phi angle in degrees.
    *
-   * \brief theIncrementTheta Increment for theta in degrees (increment for z
+   * \param theIncrementTheta Increment for theta in degrees (increment for z
    * in meters if I1 = 1).
    *
-   * \brief theIncrementPhi Increment for phi in degrees.
+   * \param theIncrementPhi Increment for phi in degrees.
    *
-   * \brief theRadialDistance Radial distance (R) of field point from the origin
+   * \param theRadialDistance Radial distance (R) of field point from the origin
    * in meters. RFLD is optional. If it is blank, the radiated electric field
    * will have the factor exp(-jkR)/R omitted. If a value of R is specified, it
    * should represent a point in the far-field region since near components of
@@ -142,7 +136,7 @@ public:
    * represents the cylindrical coordinate phi in meters and is not optional.
    * It must be greater than about one wavelength).
    *
-   * \brief theGainNormalization GNOR Determines the gain normalization factor
+   * \param theGainNormalization GNOR Determines the gain normalization factor
    * if normalization has been requested in the I4 field. If GNOR is blank or
    * zero,the gain will be normalized to its maximum value. If GNOR is not zero,
    * the gain w111 be normalized to the value of GNOR.
