@@ -33,14 +33,23 @@
 #include <QList>
 
 /**
-  This class is very important because performs the NEC input file process that
-  is saved in elementList. First ProcessData function transform information
-  saved in elementList into a primitive format saved in primitiveList. This new
-  format is compound by lines, patch and some cards (GM, GX, GA) that need
-  a recursive processing. Then ProcessLine go over primitiveList and modify
-  lines and patches according to GM, GX, etc. Finally primitiveList only
-  contains lines and patches (sometimes could have some control cards that
-  aren't used to draw the antenna) and is ready to be drawn by CreateOpenGLList.
+\class NECInput necinput.h
+\brief Stores and processes data related with the description of an antenna.
+
+- Processes the file containing an antenna description (called "NEC input"
+trough QAntenna) wich is then saved into elementList.
+- Creates the data to be sent to OpenGL for rendering.
+
+This class parses the NEC input file on creation populating cardsList. It then
+calls processData to populate the primitiveList. This new format is compounded
+by lines, patches and some cards (GM, GX, GA) that need recursive processing.
+
+Then processLine goes over primitiveList and modifies lines and patches
+according to GM, GX, etc.
+
+Finally primitiveList only contains lines and patches (sometimes could
+have some control cards that aren't used to draw the antenna) and is ready to
+be used by createOpenGLList.
 */
 class NECInput : public QObject
 {
