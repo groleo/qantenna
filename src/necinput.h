@@ -88,10 +88,10 @@ public:
   double getFrequency() const;
 
   /**
-    \brief converts data stored in elementList to a primitive format.
+      \fn ProcessData
 
-    This funtion is the start of the procedure for obtaining data from a NEC
-    file.
+      It converts data stored in elementList to primitives more apropiate to
+      process. It then calls ProcessLine.
     */
   void processData();
 
