@@ -194,7 +194,7 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
                     dataList.at(7).toDouble(), dataList.at(8).toDouble(),
                     dataList.at(9).toDouble(), dataList.at(10).toDouble());
       }
-      theNECOutput->SetRadiationPattern(newRP);
+      theNECOutput->setRadiationPattern(newRP);
       line = text.readLine();
       // We now check which kind of alignment we have
       if(line != "")
@@ -238,7 +238,7 @@ int NECOutputParser(NECOutput * theNECOutput, QString theFileName)
                       dataList.at(7).toDouble(), dataList.at(8).toDouble(),
                       dataList.at(9).toDouble(), dataList.at(10).toDouble());
         }
-        theNECOutput->SetRadiationPattern(newRP);
+        theNECOutput->setRadiationPattern(newRP);
         line = text.readLine();
         // We now check which kind of alignment we have
         if(line != "")

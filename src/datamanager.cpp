@@ -157,7 +157,7 @@ void DataManager::Render()
   glWidget->makeCurrent();
   if(gridEnabled) glWidget->renderGrid();
   foreach(NECContainer *container, necContainerList) {
-    container->Render();
+    container->render();
   }
 }
 

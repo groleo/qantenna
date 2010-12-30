@@ -65,7 +65,7 @@ void NECInput::appendCard(GenericCard * theCard)
   cardsList.append(theCard);
 }
 
-void NECInput::SetMaxModule(double newMaxModule)
+void NECInput::setMaxModule(double newMaxModule)
 {
   maxModule = newMaxModule;
 }
@@ -75,13 +75,13 @@ void NECInput::setSimulationFrequency(double newFrequency)
   frequency = newFrequency;
 }
 
-void NECInput::SetRadius(double newRadius)
+void NECInput::setRadius(double newRadius)
 {
   radius = newRadius;
-  Render();
+  render();
 }
 
-void NECInput::SetFrequency(int type, int /*nSteps*/,
+void NECInput::setFrequency(int type, int /*nSteps*/,
                             double newFrequency, double /*stepInc*/)
 {
   /**
@@ -136,7 +136,7 @@ void NECInput::SetFrequency(int type, int /*nSteps*/,
         We could not find a GE card. Do we have any more options instead
         of quiting?
       */
-      qDebug() << "NECInput::SetFrequency";
+      qDebug() << "NECInput::setFrequency";
       qDebug() << QWidget::tr("While trying to insert a FR card, I could not "
                               "find a GE card in order to put the first card "
                               "in a right place");
@@ -147,17 +147,17 @@ void NECInput::SetFrequency(int type, int /*nSteps*/,
   createNECInputFile();
 }
 
-double NECInput::GetMaxModule()
+double NECInput::getMaxModule()
 {
   return maxModule;
 }
 
-double NECInput::GetRadius()
+double NECInput::getRadius()
 {
   return radius;
 }
 
-void NECInput::GetPosition(double & newX, double & newY, double & newZ)
+void NECInput::getPosition(double & newX, double & newY, double & newZ)
 {
   newX = centerPosition.at(0)/maxModule;
   newY = centerPosition.at(1)/maxModule;
@@ -169,7 +169,7 @@ double NECInput::getFrequency() const
   return frequency;
 }
 
-void NECInput::ProcessGMCard(int index)
+void NECInput::processGMCard(int index)
 {
   QVector<double> ang;
   QVector<double> pos;
@@ -233,7 +233,7 @@ void NECInput::ProcessGMCard(int index)
       {
         primitiveList.at(i)->Rotate(ang);
         primitiveList.at(i)->Move(pos);
-        CompareModule(primitiveList.at(i)->CalculateMaxModule());
+        compareModule(primitiveList.at(i)->CalculateMaxModule());
 
         /*
           We save the antenna's drawing displacement centre, wich we will use to
@@ -268,7 +268,7 @@ void NECInput::ProcessGMCard(int index)
           newLine = new Line("GW", end1, end2, oldPrim->GetTagNumber()+itgg, 0, 0);
           newLine->Rotate(ang);
           newLine->Move(pos);
-          CompareModule(newLine->CalculateMaxModule());
+          compareModule(newLine->CalculateMaxModule());
           primitiveList.insert((j+index),newLine);
         }
         // It's a patch.
@@ -281,7 +281,7 @@ void NECInput::ProcessGMCard(int index)
           newPatch = new Patch("SP", end1, end2, end3, end4, 0, 0, 0);
           newPatch->Rotate(ang);
           newPatch->Move(pos);
-          CompareModule(newPatch->CalculateMaxModule());
+          compareModule(newPatch->CalculateMaxModule());
           primitiveList.insert((j+index),newPatch);
         }
       }
@@ -289,7 +289,7 @@ void NECInput::ProcessGMCard(int index)
   }
 }
 
-void NECInput::ProcessGXCard(int index)
+void NECInput::processGXCard(int index)
 {
   Line* newLine;
   Patch* newPatch;
@@ -406,7 +406,7 @@ void NECInput::ProcessGXCard(int index)
   }
 }
 
-void NECInput::ProcessGACard(int index)
+void NECInput::processGACard(int index)
 {
   double rada, ang1, ang2, rad, step, point;
   Line* newLine;
@@ -447,12 +447,12 @@ void NECInput::ProcessGACard(int index)
 
     point = point + step;
     newLine = new Line("GW", end1, end2, tag, 0, 0); // the Line class expects a 3-vector
-    CompareModule(newLine->CalculateMaxModule());
+    compareModule(newLine->CalculateMaxModule());
     primitiveList.insert((index+i), newLine);
   }
 }
 
-void NECInput::ProcessSPCard(int index)
+void NECInput::processSPCard(int index)
 {
   Patch* newPatch;
 
@@ -500,7 +500,7 @@ void NECInput::ProcessSPCard(int index)
       ang.append(alpha);
       newPatch->Rotate(ang);
       newPatch->Move(pos);
-      CompareModule(newPatch->CalculateMaxModule());
+      compareModule(newPatch->CalculateMaxModule());
       primitiveList.append(newPatch);
       break;
 
@@ -536,7 +536,7 @@ void NECInput::ProcessSPCard(int index)
                             spcard->getZCoordinateCorner1() +
                             sccard->getZCoordinateCorner3() -
                             spcard->getZCoordinateCorner2());
-          CompareModule(newPatch->CalculateMaxModule());
+          compareModule(newPatch->CalculateMaxModule());
           primitiveList.append(newPatch);
         }
       }
@@ -566,7 +566,7 @@ void NECInput::ProcessSPCard(int index)
                             sccard->getYCoordinateCorner3(),
                             sccard->getZCoordinateCorner3());
           newPatch->SetEnd4( 0.0, 0.0, 0.0);
-          CompareModule(newPatch->CalculateMaxModule());
+          compareModule(newPatch->CalculateMaxModule());
           primitiveList.append(newPatch);
         }
       }
@@ -598,7 +598,7 @@ void NECInput::ProcessSPCard(int index)
           newPatch->SetEnd4(sccard->getXCoordinateCorner4(),
                             sccard->getYCoordinateCorner4(),
                             sccard->getZCoordinateCorner4());
-          CompareModule(newPatch->CalculateMaxModule());
+          compareModule(newPatch->CalculateMaxModule());
           primitiveList.append(newPatch);
         }
       }
@@ -606,7 +606,7 @@ void NECInput::ProcessSPCard(int index)
   }
 }
 
-void NECInput::ProcessData()
+void NECInput::processData()
 {
   // We clean the primitive list
   qDeleteAll(primitiveList);
@@ -718,7 +718,7 @@ void NECInput::ProcessData()
       end2[2] = gwcard->getZWire2();
 
       newLine = new Line("GW", end1, end2, gwcard->getTagNumber(), 0, 0 );
-      CompareModule(newLine->CalculateMaxModule());
+      compareModule(newLine->CalculateMaxModule());
       primitiveList.append(newLine);
       gwcard = 0;
     }
@@ -762,7 +762,7 @@ void NECInput::ProcessData()
     }
     else if (card->getCardType() == "SP")
     {
-      ProcessSPCard(i);
+      processSPCard(i);
     }
     else if (card->getCardType() == "FR")
     {
@@ -806,7 +806,7 @@ void NECInput::ProcessData()
       delete smcard;
       smcard = 0;
       // And we process the new SP card
-      ProcessSPCard(i);
+      processSPCard(i);
     }
     else if (card->getCardType() == "GE")
     {
@@ -821,10 +821,10 @@ void NECInput::ProcessData()
       gecard = 0;
     }
   }
-  ProcessPrimitive();
+  processPrimitive();
 }
 
-void NECInput::ProcessPrimitive()
+void NECInput::processPrimitive()
 {
 /*
 First we search for the index where is the first card which have effects on the
@@ -836,25 +836,25 @@ repeat the cicle until there aren't any of these cards.
   {
     if(primitiveList.at(i)->GetLabel()=="GM")
     {
-      ProcessGMCard(i);
+      processGMCard(i);
     }
     else if (primitiveList.at(i)->GetLabel()=="GX")
     {
-      ProcessGXCard(i);
+      processGXCard(i);
     }
     else if (primitiveList.at(i)->GetLabel()=="GA")
     {
-      ProcessGACard(i);
+      processGACard(i);
     }
     else
     {
       i++;
     }
   }
-  CreateOpenGLList();
+  createOpenGLList();
 }
 
-void NECInput::Render()
+void NECInput::render()
 {
 
   // We need to do depth testing
@@ -889,12 +889,12 @@ void NECInput::Render()
   glDisable(GL_DEPTH_TEST);
 }
 
-QString NECInput::GetFileName()
+QString NECInput::getFileName()
 {
   return fileName;
 }
 
-void NECInput::CreateOpenGLList()
+void NECInput::createOpenGLList()
 {
   GLUquadricObj *quad;
   QVector<double> temp;
@@ -933,13 +933,13 @@ void NECInput::CreateOpenGLList()
       }
 
       temp = primitiveList.at(i)->GetEnd1();
-      Transformate(temp);
+      transformate(temp);
       linesVertexArray.append(temp.at(0));
       linesVertexArray.append(temp.at(1));
       linesVertexArray.append(temp.at(2));
 
       temp = primitiveList.at(i)->GetEnd2();
-      Transformate(temp);
+      transformate(temp);
       linesVertexArray.append(temp.at(0));
       linesVertexArray.append(temp.at(1));
       linesVertexArray.append(temp.at(2));
@@ -958,19 +958,19 @@ void NECInput::CreateOpenGLList()
         }
 
         temp = primitiveList.at(i)->GetEnd1();
-        Transformate(temp);
+        transformate(temp);
         trianglesVertexArray.append(temp.at(0));
         trianglesVertexArray.append(temp.at(1));
         trianglesVertexArray.append(temp.at(2));
 
         temp = primitiveList.at(i)->GetEnd2();
-        Transformate(temp);
+        transformate(temp);
         trianglesVertexArray.append(temp.at(0));
         trianglesVertexArray.append(temp.at(1));
         trianglesVertexArray.append(temp.at(2));
 
         temp = ((Patch*)primitiveList.at(i))->GetEnd3();
-        Transformate(temp);
+        transformate(temp);
         trianglesVertexArray.append(temp.at(0));
         trianglesVertexArray.append(temp.at(1));
         trianglesVertexArray.append(temp.at(2));
@@ -987,25 +987,25 @@ void NECInput::CreateOpenGLList()
         }
 
         temp = primitiveList.at(i)->GetEnd1();
-        Transformate(temp);
+        transformate(temp);
         quadsVertexArray.append(temp.at(0));
         quadsVertexArray.append(temp.at(1));
         quadsVertexArray.append(temp.at(2));
 
         temp = primitiveList.at(i)->GetEnd2();
-        Transformate(temp);
+        transformate(temp);
         quadsVertexArray.append(temp.at(0));
         quadsVertexArray.append(temp.at(1));
         quadsVertexArray.append(temp.at(2));
 
         temp = ((Patch*)primitiveList.at(i))->GetEnd3();
-        Transformate(temp);
+        transformate(temp);
         quadsVertexArray.append(temp.at(0));
         quadsVertexArray.append(temp.at(1));
         quadsVertexArray.append(temp.at(2));
 
         temp = ((Patch*)primitiveList.at(i))->GetEnd4();
-        Transformate(temp);
+        transformate(temp);
         quadsVertexArray.append(temp.at(0));
         quadsVertexArray.append(temp.at(1));
         quadsVertexArray.append(temp.at(2));
@@ -1025,13 +1025,13 @@ void NECInput::CreateOpenGLList()
       linesColorArray.append(1.0);
 
       temp = primitiveList.at(i)->GetEnd1();
-      Transformate(temp);
+      transformate(temp);
       linesVertexArray.append(temp.at(0));
       linesVertexArray.append(temp.at(1));
       linesVertexArray.append(temp.at(2));
 
       temp = primitiveList.at(i)->GetEnd2();
-      Transformate(temp);
+      transformate(temp);
       linesVertexArray.append(temp.at(0));
       linesVertexArray.append(temp.at(1));
       linesVertexArray.append(temp.at(2));
@@ -1051,13 +1051,13 @@ void NECInput::CreateOpenGLList()
   glEndList();
 }
 
-void NECInput::CompareModule(double module)
+void NECInput::compareModule(double module)
 {
   if(module > maxModule)
     maxModule = module;
 }
 
-void NECInput::Transformate(QVector<double> & end)
+void NECInput::transformate(QVector<double> & end)
 {	// First we normalize the point.
 
   end[0] = end[0]/maxModule;

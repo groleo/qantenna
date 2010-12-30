@@ -52,7 +52,7 @@ NECContainer::NECContainer(QString theFilename, GLWidget * gl,
   // We parse the input file
   NECInputParser(necInput);
   // And then we process it's data
-  necInput->ProcessData();
+  necInput->processData();
   // We get the frequency
   frequency = necInput->getFrequency();
 
@@ -105,13 +105,13 @@ bool NECContainer::getRadiationPatternCalculated()
   return radiationPatternCalculated;
 }
 
-void NECContainer::Render()
+void NECContainer::render()
 {
   if(!show) return;
 
-  necInput->Render();
+  necInput->render();
   if(radiationPatternCalculated)
-    necOutput->Render();
+    necOutput->render();
 }
 
 void NECContainer::setFrequency(double newFrequency)
@@ -121,12 +121,12 @@ void NECContainer::setFrequency(double newFrequency)
   // We set necInput to it's new frequency
   necInput->setSimulationFrequency(newFrequency);
   // We re-process the data
-  necInput->ProcessData();
+  necInput->processData();
 }
 
 void NECContainer::setComponentsRadius(double newRadius)
 {
-  necInput->SetRadius(newRadius);
+  necInput->setRadius(newRadius);
 }
 
 void NECContainer::setDisplacement()
@@ -137,7 +137,7 @@ void NECContainer::setDisplacement()
   double temp;
 
   // We get the real coordinates of the center
-  necInput->GetPosition(x,y,z);
+  necInput->getPosition(x,y,z);
 
   // We now transform between real and OGL coordinates
   temp = -1.0*y;
@@ -215,23 +215,23 @@ void NECContainer::calculateRadiationPattern()
 void NECContainer::rebuildLists()
 {
   glWidget->makeCurrent();
-  necInput->ProcessData();
-  necOutput->ProcessData();
+  necInput->processData();
+  necOutput->processData();
 }
 
 void NECContainer::renderFile()
 {
   // This funcion is called when the thread that calls nec2++ ends
-  emit logStart("spattern.png", tr("Rendering \"<font color=\"#000066\">")
+  emit logStart("spattern.png", tr("rendering \"<font color=\"#000066\">")
     + DataManager::cleanPathName(fileName) + "</font>\"... ");
 
   glWidget->makeCurrent();
 
-  necOutput->ProcessData();
+  necOutput->processData();
 
   // We render the results
   radiationPatternCalculated = true;
-  Render();
+  render();
 
   glWidget->update();
 

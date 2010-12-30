@@ -67,22 +67,22 @@ public:
   void appendCard(GenericCard * theCard);
 
   ///	Set a new maximum module.
-  void SetMaxModule(double newMaxModule);
+  void setMaxModule(double newMaxModule);
 
   /// Set the new simulation frequency
   void setSimulationFrequency(double newFrequency);
 
   ///	Return the maximun module.
-  double GetMaxModule();
+  double getMaxModule();
 
   /// Return the wire (line) radius.
-  double GetRadius();
+  double getRadius();
 
   /**
     Returns the posistion of the center of the radiating element in the normal
     axis space (not the OGL's axes)
   */
-  void GetPosition(double & newX, double & newY, double & newZ);
+  void getPosition(double & newX, double & newY, double & newZ);
 
   /// Returns the NEC file's frequency
   double getFrequency() const;
@@ -93,20 +93,20 @@ public:
     This funtion is the start of the procedure for obtaining data from a NEC
     file.
     */
-  void ProcessData();
+  void processData();
 
   /// Calls the list made by CreateOpenGLList.
-  void Render();
+  void render();
 
   /// We must return the file name.
-  QString GetFileName();
+  QString getFileName();
 
   /// Create input.necin
   void createNECInputFile();
 
 public slots:
   /// Set the radius of the structure components.
-  void SetRadius(double newRadius);
+  void setRadius(double newRadius);
 
   /**
     Setfrequency sets new frequency parameters (or change them) and rewrite the
@@ -117,34 +117,34 @@ public slots:
     newFrequency is the simulation frequency
     stepInc the frequency step increment.
   */
-  void SetFrequency(int type, int nSteps, double newFrequency, double stepInc);
+  void setFrequency(int type, int nSteps, double newFrequency, double stepInc);
 
 private:
   /**
     This function continues with the procedure of processing the data.
     It goes over the primitive list and execute GM, GX and GA functions.
   */
-  void ProcessPrimitive();
+  void processPrimitive();
 
   /// Finally when all the structure geometry cards are processed, CreateOpenGLList
   /// draw the antenna.
-  void CreateOpenGLList();
+  void createOpenGLList();
 
   /// Transformate normalizes the primitive's ends and change the axis to OGL
   /// format.
-  void Transformate(QVector<double> & end);
+  void transformate(QVector<double> & end);
 
   /// This private function is used by ProcessPrimitive to process GM card. It
   /// only make the code more pleasing to read.
-  void ProcessGMCard(int index);
+  void processGMCard(int index);
 
   /// This private function is used by ProcessPrimitive to process GX card. It
   /// only make the code more pleasing to read.
-  void ProcessGXCard(int index);
+  void processGXCard(int index);
 
   /// This private function is used by ProcessPrimitive to process GA card. It
   /// only make the code more pleasing to read.
-  void ProcessGACard(int index);
+  void processGACard(int index);
 
   /**
     This private function is used by ProcessData to process SP card. It
@@ -156,11 +156,11 @@ private:
       - NS = 3, Quadrilateral patch shape.
     Note: NS is stored in element->parameter(1).
   */
-  void ProcessSPCard(int index);
+  void processSPCard(int index);
 
   /// If module (function parameter) is larger than maxmodule, this function
   /// copy module into maxmodule.
-  void CompareModule(double module);
+  void compareModule(double module);
 
   /// The filename we are processing
   QString fileName;

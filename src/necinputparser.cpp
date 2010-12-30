@@ -219,7 +219,7 @@ int NECInputParser(NECInput * theNECInput)
 
   //NEC's outputs seem to be written with the C locale
   QLocale::setDefault(QLocale::C);
-  QFile theFile(theNECInput->GetFileName());
+  QFile theFile(theNECInput->getFileName());
 
   //Let's check that the file exists
   if ( !theFile.exists() )

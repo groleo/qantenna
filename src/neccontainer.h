@@ -31,123 +31,123 @@
 #include <QProcess>
 
 /**
-	This class takes cares of the NEC input and the NEC output.
-	In this way, the data manager can have only one list of antennas with it's
-	associated radiattion pattern, if existant.
+  This class takes cares of the NEC input and the NEC output.
+  In this way, the data manager can have only one list of antennas with it's
+  associated radiattion pattern, if existant.
 */
 
 class GLWidget;
 
 class NECContainer : public QObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	/**
-		The constructor must receive the file name of the .nec and pointer to the
-		GLWidget. See the note at the beggining of datamanager.cpp
-	*/
-	NECContainer(QString theFilename, GLWidget * gl, QObject * parent = 0);
-	~NECContainer();
+  /**
+    The constructor must receive the file name of the .nec and pointer to the
+    GLWidget. See the note at the beggining of datamanager.cpp
+  */
+  NECContainer(QString theFilename, GLWidget * gl, QObject * parent = 0);
+  ~NECContainer();
 
-	/// Returns the name of the .nec file wich describes the antenna
-	QString getFileName();
+  /// Returns the name of the .nec file wich describes the antenna
+  QString getFileName();
 
-	/**
-		Returns the starting frequency we will use to calculate the radiattion
-		pattern.
-	*/
-	double getFrequency();
+  /**
+    Returns the starting frequency we will use to calculate the radiattion
+    pattern.
+  */
+  double getFrequency();
 
-	/// Rebuilds OpenGL lists for necInput and necOutput
-	void rebuildLists();
+  /// Rebuilds OpenGL lists for necInput and necOutput
+  void rebuildLists();
 
-	bool getShow();
-	bool getRadiationPatternCalculated();
+  bool getShow();
+  bool getRadiationPatternCalculated();
 
 public slots:
-	/// Would you please render your contents?
-	void Render();
+  /// Would you please render your contents?
+  void render();
 
-	/// The frequency of the simulation
-	void setFrequency(double newFrequency);
+  /// The frequency of the simulation
+  void setFrequency(double newFrequency);
 
-	/// The radius of the antenna's elements
-	void setComponentsRadius(double newRadius);
-	/// The displacement of the radiattion pattern
-	void setDisplacement();
+  /// The radius of the antenna's elements
+  void setComponentsRadius(double newRadius);
+  /// The displacement of the radiattion pattern
+  void setDisplacement();
 
-	// Render selections
-	/// Sets if the radiattion pattern should be rendered as a surface
-	void setRenderSurface(bool render);
-	/// Sets if the radiation pattern should be rendered with spheres
-	void setRenderSpheres(bool render);
-	/// Sets if the radiation pattern should be rendered with a mesh
-	void setRenderMesh(bool render);
-	/**
-		Sets if the radiation pattern should be rendered with triangles in it.
-	*/
-	void setRenderInsideTriangles(bool render);
+  // Render selections
+  /// Sets if the radiattion pattern should be rendered as a surface
+  void setRenderSurface(bool render);
+  /// Sets if the radiation pattern should be rendered with spheres
+  void setRenderSpheres(bool render);
+  /// Sets if the radiation pattern should be rendered with a mesh
+  void setRenderMesh(bool render);
+  /**
+    Sets if the radiation pattern should be rendered with triangles in it.
+  */
+  void setRenderInsideTriangles(bool render);
 
-		/// The minimum in the scale
-	void setDBMinimum(double newDB);
-	/// The radius of the spheres
-	void setRadius(double newRadius);
-	/// The transparency (alpha) of the surfaces
-	void setAlpha(double newAlpha);
-	/// Set surface size
-	void setSurfaceSize(double surfaceSize);
+    /// The minimum in the scale
+  void setDBMinimum(double newDB);
+  /// The radius of the spheres
+  void setRadius(double newRadius);
+  /// The transparency (alpha) of the surfaces
+  void setAlpha(double newAlpha);
+  /// Set surface size
+  void setSurfaceSize(double surfaceSize);
 
-	/// Calculate the radiation pattern and parse the output
-	void calculateRadiationPattern();
+  /// Calculate the radiation pattern and parse the output
+  void calculateRadiationPattern();
 
-	void setShow(bool newShow);
-	void setRadiationPatternCalculated(bool newVal);
+  void setShow(bool newShow);
+  void setRadiationPatternCalculated(bool newVal);
 
-	/**
-		The color scheme defines how a RP point will be coloured.
-		0: Use the gain
-		1: Use the polarization sense
-	*/
-	void setColorScheme(int theColorSchem);
+  /**
+    The color scheme defines how a RP point will be coloured.
+    0: Use the gain
+    1: Use the polarization sense
+  */
+  void setColorScheme(int theColorSchem);
 
-	void loadFile();
-	void renderFile();
+  void loadFile();
+  void renderFile();
 
 signals:
-	/// Log item
-	void logStart(QString logo, QString msg);
-	void log(QString msg);
-	void logEndOK(bool ok);
+  /// Log item
+  void logStart(QString logo, QString msg);
+  void log(QString msg);
+  void logEndOK(bool ok);
 
-	void finishedCalc();
+  void finishedCalc();
 
 private:
 
-	/// A NECInput
-	NECInput *necInput;
-	/// A NECOutput
-	NECOutput *necOutput;
+  /// A NECInput
+  NECInput *necInput;
+  /// A NECOutput
+  NECOutput *necOutput;
 
-	/// The file name
-	QString fileName;
+  /// The file name
+  QString fileName;
 
-	/// The frequency
-	double frequency;
+  /// The frequency
+  double frequency;
 
-	/// Did we calculate the radiattion pattern?
-	bool radiationPatternCalculated;
+  /// Did we calculate the radiattion pattern?
+  bool radiationPatternCalculated;
 
-	/// Should this antenna be rendered
-	bool show;
+  /// Should this antenna be rendered
+  bool show;
 
-	/**
-		A pointer to the GLWidget. See the note at the beggining of datamanager.cpp
-	*/
-	GLWidget * glWidget;
+  /**
+    A pointer to the GLWidget. See the note at the beggining of datamanager.cpp
+  */
+  GLWidget * glWidget;
 
-	/// The creation time to avoid overwriting of temp files between different process
-	QString creationTime;
+  /// The creation time to avoid overwriting of temp files between different process
+  QString creationTime;
 };
 
 #endif //NECCONTAINER_H
