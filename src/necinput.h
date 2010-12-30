@@ -88,7 +88,7 @@ public:
   double getFrequency() const;
 
   /**
-      \fn ProcessData
+      \fn processData
 
       It converts data stored in elementList to primitives more apropiate to
       process. It then calls ProcessLine.
