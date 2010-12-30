@@ -37,7 +37,7 @@
   \brief Stores and processes data related with the description of an antenna.
 
   - Processes the file containing an antenna description (called "NEC input"
-  trough QAntenna) wich is then saved into elementList.
+    trough QAntenna) wich is then saved into elementList.
   - Creates the data to be sent to OpenGL for rendering.
 
   This class parses the NEC input file on creation populating cardsList. It then
