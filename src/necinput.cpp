@@ -238,10 +238,21 @@ void NECInput::processGMCard(int index)
         /*
           We save the antenna's drawing displacement centre, wich we will use to
           displace the RP in the same ammount.
+          ---------------------------
+          After much testing, it is clear that the RP cannot be shifted in
+          this way without introducing major errors, particularly when
+          grounds are specified. I (think) centerPosition[] is only ever
+          used to displace RP. The drawn structure seems to come out OK
+          Therefore - pending any new information about serious departures
+          of benchmark results compared to other nec2 programs, I leave
+          the offset set to zero - Graham
          */
-        centerPosition[0] = pos[0];
-        centerPosition[1] = pos[1];
-        centerPosition[2] = pos[2];
+        // centerPosition[0] = pos[0];
+        // centerPosition[1] = pos[1];
+        // centerPosition[2] = pos[2];
+        centerPosition[0] = 0.0;
+        centerPosition[1] = 0.0;
+        centerPosition[2] = 0.0;
       }
     }
   }else
