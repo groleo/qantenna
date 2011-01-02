@@ -1,2 +1,24 @@
+* If a NEC file containing non-standard comment lines, sometimes
+  using #, or ' or !, and not necessarily at the top of the file,
+  Qantenna accepts the line, but continues to parse any integers
+  and NEC card commands encountered in the comment.
+  
+  Possible fix is to have Qantenna simply skip over lines that
+  begin with characters that cannot be part of a valid input line.
+  
+  Further, to pass on to necpp those lines beginning with characters
+  that necpp will accept.
+  
+* Any CM comment line after the CE card provokes necpp to flag
+  a geometry error, but causes Qantenna to crash out without letting
+  the user know.
+  
+  A nice fix would be at least to stop with a message that this
+  happened. Even better would be to move the CM ahead of the CE,
+  and/or include a CM if it was missing.
+  
 * QAntenna closes with an error in case of any parsing error.
+  We want Qantenna to quit (if it must) gracefully.
+  If possible, to stay alive, but reject the file with a message
+  
 * If a non-nec file is opened, QAntenna fails.
