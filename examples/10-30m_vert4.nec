@@ -1,0 +1,50 @@
+CM Skeleton Cage broad-band vertical 10-30 MHz
+CM Average ground with radial wire screen and cliff
+CM Extensively commented explanation of operation
+CM This one is modified to have non-duplicated tag numbers
+CM Line 34 - start with a horizontal wire.
+CM Line 35 - Now GM is used to generate two duplicates above. The shift happens twice.
+CM Line 36 - a new vertical wire. Note the new tag number 4
+CM Line 37 - GR generates a cylindrical structure of four parts, The tag incrementer works.
+CM Line 38 - Add a central vertical conductor, tagged 17 because 1-16 are now used up.
+CM Line 39 - Another GM is used to shift the entire stucture (so far) upwards 0.5m
+CM Line 40 - A final short wire is inserted ar the base, between the origin and the structure
+CM Line 41 - GE card signals the end of geometry, and also flags a ground plane.
+CM           NOTE: This  does NOT, by itself, cause a ground to be included in the calculation!
+CM           It only modifies the geometry data as necessary when a ground is specified on later cards.
+CM           When (first integer) is nonzero, no segment may extend BELOW the ground plane, nor lie in the
+CM           ground plane. Segments may end on the ground plane, however.
+CM           The main function of GE card is to search all preceeding lines to establish connections.
+CM Line 42 - Specify exitation in the centre of element 18, at the base
+CM Line 43 - Specify the range of frequencies.. Linear twenty one steps from ten MHz in one MHz increments
+CM Line 44 - ground parameters GN. Finite ground, 32 Radials, Dielectric Constant, Conductivity
+CM Line 45 - GD card has additional ground parameters, setting  a cliff ten metres away.
+CM           The region beyond the cliff is lower by four metres, and later RP card specifies it citcular
+CM Line 46 - LD card sets wire conductivity, and uses tag number rules to make it apply to all segments
+CM Line 47 - NE card requests calculation of Near Electric Fields
+CM           This NE card specifies rectangular coordinate system, but does not go on to specify any points.
+CM           Thus the default The number 1 is assumed for any of these left blank.
+CM Line 48 - The NH card specifies rectangular coordinate system, and then specifies points.
+CM           The NH remaining integers set one X point, twenty Y points, and fifteen Z points.
+CM           The decimal fields specify a XYZ start field point, and a XYZ stepping increment
+CM            X changes most rapidly, then Y, then Z
+CM Line 49 - Finally RP sets Theta and Phi steps and incrementlast card, 
+CM           RP must be the last card, because it also signals program execution.
+CE --- End Comments ---
+GW     1     5  1.20000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  7.50000E-03
+GM     1     2  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  2.40000E+00  0.00000E+00
+GW     4    20  1.20000E+00  0.00000E+00  0.00000E+00  1.20000E+00  0.00000E+00  4.80000E+00  3.00000E-03
+GR     4     4  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+GW    17    20  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  4.80000E+00  1.25000E-02
+GM     0     0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  5.00000E-01  0.00000E+00
+GW    18     2  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  5.00000E-01  1.25000E-02
+GE     1     0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+EX     0    18     1      0  1.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+FR     0    21     0      0  1.00000E+01  1.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+GN     0    32     0      0  1.30000E+01  5.00000E-03  7.00000E+00  3.00000E-03  0.00000E+00  0.00000E+00
+GD     0     0     0      0  1.20000E+01  5.00000E-03  1.00000E+01  4.00000E+00  0.00000E+00  0.00000E+00
+LD     5     0     0      0  3.70000E+07  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+NE     0     0     0      0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
+NH     0     1    20     15  0.00000E+00 -4.75000E+00  5.00000E-01  0.00000E+00  5.00000E-01  5.00000E-01
+RP     6    19    37   1000  0.00000E+00  0.00000E+00  5.00000E+00  1.00000E+01  0.00000E+00  0.00000E+00
+EN     0     0     0      0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
