@@ -1,35 +1,55 @@
+CM   Copyright (C) 2010-2011 Graham Seale   < graham.seale@gmail.com >
+CM
+CM   Modified and added to NEC2 input files supplied with xnec2c
+CM   xnec2c - GTK2-based version of nec2c, the C translation of NEC2
+CM   Copyright (C) 2003-2010 N. Kyriazis neoklis.kyriazis(at)gmail.com
+CM
 CM Skeleton Cage broad-band vertical 10-30 MHz
 CM Average ground with radial wire screen and cliff
-CM Extensively commented explanation of operation
-CM This one is modified to have non-duplicated tag numbers
-CM Line 34 - start with a horizontal wire.
-CM Line 35 - Now GM is used to generate two duplicates above. The shift happens twice.
-CM Line 36 - a new vertical wire. Note the new tag number 4
-CM Line 37 - GR generates a cylindrical structure of four parts, The tag incrementer works.
-CM Line 38 - Add a central vertical conductor, tagged 17 because 1-16 are now used up.
-CM Line 39 - Another GM is used to shift the entire stucture (so far) upwards 0.5m
-CM Line 40 - A final short wire is inserted ar the base, between the origin and the structure
-CM Line 41 - GE card signals the end of geometry, and also flags a ground plane.
-CM           NOTE: This  does NOT, by itself, cause a ground to be included in the calculation!
-CM           It only modifies the geometry data as necessary when a ground is specified on later cards.
-CM           When (first integer) is nonzero, no segment may extend BELOW the ground plane, nor lie in the
-CM           ground plane. Segments may end on the ground plane, however.
-CM           The main function of GE card is to search all preceeding lines to establish connections.
-CM Line 42 - Specify exitation in the centre of element 18, at the base
-CM Line 43 - Specify the range of frequencies.. Linear twenty one steps from ten MHz in one MHz increments
-CM Line 44 - ground parameters GN. Finite ground, 32 Radials, Dielectric Constant, Conductivity
-CM Line 45 - GD card has additional ground parameters, setting  a cliff ten metres away.
-CM           The region beyond the cliff is lower by four metres, and later RP card specifies it citcular
-CM Line 46 - LD card sets wire conductivity, and uses tag number rules to make it apply to all segments
-CM Line 47 - NE card requests calculation of Near Electric Fields
-CM           This NE card specifies rectangular coordinate system, but does not go on to specify any points.
-CM           Thus the default The number 1 is assumed for any of these left blank.
-CM Line 48 - The NH card specifies rectangular coordinate system, and then specifies points.
-CM           The NH remaining integers set one X point, twenty Y points, and fifteen Z points.
-CM           The decimal fields specify a XYZ start field point, and a XYZ stepping increment
-CM            X changes most rapidly, then Y, then Z
-CM Line 49 - Finally RP sets Theta and Phi steps and incrementlast card, 
-CM           RP must be the last card, because it also signals program execution.
+CM
+CM This example includes extensively commented explanation of operation
+CM The original is modified with proper tag incrementors so that the 
+CM generated structures do not have duplicated tag numbers.
+CM
+CM Line 54 - start with a horizontal wire.
+CM Line 55 - Now GM is used to generate two duplicates above.
+CM           The shift happens twice.
+CM Line 56 - a new vertical wire. Note the new tag number 4
+CM Line 57 - GR generates a 4-arm cylindrical structure. Tag incrementer works.
+CM Line 58 - Add a central vertical wire, tagged 17 because 1-16 are used up.
+CM Line 59 - Another GM is used to shift the entire stucture upwards by 0.5m
+CM Line 60 - A final short wire is inserted at the base, between the origin
+CM           and the base of the cage. This 2-segment will also have excitation.
+CM Line 61 - GE card signals the end of geometry, and also flags a ground plane.
+CM           NOTE: This  does NOT, by itself, cause a ground to be included in
+CM           the calculation! It only modifies the geometry data as necessary
+CM           when a ground is specified on later cards. When the (first integer)
+CM           is non-zero, no segment may extend BELOW the ground plane, nor lie 
+CM           in the ground plane. Segments may end on the ground plane, however.
+CM           The main function of GE card is to search all preceeding lines to
+CM           check geometry, and establish connections.
+CM Line 62 - Specifies exitation in the centre of element 18, at the base
+CM Line 63 - Specifies the range of frequencies. Linear, 21 steps from 10 MHz in
+CM           1 MHz increments. Note that this gives 20 frequency intervals.
+CM Line 64 - Ground parameters card GN. Signals finite ground and  32 Radials,
+CM           the Dielectric Constant, and ground conductivity.
+CM Line 65 - GD card has additional ground parameters - a cliff ten metres away.
+CM           The region beyond the cliff is lower by four metres, and the later
+CM           RP card has an integer flag that specifies it circular.
+CM Line 66 - LD card sets wire conductivity, and uses tag number rules to make
+CM           it apply to all segments
+CM Line 67 - NE card requests calculation of Near Electric Fields
+CM           This NE card specifies rectangular coordinate system, but does not
+CM           go on to specify any points. Thus the default number 1
+CM           is assumed for any of these left blank.
+CM Line 68 - The NH card specifies rectangular coordinate system, and then goes
+CM           on to specify XYZ points. The remaining integers set one X point,
+CM           twenty Y points, and fifteen Z points. The decimal fields
+CM           specify a XYZ start field point, and a XYZ stepping increment.
+CM           X changes most rapidly, then Y less so, and  Z is slowest.
+CM Line 69 - Finally RP sets Theta and Phi steps and incrementlast card, 
+CM           RP is the last active card, since it also signals program execution
+CM Line 70   EN signals that is the end of the set.
 CE --- End Comments ---
 GW     1     5  1.20000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  7.50000E-03
 GM     1     2  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  2.40000E+00  0.00000E+00
