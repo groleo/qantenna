@@ -288,8 +288,9 @@ void GLWidget::keyReleaseEvent(QKeyEvent *event)
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
 	if(event->buttons() & Qt::RightButton) {
-		if(!mouseGrabbed)
-		{
+		if(mouseGrabbed)
+			releaseInput();
+		else {
 			emit setStatus(tr("Exploration mode: Use W, S, A and D keys to go forward, backward or move sideways"));
 			grabInput();
 		}
@@ -304,33 +305,24 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 	lastPos= event->globalPos();
 }
 
-void GLWidget::mouseReleaseEvent(QMouseEvent *event)
-{
-	if(!(event->buttons() & Qt::RightButton)) {
-		releaseInput();
-	}
-	
-	lastPos= event->globalPos();
-}
-
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
 	// Needed to ignore evets emited by QCursor::setPos
 	// when the mouse is captured
 	if(event->globalPos() == grabPos)
 		return;
-		
-	int dx, dy;
-	
-	if(event->buttons()&Qt::RightButton) {
+
+	int dx = event->globalX() - lastPos.x();
+	int dy = event->globalY() - lastPos.y();
+
+	if(mouseGrabbed) {
 		// Rotates camera
 		dx = event->globalX() - grabPos.x();
 		dy = event->globalY() - grabPos.y();
 
-		// mouse sensitivity could by adjusted from here...
-		// (replacing /10 for *sensitivity)
-		
-		camera.turn(dy*sensitivity, 0, dx*sensitivity);
+		// mouse sensibility could by adjusted from here...
+		// (replacing /10 for *sensibility)
+		camera.turn(-dy*sensibility, 0, -dx*sensibility);
 
 		// Return the cursor to the grabPosition so it
 		// never reaches the edge of the screen
