@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="es_AR" sourcelanguage="en">
 <context>
     <name>AboutWindow</name>
     <message>
@@ -13,7 +15,7 @@
         <source>A&amp;uthors</source>
         <translation>A&amp;utores</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
@@ -436,19 +438,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>rendering &quot;&lt;font color=&quot;#000066&quot;&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Renderizando &quot;&lt;font color=&quot;#000066&quot;&gt;</translation>
     </message>
     <message>
         <source>nec2++ returned with exit code %1 and exit status %2.&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>nec2++ retornó con código de salida %1 y estatus de salida %2.&lt;br&gt;</translation>
     </message>
     <message>
         <source>Check that nec2++ is installed and that the antenna is well defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chequee que nec2++ esté instalado y que la antena esté bien definida.</translation>
     </message>
     <message>
         <source>QAntenna: problem calling nec2++</source>
-        <translation type="unfinished"></translation>
+        <translation>QAntenna: problema llamando a nec2++</translation>
     </message>
 </context>
 <context>
@@ -506,11 +508,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>We don&apos;t have nec2++</source>
-        <translation type="unfinished"></translation>
+        <translation>No se dispone de nec2++</translation>
     </message>
     <message>
         <source>nec2++ command is missing!&lt;br&gt;The required program necpp must first be installed.&lt;br&gt;Closing QAntenna.</source>
-        <translation type="unfinished"></translation>
+        <translation>¡El comando nec2++ no se encuentra disponible!&lt;br&gt;El programa necpp debe ser instalado antes.&lt;br&gt; Cerrando QAntenna.</translation>
     </message>
 </context>
 </TS>
