@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="es_AR" sourcelanguage="en">
+<!DOCTYPE TS><TS>
 <context>
     <name>AboutWindow</name>
     <message>
@@ -15,7 +13,7 @@
         <source>A&amp;uthors</source>
         <translation>A&amp;utores</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;

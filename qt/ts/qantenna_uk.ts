@@ -256,7 +256,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Volumetric</source>
-        <translation>Об'ємне</translation>
+        <translation>Об&apos;ємне</translation>
     </message>
     <message>
         <source>Show grid</source>
@@ -448,7 +448,7 @@ p, li { white-space: pre-wrap; }
     <name>QObject</name>
     <message>
         <source>Checking if there is OpenGL support in this machine</source>
-        <translation>Перевіряю чи підтримує цей комп'ютер OpenGL</translation>
+        <translation>Перевіряю чи підтримує цей комп&apos;ютер OpenGL</translation>
     </message>
     <message>
         <source>Loading QAntenna</source>
