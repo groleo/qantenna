@@ -18,7 +18,8 @@ TRANSLATIONS += ../qt/ts/qantenna_da.ts \
                 ../qt/ts/qantenna_nl.ts \
                 ../qt/ts/qantenna_pl.ts \
                 ../qt/ts/qantenna_ru.ts \
-                ../qt/ts/qantenna_sv.ts
+                ../qt/ts/qantenna_sv.ts \
+                ../qt/ts/qantenna_uk.ts
 
 HEADERS += gl.h \
            camera.h \
