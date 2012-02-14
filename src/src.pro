@@ -122,7 +122,7 @@ DEFINES += EXAMPLES_PATH=\\\"$${EXAMPLES_PATH}\\\"
 
 TEMPLATE = app
 QT += opengl
-#LIBS += -lGLEW
+LIBS += -lGLU
 
 # Sub-directories
 UI_DIR = ../qt/uic
