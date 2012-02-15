@@ -132,4 +132,4 @@ RCC_DIR = ../qt/res
 
 # Cards lib
 LIBS += ../qt/lib/libQAntennaCards.a
-TARGETDEPS += ../qt/lib/libQAntennaCards.a
+POST_TARGETDEPS += ../qt/lib/libQAntennaCards.a
