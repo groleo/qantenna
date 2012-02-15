@@ -78,3 +78,5 @@ TARGET = QAntennaCards
 
 DESTDIR = ../../qt/lib
 
+# Clean the binary file upon make distclean.
+QMAKE_DISTCLEAN += ../../qt/lib/libQAntennaCards.a
