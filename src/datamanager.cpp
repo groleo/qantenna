@@ -316,7 +316,7 @@ void DataManager::openDialog()
 
   // Just show the files we understand.
   filterList << tr("NEC files (*.nec)") << tr("All files (*.*)");
-  dialog.setFilters(filterList);
+  dialog.setNameFilters(filterList);
   dialog.setDirectory(currentDirectory);
   // More than one file can be selected
   dialog.setFileMode(QFileDialog::ExistingFiles);

@@ -1,3 +1,11 @@
+QAntenna 0.3.0:
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Use -lGLU in src/src.pro to avoid FTBFS with binutils-gold.
+  * Call lrelease on make. This avoids us shipping binary files.
+  * Remove the static lib upon make distclean call. This allows easier
+    packaging.
+  * Port to Qt 5.
+
 QAntenna 0.2.3:
 
   [Graham Seale]
