@@ -194,13 +194,13 @@ MainWindow::MainWindow()
 
   // Table options
   ui.fileList->header()->setDefaultAlignment(Qt::AlignLeft);
-  ui.fileList->header()->setMovable(false);
+  ui.fileList->header()->setSectionsMovable(false);
   ui.fileList->header()->setStretchLastSection(false);
 
-  ui.fileList->header()->setResizeMode(listColName, QHeaderView::Stretch);
-  ui.fileList->header()->setResizeMode(listColFrequency, QHeaderView::Stretch);
-  ui.fileList->header()->setResizeMode(listColShow, QHeaderView::ResizeToContents);
-  ui.fileList->header()->setResizeMode(listColCalc, QHeaderView::ResizeToContents);
+  ui.fileList->header()->setSectionResizeMode(listColName, QHeaderView::Stretch);
+  ui.fileList->header()->setSectionResizeMode(listColFrequency, QHeaderView::Stretch);
+  ui.fileList->header()->setSectionResizeMode(listColShow, QHeaderView::ResizeToContents);
+  ui.fileList->header()->setSectionResizeMode(listColCalc, QHeaderView::ResizeToContents);
 
   // The listColPath column contains the full path (used as id)
   ui.fileList->header()->hideSection(listColPath);
@@ -652,7 +652,7 @@ void MainWindow::renderToFile()
         // save image in the selected format
     logStart("filesave.png", tr("Rendering to \"<font color=\"#000066\">")+
       DataManager::cleanPathName(renderPath)+"</font>\"... ");
-        if(pixmap.save(fileName, format.toAscii().constData())) {
+        if(pixmap.save(fileName, format.toLatin1().constData())) {
       logEndOK(true);
         } else {
       QMessageBox::information(this, "Error", QString(tr("Unable to save %1.")).arg(fileName));
