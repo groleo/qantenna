@@ -7,7 +7,7 @@ You have to install the Qt(*, the GL(** and the GLUT(** development files.
 You can easily do this by entering the following command:
 
 For debian based systems:
-	apt-get install qtbase5-dev qt5-default qttools5-dev-tools
+	apt-get install qtbase5-dev qttools5-dev-tools
 
 
 Fedora based systems:
