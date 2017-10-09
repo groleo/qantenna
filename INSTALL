@@ -6,11 +6,12 @@ This file tries to explain how to set up QAntenna in 3 (or 4) steps.
 You have to install the Qt(*, the GL(** and the GLUT(** development files.
 You can easily do this by entering the following command:
 
-	apt-get install libqt4-dev	(debian based systems)
+For debian based systems:
+	apt-get install qtbase5-dev qt5-default qttools5-dev-tools
 
-or
 
-	yum install qt4-devel		(fedora based systems)
+Fedora based systems:
+	yum install qt4-devel		(TODO: update for qt5)
 
 (*  http://www.trolltech.com/
 (** http://www.opengl.com/
@@ -27,12 +28,13 @@ QAntenna and nec2++ are available as Debian packages qantenna and necpp.
 Now you should be ready to compile QAntenna. Enter the source directory and run
 the following command to generate a Makefile:
 
-	qmake-qt4 qantenna.pro
+	qtchooser -qt=5 -run-tool=qmake qantenna.pro
 
 By default qantenna is installed under /usr/local. If you want to specify
 another directory for example /opt you can do that by entering:
 
 	qmake-qt4 PREFIX=/opt qantenna.pro
+	qtchooser -qt=5 -run-tool=qmake qantenna.pro
 
 Now the Makefile should created and you should be able to compile QAntenna by
 the following command:
