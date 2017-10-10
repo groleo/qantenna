@@ -271,10 +271,6 @@ p, li { white-space: pre-wrap; }
         <translation>[Index]</translation>
     </message>
     <message>
-        <source>Calculate at opening</source>
-        <translation>Beregn ved åbning</translation>
-    </message>
-    <message>
         <source>Log</source>
         <translation>Log</translation>
     </message>

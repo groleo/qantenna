@@ -96,9 +96,6 @@ public slots:
   /// The radius of the antenna's components
   void setComponentsRadius(int newRadius);
 
-  /// Calculate antenna at open
-  void setCalcAtOpen(bool activate);
-
   /// Loading an antenna NEC file
   void openDialog();
 
@@ -151,9 +148,6 @@ private:
 
   /// FIXME WTF???
   bool fileExists(QString fileName);
-
-  /// Should we calculate the antenna when opened?
-  bool calcAtOpen;
 
   /// Grid enabled
   bool gridEnabled;

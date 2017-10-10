@@ -51,9 +51,6 @@ DataManager::DataManager(GLWidget * gl, QObject * parent) : QObject(parent)
   gridEnabled = true;
   glWidget = gl;
 
-  // calcAtOpen must start in sync with fileListCalculate (checkbox)
-  calcAtOpen= true;
-
   // Current directory startup.
   currentDirectory = QDir::homePath();
 
@@ -293,15 +290,7 @@ void DataManager::fileOpen(QStringList theFiles)
       }
   }
 
-  // Do the calculation after all the files are open by either route.
-  if(calcAtOpen)
-  {
-    calculateRadiationPattern();
-  }
-  else
-  {
-    emit antennasWithoutCalc(true);
-  }
+  emit antennasWithoutCalc(true);
 
   emit updatedAntennaList();
 }
@@ -380,11 +369,6 @@ bool DataManager::fileExists(QString fileName)
       exists= true;
   }
   return exists;
-}
-
-void DataManager::setCalcAtOpen(bool activate)
-{
-  calcAtOpen= activate;
 }
 
 void DataManager::rebuildLists()

@@ -255,10 +255,6 @@ p, li { white-space: pre-wrap; }
         <translation>[Indeks]</translation>
     </message>
     <message>
-        <source>Calculate at opening</source>
-        <translation>Obliczaj przy otwieraniu</translation>
-    </message>
-    <message>
         <source>Log</source>
         <translation>Dziennik</translation>
     </message>

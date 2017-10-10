@@ -219,10 +219,6 @@ p, li { white-space: pre-wrap; }
         <translation>[Индекс]</translation>
     </message>
     <message>
-        <source>Calculate at opening</source>
-        <translation>Рассчитать при открытии</translation>
-    </message>
-    <message>
         <source>Log</source>
         <translation>Журнал</translation>
     </message>

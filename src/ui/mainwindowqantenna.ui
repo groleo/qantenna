@@ -296,24 +296,6 @@
              </property>
             </spacer>
            </item>
-           <item>
-            <widget class="QCheckBox" name="fileListCalculate" >
-             <property name="sizePolicy" >
-              <sizepolicy>
-               <hsizetype>4</hsizetype>
-               <vsizetype>0</vsizetype>
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text" >
-              <string>Calculate at opening</string>
-             </property>
-             <property name="checked" >
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
         </layout>

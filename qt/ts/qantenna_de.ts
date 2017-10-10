@@ -247,10 +247,6 @@ p, li { white-space: pre-wrap; }
         <translation>[Index]</translation>
     </message>
     <message>
-        <source>Calculate at opening</source>
-        <translation>Beim Öffnen berechnen</translation>
-    </message>
-    <message>
         <source>Visualization</source>
         <translation>Visualisierung</translation>
     </message>

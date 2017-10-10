@@ -156,10 +156,6 @@ MainWindow::MainWindow()
     Antennas tab
   */
 
-  /// "Calculate at open" CheckBox
-  connect(ui.fileListCalculate, SIGNAL(toggled(bool)),
-      theData, SLOT(setCalcAtOpen(bool)));
-
   /// Log text with welcome msg
   ui.logText->insertHtml("<table width=\"100%\"><tr><td><img src=\":/icons/img/icon.png\"> \
   </td><td valign=middle>"+tr("Welcome to")+" <b>QAntenna</b>!</td></tr></table>");
