@@ -140,7 +140,7 @@ private:
 	/// Moving speed
 	GLfloat step;
 	bool run;
-	static const float runDelta= 0.04;
+	constexpr static const float runDelta= 0.04;
 
 	/** Camera orbitation around origin, these coords are applied to
 		{x,y,z}Rot with commitSpherical()

@@ -84,7 +84,7 @@ private:
 	Camera camera;
 
 	/// Step for changing camera.rhoOrbit (with the mouse wheel)
-	static const float zoomStep= 0.1;
+	constexpr static const float zoomStep= 0.1;
 
 	/// sceneTimer is used to simulate a fast auto-repeat event and
 	/// as a scene timer
@@ -95,7 +95,7 @@ private:
 	bool movingTo[movingDirections];
 
 	/// Mouse Grabbing information
-	static const float sensibility= 0.1;
+	constexpr static const float sensibility= 0.1;
 	bool mouseGrabbed;
 	/// Did the camera moved while the input was grabbed
 	bool movedWhileGrabbed;
